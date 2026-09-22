@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | TENICIDE - Clinical &amp; Luxury Skincare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/luxury-skin-beauty.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    body { font-family: var(--lx-font-body); color: var(--lx-text-primary); background: #FAF7F5; -webkit-font-smoothing: antialiased; }
+    .page-width { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+
+    /* Announcement */
+    .announcement { background: linear-gradient(90deg, #1F1B18 0%, #2D2723 50%, #1F1B18 100%); color: #FAF7F5; text-align: center; font-family: var(--lx-font-body); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(158,123,79,0.2); }
+
+    /* Header */
+    .header { background: rgba(250,247,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--lx-border-subtle); padding: 1.1rem 0; position: sticky; top: 0; z-index: 100; }
+    .header__inner { display: flex; justify-content: space-between; align-items: center; }
+    .header__logo { font-family: var(--lx-font-heading); font-size: 1.85rem; font-weight: 600; letter-spacing: 0.22em; color: var(--lx-text-primary); text-decoration: none; }
+    .header__nav { display: flex; gap: 2rem; list-style: none; padding: 0; }
+    .header__link { font-family: var(--lx-font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lx-text-primary); text-decoration: none; transition: color 0.2s; }
+    .header__link:hover, .header__link.active { color: var(--lx-gold-primary); }
+    .header__icons { display: flex; align-items: center; gap: 1.2rem; }
+    .icon-btn { background: none; border: none; cursor: pointer; color: var(--lx-text-primary); display: flex; align-items: center; position: relative; }
+    .cart-count { position: absolute; top: -5px; right: -8px; background: var(--lx-gold-primary); color: #fff; font-size: 9px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* Page Hero */
+    .about-hero { background: #F5EDE6; padding: 90px 0 70px; border-bottom: 1px solid var(--lx-border-subtle); text-align: center; }
+    .about-hero__kicker { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.95rem; background: rgba(158,123,79,0.1); border: 1px solid rgba(158,123,79,0.25); border-radius: 9999px; margin-bottom: 1.25rem; }
+    .about-hero__kicker-text { font-family: var(--lx-font-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--lx-gold-primary); }
+    .about-hero__title { font-family: var(--lx-font-heading); font-size: clamp(3rem, 6vw, 4.8rem); font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lx-text-primary); line-height: 1.05; margin-bottom: 1.2rem; }
+    .about-hero__sub { font-family: var(--lx-font-body); font-size: 1.12rem; line-height: 1.65; color: var(--lx-text-secondary); max-width: 680px; margin: 0 auto; }
+
+    /* Welcome Section */
+    .welcome-section { padding: 80px 0; background: #FAF7F5; }
+    .welcome-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 4.5rem; align-items: center; }
+    .welcome__heading { font-family: var(--lx-font-heading); font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 500; color: var(--lx-text-primary); margin-bottom: 1.5rem; line-height: 1.15; }
+    .welcome__lead { font-family: var(--lx-font-body); font-size: 1.15rem; line-height: 1.8; color: var(--lx-text-primary); margin-bottom: 1.5rem; font-weight: 400; }
+    .welcome__img-frame { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 48px rgba(45,41,38,0.1); border: 1px solid rgba(158,123,79,0.25); position: relative; }
+    .welcome__img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .welcome__badge { position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(31,27,24,0.9); backdrop-filter: blur(8px); color: #FAF7F5; padding: 0.6rem 1.1rem; border-radius: 9999px; border: 1px solid rgba(158,123,79,0.4); text-align: center; }
+    .welcome__badge-title { font-family: var(--lx-font-heading); font-size: 0.95rem; font-weight: 700; color: var(--lx-gold-primary); letter-spacing: 0.1em; }
+    .welcome__badge-sub { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; }
+
+    /* Core Story Pillars */
+    .story-section { padding: 60px 0 90px; background: #FAF7F5; }
+    .story-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; }
+    .story-card { background: #FFFFFF; border: 1px solid var(--lx-border-subtle); border-radius: 12px; padding: 2.6rem 2.2rem; box-shadow: 0 4px 20px rgba(45,41,38,0.03); transition: all 0.35s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+    .story-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(45,41,38,0.08); border-color: rgba(158,123,79,0.4); }
+    .story-card__num { font-family: var(--lx-font-heading); font-size: 2.4rem; font-weight: 600; color: var(--lx-gold-primary); line-height: 1; margin-bottom: 1.25rem; }
+    .story-card__title { font-family: var(--lx-font-heading); font-size: 1.85rem; font-weight: 500; color: var(--lx-text-primary); margin-bottom: 1rem; line-height: 1.2; }
+    .story-card__body { font-family: var(--lx-font-body); font-size: 0.98rem; line-height: 1.75; color: var(--lx-text-secondary); flex-grow: 1; }
+
+    /* Mission Statement Banner */
+    .mission-banner { background: linear-gradient(135deg, #2D2723 0%, #1A1614 100%); color: #FAF7F5; padding: 4.5rem 3rem; border-radius: 20px; border: 1px solid rgba(158,123,79,0.35); box-shadow: 0 20px 48px rgba(0,0,0,0.2); margin: 40px auto 90px; max-width: 1200px; text-align: center; }
+    .mission-banner__quote { font-family: var(--lx-font-heading); font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-style: italic; line-height: 1.4; color: #FAF7F5; margin-bottom: 1.5rem; max-width: 900px; margin-left: auto; margin-right: auto; }
+    .mission-banner__quote span { color: var(--lx-gold-primary); }
+    .mission-banner__desc { font-family: var(--lx-font-body); font-size: 1.05rem; line-height: 1.7; color: #C9A87C; max-width: 750px; margin: 0 auto 2.2rem; }
+
+    /* Trust Section */
+    .trust-section { background: #FFF; border-top: 1px solid var(--lx-border-subtle); border-bottom: 1px solid var(--lx-border-subtle); padding: 32px 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .trust-item { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0.75rem; }
+    .trust-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--lx-bg-blush); border: 1px solid rgba(158,123,79,0.25); display: flex; align-items: center; justify-content: center; color: var(--lx-gold-primary); }
+    .trust-title { font-family: var(--lx-font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lx-text-primary); margin: 0 0 0.15rem; }
+    .trust-sub { font-family: var(--lx-font-body); font-size: 0.74rem; color: var(--lx-text-secondary); margin: 0; line-height: 1.35; }
+
+    /* Footer */
+    .site-footer { background: linear-gradient(180deg, #FAF7F5 0%, #F3ECE6 100%); border-top: 1px solid var(--lx-border-subtle); padding: 70px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3.5rem; }
+    .footer-bottom { border-top: 1px solid var(--lx-border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--lx-text-secondary); }
+
+    @media (max-width: 989px) {
+      .welcome-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .story-cards { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .mission-banner { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement -->
+  <div class="announcement">Complimentary Clinical Samples &amp; Global Express Delivery on Orders Over $75</div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="page-width header__inner">
+      <a href="/" class="header__logo">TENICIDE</a>
+      <ul class="header__nav">
+        <li><a href="/#view-homepage" class="header__link">Bestsellers</a></li>
+        <li><a href="/#view-homepage" class="header__link">The Ritual</a></li>
+        <li><a href="/about" class="header__link active">About Us</a></li>
+        <li><a href="/#view-faq" class="header__link">FAQ</a></li>
+      </ul>
+      <div class="header__icons">
+        <a href="/" class="icon-btn" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></a>
+        <a href="/" class="icon-btn" title="Account"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></a>
+        <a href="/" class="icon-btn" title="Cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="cart-count">3</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="about-hero">
+      <div class="page-width">
+        <div class="about-hero__kicker">
+          <span class="about-hero__kicker-text">The Tenicide Story</span>
+        </div>
+        <h1 class="about-hero__title">ABOUT US</h1>
+        <p class="about-hero__sub">Elevating daily self-care into a transformative, clinical-luxury ritual designed to make you look and feel your absolute best.</p>
+      </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome-section">
+      <div class="page-width">
+        <div class="welcome-grid">
+          <div>
+            <span class="luxury-kicker" style="margin-bottom:0.8rem;">OUR FOUNDATION</span>
+            <h2 class="welcome__heading">Welcome to TENICIDE</h2>
+            <p class="welcome__lead">We created TENICIDE because we wanted to create the best health and beauty products in the world. We noticed a lack of premium, effective, and trustworthy essentials in the market, so we decided to create our own.</p>
+            <div style="display:flex;gap:1rem;margin-top:2rem;">
+              <a href="/#view-homepage" class="button-primary">Shop Our Essentials</a>
+            </div>
+          </div>
+          <div>
+            <div class="welcome__img-frame">
+              <img src="assets/editorial-about-story.jpg" alt="TENICIDE Botanical &amp; Health Formulation Lab" class="welcome__img">
+              <div class="welcome__badge">
+                <div class="welcome__badge-title">TENICIDE</div>
+                <div class="welcome__badge-sub">HEALTH &amp; BEAUTY</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 Core Questions Section: Who Are We, What Are We Selling, Why Are We Selling It -->
+    <section class="story-section">
+      <div class="page-width">
+        <div class="story-cards">
+          <!-- Card 1: Who Are We? -->
+          <div class="story-card">
+            <div class="story-card__num">01</div>
+            <h2 class="story-card__title">Who Are We?</h2>
+            <p class="story-card__body">We are a team of health and beauty enthusiasts dedicated to redefining self-care. We believe that everyone deserves access to products that not only make them look good but also feel good from the inside out.</p>
+          </div>
+
+          <!-- Card 2: What Are We Selling? -->
+          <div class="story-card">
+            <div class="story-card__num">02</div>
+            <h2 class="story-card__title">What Are We Selling?</h2>
+            <p class="story-card__body">At TENICIDE, we curate and offer a premium range of health and beauty products. From skincare essentials to wellness solutions, every product is carefully selected, tested, and designed to deliver real results.</p>
+          </div>
+
+          <!-- Card 3: Why Are We Selling It? -->
+          <div class="story-card">
+            <div class="story-card__num">03</div>
+            <h2 class="story-card__title">Why Are We Selling It?</h2>
+            <p class="story-card__body">We believe that beauty and wellness shouldn't be a luxury, nor should it be a compromise. Our mission is to provide you with high-quality products that elevate your daily routine and boost your confidence, without any harmful shortcuts.</p>
+          </div>
+        </div>
+
+        <!-- Mission Banner -->
+        <div class="mission-banner">
+          <blockquote class="mission-banner__quote">"Beauty and wellness shouldn't be a luxury, nor should it be a <span>compromise</span>."</blockquote>
+          <p class="mission-banner__desc">Elevating your daily routine and boosting your confidence with high-quality, trustworthy essentials designed to deliver real results.</p>
+          <a href="/#view-homepage" class="button-primary">Experience The Collection</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+      <div class="page-width">
+        <div class="trust-grid">
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg></div><div><h4 class="trust-title">Carefully Tested</h4><p class="trust-sub">Real results proven</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div><div><h4 class="trust-title">Zero Compromise</h4><p class="trust-sub">No harmful shortcuts</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div><div><h4 class="trust-title">Premium Essentials</h4><p class="trust-sub">Health &amp; beauty curated</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><path d="M17 10h4l3 4v5h-7v-9z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><div><h4 class="trust-title">Global Express</h4><p class="trust-sub">Complimentary over $75</p></div></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="page-width">
+      <div class="footer-grid">
+        <div>
+          <span style="font-family:var(--lx-font-heading);font-size:1.6rem;letter-spacing:0.2em;font-weight:600;color:var(--lx-text-primary);">TENICIDE</span>
+          <p style="font-size:0.88rem;color:var(--lx-text-secondary);line-height:1.6;margin-top:1rem;">We noticed a lack of premium, effective, and trustworthy essentials in the market, so we decided to create our own. Curated health and beauty essentials for everyday radiance.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">The Collection</h4>
+          <p><a href="/#view-homepage" class="footer__link">Cleanse &amp; Prep</a></p>
+          <p><a href="/#view-homepage" class="footer__link">Cellular Serums</a></p>
+          <p><a href="/#view-homepage" class="footer__link">Barrier Creams</a></p>
+          <p><a href="/#view-homepage" class="footer__link">The Complete Routine</a></p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Client Care</h4>
+          <p><a href="/about" class="footer__link">About Us</a></p>
+          <p><a href="/#view-faq" class="footer__link">Frequently Asked</a></p>
+          <p><a href="/#view-faq" class="footer__link">Shipping &amp; Returns</a></p>
+          <p><a href="/#view-faq" class="footer__link">Contact Concierge</a></p>
+        </div>
+        <div>
+          <h4 class="footer__heading">The Private Journal</h4>
+          <p style="font-size:0.86rem;color:var(--lx-text-secondary);margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p>
+          <div style="display:flex;gap:0.5rem;">
+            <input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem;border:1px solid var(--lx-border-subtle);border-radius:9999px;flex-grow:1;font-family:var(--lx-font-body);font-size:0.84rem;background:#fff;">
+            <button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 Tenicide Co. All rights reserved.</div>
+        <div style="display:flex;gap:1.5rem;">
+          <a href="#" class="footer__link">Privacy Policy</a>
+          <a href="#" class="footer__link">Terms of Service</a>
+          <a href="#" class="footer__link">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

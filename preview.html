@@ -213,10 +213,10 @@
     <div class="page-width header__inner">
       <a href="#" class="header__logo" onclick="showView('homepage')">TENICIDE</a>
       <ul class="header__nav">
-        <li><a href="#" class="header__link" onclick="showView('homepage')">Bestsellers</a></li>
-        <li><a href="#" class="header__link" onclick="showView('homepage')">The Ritual</a></li>
-        <li><a href="#" class="header__link" onclick="showView('about')">Philosophy</a></li>
-        <li><a href="#" class="header__link" onclick="showView('faq')">FAQ</a></li>
+        <li><a href="#products" class="header__link" onclick="showView('homepage')">Bestsellers</a></li>
+        <li><a href="#routine" class="header__link" onclick="showView('homepage')">The Ritual</a></li>
+        <li><a href="/about" class="header__link">About Us</a></li>
+        <li><a href="#faq" class="header__link" onclick="showView('faq')">FAQ</a></li>
       </ul>
       <div class="header__icons">
         <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
@@ -238,8 +238,8 @@
             <h1 class="hero__title">Elevate Your Skin to its <em>Purest Radiance</em></h1>
             <p class="hero__sub">Bio-active formulations engineered with pure botanical actives and dermatologist-backed science for visible, cellular-level transformation.</p>
             <div class="hero__actions">
-              <a href="#" class="button-primary">Shop Bestsellers</a>
-              <a href="#" class="button-secondary" onclick="showView('about')">The Clinical Philosophy</a>
+              <a href="#products" class="button-primary">Shop Bestsellers</a>
+              <a href="/about" class="button-secondary">About Us</a>
             </div>
             <div class="hero__metrics">
               <div class="hero__metric"><span class="hero__metric-val">98%</span><span class="hero__metric-desc">Firmer Skin</span></div>
@@ -347,10 +347,11 @@
             <p class="editorial__lead">Clean luxury backed by uncompromising clinical efficacy.</p>
             <p class="editorial__body">At Tenicide, we reject the false compromise between organic naturalness and clinical performance. Each formula is engineered with pure bio-identical actives at optimal concentration, harmonized to restore skin balance, luminosity, and youthfulness.</p>
             <div class="editorial__pillars">
+            <div class="editorial__pillars">
               <div class="pillar"><div class="pillar__num">01</div><div><h4 class="pillar__title">Bio-Identical Actives</h4><p class="pillar__desc">Formulated to mirror skin cellular architecture for rapid absorption and zero irritation.</p></div></div>
               <div class="pillar"><div class="pillar__num">02</div><div><h4 class="pillar__title">Dermatologist Proven</h4><p class="pillar__desc">Multi-panel clinical evaluations ensure verified, visible results within 14 days.</p></div></div>
             </div>
-            <a href="#" class="button-primary" onclick="showView('about')">Discover Our Story</a>
+            <a href="/about" class="button-primary">About Us</a>
           </div>
         </div>
       </div>
@@ -376,22 +377,44 @@
   <!-- ===================== ABOUT US ===================== -->
   <div id="view-about" class="page-view">
     <section class="page-hero">
-      <div class="page-width text-center"><span class="luxury-kicker">OUR ORIGIN &amp; PHILOSOPHY</span><h1 class="page-hero__title">The Art of <em>Clinical Radiance</em></h1><p class="page-hero__sub centered">Born from the conviction that clinical skincare should never sacrifice luxury, sensorial indulgence, or clean botanical purity.</p></div>
+      <div class="page-width text-center">
+        <span class="luxury-kicker">THE TENICIDE STORY</span>
+        <h1 class="page-hero__title" style="letter-spacing:0.04em;text-transform:uppercase;">ABOUT US</h1>
+        <p class="page-hero__sub centered">Elevating daily self-care into a transformative, clinical-luxury ritual designed to make you look and feel your absolute best.</p>
+      </div>
     </section>
     <section class="editorial-section">
       <div class="page-width">
         <div class="editorial-grid">
           <div><div class="editorial__media-frame"><img src="assets/editorial-about-story.jpg" alt="Botanical Laboratory" class="editorial__img"></div></div>
           <div>
-            <span class="luxury-kicker">THE FORMULATION STANDARD</span>
-            <h2 class="editorial__heading">Where Dermatological Science Meets <em>Organic Purity</em></h2>
-            <p class="editorial__lead">Engineered at the intersection of cellular biology and rare botanicals.</p>
-            <p class="editorial__body">Tenicide was conceived by dermatological chemists with a singular purpose: to replace abrasive clinical treatments with deeply biocompatible formulas that fortify and nourish the skin from within. We utilize bio-fermented actives, biomimetic peptides, and precious cold-pressed botanical essences to achieve radiant, long-lasting transformation.</p>
-            <div class="editorial__pillars">
-              <div class="pillar"><div class="pillar__num">01</div><div><h4 class="pillar__title">100% Bio-Identical Actives</h4><p class="pillar__desc">Engineered to match the skin lipid matrix for effortless cellular absorption without redness or irritation.</p></div></div>
-              <div class="pillar"><div class="pillar__num">02</div><div><h4 class="pillar__title">Zero Compromise On Purity</h4><p class="pillar__desc">Rigorously free from parabens, sulfates, phthalates, artificial fragrance, and harsh fillers.</p></div></div>
+            <span class="luxury-kicker">OUR FOUNDATION</span>
+            <h2 class="editorial__heading">Welcome to TENICIDE</h2>
+            <p class="editorial__body" style="font-size:1.05rem;line-height:1.8;color:var(--lx-text-primary);">We created TENICIDE because we wanted to create the best health and beauty products in the world. We noticed a lack of premium, effective, and trustworthy essentials in the market, so we decided to create our own.</p>
+            <div class="editorial__pillars" style="margin-top:2rem;">
+              <div class="pillar">
+                <div class="pillar__num">01</div>
+                <div>
+                  <h4 class="pillar__title" style="font-size:1.15rem;margin-bottom:0.4rem;">Who Are We?</h4>
+                  <p class="pillar__desc" style="font-size:0.95rem;line-height:1.65;">We are a team of health and beauty enthusiasts dedicated to redefining self-care. We believe that everyone deserves access to products that not only make them look good but also feel good from the inside out.</p>
+                </div>
+              </div>
+              <div class="pillar">
+                <div class="pillar__num">02</div>
+                <div>
+                  <h4 class="pillar__title" style="font-size:1.15rem;margin-bottom:0.4rem;">What Are We Selling?</h4>
+                  <p class="pillar__desc" style="font-size:0.95rem;line-height:1.65;">At TENICIDE, we curate and offer a premium range of health and beauty products. From skincare essentials to wellness solutions, every product is carefully selected, tested, and designed to deliver real results.</p>
+                </div>
+              </div>
+              <div class="pillar">
+                <div class="pillar__num">03</div>
+                <div>
+                  <h4 class="pillar__title" style="font-size:1.15rem;margin-bottom:0.4rem;">Why Are We Selling It?</h4>
+                  <p class="pillar__desc" style="font-size:0.95rem;line-height:1.65;">We believe that beauty and wellness shouldn't be a luxury, nor should it be a compromise. Our mission is to provide you with high-quality products that elevate your daily routine and boost your confidence, without any harmful shortcuts.</p>
+                </div>
+              </div>
             </div>
-            <a href="#" class="button-primary">Explore Our Formulas</a>
+            <a href="/about" class="button-primary">View Full About Us Page</a>
           </div>
         </div>
       </div>
@@ -399,10 +422,10 @@
     <section class="trust-section">
       <div class="page-width">
         <div class="trust-grid">
-          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20"/></svg></div><div><h4 class="trust-title">Dermatologist Tested</h4><p class="trust-sub">Clinical efficacy proven</p></div></div>
-          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div><div><h4 class="trust-title">100% Clean &amp; Vegan</h4><p class="trust-sub">Cruelty-free certified</p></div></div>
-          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21"/></svg></div><div><h4 class="trust-title">Sustainable Luxury</h4><p class="trust-sub">Recyclable amber glass</p></div></div>
-          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><div><h4 class="trust-title">Global Delivery</h4><p class="trust-sub">Carbon-neutral logistics</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20"/></svg></div><div><h4 class="trust-title">Carefully Tested</h4><p class="trust-sub">Real results proven</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div><div><h4 class="trust-title">Zero Compromise</h4><p class="trust-sub">No harmful shortcuts</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21"/></svg></div><div><h4 class="trust-title">Premium Essentials</h4><p class="trust-sub">Health &amp; beauty curated</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><div><h4 class="trust-title">Global Express</h4><p class="trust-sub">Complimentary over $75</p></div></div>
         </div>
       </div>
     </section>
@@ -437,8 +460,8 @@
     <div class="page-width">
       <div class="footer-grid">
         <div><span style="font-family:var(--lx-font-heading);font-size:1.6rem;letter-spacing:0.2em;font-weight:600;color:var(--lx-text-primary);">TENICIDE</span><p style="font-size:0.88rem;color:var(--lx-text-secondary);line-height:1.6;margin-top:1rem;">Where clinical skincare science meets botanical refinement. Formulated for cellular rejuvenation and uncompromising skin health.</p></div>
-        <div><h4 class="footer__heading">The Collection</h4><p><a href="#" class="footer__link">Cleanse &amp; Prep</a></p><p><a href="#" class="footer__link">Cellular Serums</a></p><p><a href="#" class="footer__link">Barrier Creams</a></p><p><a href="#" class="footer__link">Ritual Sets</a></p></div>
-        <div><h4 class="footer__heading">Client Care</h4><p><a href="#" class="footer__link" onclick="showView('about')">Our Story</a></p><p><a href="#" class="footer__link" onclick="showView('faq')">Frequently Asked</a></p><p><a href="#" class="footer__link">Shipping &amp; Returns</a></p><p><a href="#" class="footer__link">Contact Concierge</a></p></div>
+        <div><h4 class="footer__heading">The Collection</h4><p><a href="#products" class="footer__link">Cleanse &amp; Prep</a></p><p><a href="#products" class="footer__link">Cellular Serums</a></p><p><a href="#products" class="footer__link">Barrier Creams</a></p><p><a href="#routine" class="footer__link">Ritual Sets</a></p></div>
+        <div><h4 class="footer__heading">Client Care</h4><p><a href="/about" class="footer__link">About Us</a></p><p><a href="#faq" class="footer__link" onclick="showView('faq')">Frequently Asked</a></p><p><a href="#faq" class="footer__link">Shipping &amp; Returns</a></p><p><a href="#faq" class="footer__link">Contact Concierge</a></p></div>
         <div><h4 class="footer__heading">The Private Journal</h4><p style="font-size:0.86rem;color:var(--lx-text-secondary);margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p><div style="display:flex;gap:0.5rem;"><input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem;border:1px solid var(--lx-border-subtle);border-radius:9999px;flex-grow:1;font-family:var(--lx-font-body);font-size:0.84rem;background:#fff;"><button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button></div></div>
       </div>
       <div class="footer-bottom"><div>&copy; 2026 Tenicide Co. All rights reserved.</div><div style="display:flex;gap:1.5rem;"><a href="#" class="footer__link">Privacy Policy</a><a href="#" class="footer__link">Terms of Service</a><a href="#" class="footer__link">Refund Policy</a></div></div>

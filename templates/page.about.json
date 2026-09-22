@@ -5,11 +5,11 @@
       "settings": {
         "bg_color": "#F5EDE6",
         "text_alignment": "center",
-        "kicker": "OUR ORIGIN & PHILOSOPHY",
-        "title": "The Art of <em>Clinical Radiance</em>",
-        "subtitle": "Born from the conviction that clinical skincare should never sacrifice luxury, sensorial indulgence, or clean botanical purity.",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "kicker": "THE TENICIDE STORY",
+        "title": "ABOUT US",
+        "subtitle": "Elevating daily self-care into a transformative, clinical-luxury ritual designed to make you look and feel your absolute best.",
+        "padding_top": 90,
+        "padding_bottom": 70
       }
     },
     "editorial_story": {
@@ -17,15 +17,17 @@
       "settings": {
         "bg_color": "#FAF7F5",
         "image_position": "left",
-        "kicker": "THE FORMULATION STANDARD",
-        "heading": "Where Dermatological Science Meets <em>Organic Purity</em>",
-        "lead_text": "Engineered at the intersection of cellular biology and rare botanicals.",
-        "body_text": "<p>Tenicide was conceived by dermatological chemists with a singular purpose: to replace abrasive clinical treatments with deeply biocompatible formulas that fortify and nourish the skin from within. We utilize bio-fermented actives, biomimetic peptides, and precious cold-pressed botanical essences to achieve radiant, long-lasting transformation.</p>",
-        "pillar_1_title": "100% Bio-Identical Actives",
-        "pillar_1_desc": "Engineered to match the skin's natural lipid matrix for effortless cellular absorption without redness or irritation.",
-        "pillar_2_title": "Zero Compromise On Purity",
-        "pillar_2_desc": "Rigorously free from parabens, sulfates, phthalates, artificial fragrance, and harsh fillers.",
-        "button_label": "Explore Our Formulas",
+        "kicker": "OUR FOUNDATION",
+        "heading": "Welcome to TENICIDE",
+        "lead_text": "",
+        "body_text": "<p>We created TENICIDE because we wanted to create the best health and beauty products in the world. We noticed a lack of premium, effective, and trustworthy essentials in the market, so we decided to create our own.</p>",
+        "pillar_1_title": "Who Are We?",
+        "pillar_1_desc": "We are a team of health and beauty enthusiasts dedicated to redefining self-care. We believe that everyone deserves access to products that not only make them look good but also feel good from the inside out.",
+        "pillar_2_title": "What Are We Selling?",
+        "pillar_2_desc": "At TENICIDE, we curate and offer a premium range of health and beauty products. From skincare essentials to wellness solutions, every product is carefully selected, tested, and designed to deliver real results.",
+        "pillar_3_title": "Why Are We Selling It?",
+        "pillar_3_desc": "We believe that beauty and wellness shouldn't be a luxury, nor should it be a compromise. Our mission is to provide you with high-quality products that elevate your daily routine and boost your confidence, without any harmful shortcuts.",
+        "button_label": "Shop The Collection",
         "button_link": "/collections/all",
         "padding_top": 80,
         "padding_bottom": 80
@@ -43,32 +45,32 @@
           "type": "badge",
           "settings": {
             "icon": "dermatologist",
-            "title": "Dermatologist Tested",
-            "subtitle": "Clinical efficacy proven"
+            "title": "Carefully Tested",
+            "subtitle": "Real results proven"
           }
         },
         "badge_2": {
           "type": "badge",
           "settings": {
             "icon": "leaf",
-            "title": "100% Clean & Vegan",
-            "subtitle": "Cruelty-free certified"
+            "title": "Zero Compromise",
+            "subtitle": "No harmful shortcuts"
           }
         },
         "badge_3": {
           "type": "badge",
           "settings": {
             "icon": "sparkle",
-            "title": "Sustainable Luxury",
-            "subtitle": "Recyclable amber glass"
+            "title": "Premium Essentials",
+            "subtitle": "Health & beauty curated"
           }
         },
         "badge_4": {
           "type": "badge",
           "settings": {
             "icon": "shipping",
-            "title": "Global Shipping",
-            "subtitle": "Carbon-neutral delivery"
+            "title": "Global Express",
+            "subtitle": "Complimentary over $75"
           }
         }
       },

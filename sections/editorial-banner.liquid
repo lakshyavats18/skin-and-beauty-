@@ -75,6 +75,16 @@
                 <p class="editorial-pillar__desc">{{ section.settings.pillar_2_desc | default: 'Every active concentration is backed by rigorous clinical skin assessments.' }}</p>
               </div>
             </div>
+
+            {% if section.settings.pillar_3_title != blank %}
+              <div class="editorial-pillar">
+                <div class="editorial-pillar__num">03</div>
+                <div class="editorial-pillar__info">
+                  <h4 class="editorial-pillar__title">{{ section.settings.pillar_3_title }}</h4>
+                  <p class="editorial-pillar__desc">{{ section.settings.pillar_3_desc }}</p>
+                </div>
+              </div>
+            {% endif %}
           </div>
 
           {% if section.settings.button_label != blank %}
@@ -335,6 +345,20 @@
       "id": "pillar_2_desc",
       "label": "Pillar 2 Description",
       "default": "Every active concentration is verified through multi-panel clinical skin trials."
+    },
+    {
+      "type": "header",
+      "content": "Pillar 3"
+    },
+    {
+      "type": "text",
+      "id": "pillar_3_title",
+      "label": "Pillar 3 Title"
+    },
+    {
+      "type": "text",
+      "id": "pillar_3_desc",
+      "label": "Pillar 3 Description"
     },
     {
       "type": "header",
