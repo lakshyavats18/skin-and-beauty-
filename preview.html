@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenicide Co. | Luxury Skincare Redesign Live Preview</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Theme Stylesheets -->
+  <link rel="stylesheet" href="assets/base.css">
+  <link rel="stylesheet" href="assets/luxury-skin-beauty.css">
+  <link rel="stylesheet" href="assets/luxury-product-card.css">
+
+  <style>
+    /* Preview Bar Banner */
+    .theme-preview-toolbar {
+      position: sticky;
+      top: 0;
+      z-index: 99999;
+      background: #1A1614;
+      color: #FAF7F5;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #9E7B4F;
+      font-size: 0.82rem;
+      font-family: var(--lx-font-body);
+    }
+    .preview-toolbar__badges {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .preview-chip {
+      background: #9E7B4F;
+      color: #FFF;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+    }
+    .preview-nav {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .preview-nav-btn {
+      background: rgba(255,255,255,0.1);
+      color: #FAF7F5;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 9999px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      font-size: 0.76rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .preview-nav-btn.active,
+    .preview-nav-btn:hover {
+      background: #9E7B4F;
+      border-color: #9E7B4F;
+      color: #FFF;
+    }
+    .page-view {
+      display: none;
+    }
+    .page-view.active {
+      display: block;
+    }
+    
+    /* Layout Helpers */
+    .page-width {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .text-center { text-align: center; }
+
+    /* Navigation Header */
+    .site-header {
+      background: rgba(250, 247, 245, 0.98);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--lx-border-subtle);
+      padding: 1.25rem 0;
+      position: relative;
+      z-index: 100;
+    }
+    .site-header__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .site-header__logo {
+      font-family: var(--lx-font-heading);
+      font-size: 1.95rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      color: var(--lx-text-primary);
+      text-decoration: none;
+    }
+    .site-header__nav {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .site-header__link {
+      font-family: var(--lx-font-body);
+      font-size: 0.84rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--lx-text-primary);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .site-header__link:hover {
+      color: var(--lx-gold-primary);
+    }
+    .site-header__icons {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+    }
+    .header-icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--lx-text-primary);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Product Grid Presentation */
+    .products-section {
+      background-color: #FAF7F5;
+      padding: 80px 0;
+      border-top: 1px solid var(--lx-border-subtle);
+    }
+    .product-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    @media (max-width: 989px) {
+      .product-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .product-grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Preview Bar Switcher -->
+  <div class="theme-preview-toolbar">
+    <div class="preview-toolbar__badges">
+      <span class="preview-chip">LIVE PREVIEW</span>
+      <span>Tenicide Skincare • Online Store 2.0</span>
+    </div>
+    <div class="preview-nav">
+      <button class="preview-nav-btn active" onclick="switchView('homepage')">Homepage</button>
+      <button class="preview-nav-btn" onclick="switchView('about')">About Us (page.about.json)</button>
+      <button class="preview-nav-btn" onclick="switchView('faq')">FAQ (page.faq.json)</button>
+    </div>
+  </div>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar text-center">
+    COMPLIMENTARY CLINICAL SAMPLES &amp; GLOBAL EXPRESS DELIVERY ON ORDERS OVER $75
+  </div>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="page-width site-header__inner">
+      <a href="#" class="site-header__logo" onclick="switchView('homepage')">TENICIDE</a>
+      <ul class="site-header__nav">
+        <li><a href="#bestsellers" class="site-header__link" onclick="switchView('homepage')">Bestsellers</a></li>
+        <li><a href="#routine" class="site-header__link" onclick="switchView('homepage')">The Ritual</a></li>
+        <li><a href="#" class="site-header__link" onclick="switchView('about')">Philosophy</a></li>
+        <li><a href="#" class="site-header__link" onclick="switchView('faq')">FAQ</a></li>
+      </ul>
+      <div class="site-header__icons">
+        <button class="header-icon-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        </button>
+        <button class="header-icon-btn" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="header-icon-btn" aria-label="Cart" style="position:relative;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+          <span style="position:absolute; top:-5px; right:-8px; background:var(--lx-gold-primary); color:#fff; font-size:10px; font-weight:700; width:16px; height:16px; border-radius:50%; display:flex; align-items:center; justify-content:center;">3</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       VIEW 1: HOMEPAGE
+       ========================================================================= -->
+  <div id="view-homepage" class="page-view active">
+
+    <!-- 1. Luxury Hero Banner -->
+    <div class="luxury-hero-section-wrapper" style="background-color: #FAF7F5; padding: 70px 0;">
+      <div class="page-width">
+        <div class="luxury-hero-grid">
+          
+          <div class="luxury-hero__content-col">
+            <div class="luxury-hero__content-inner">
+              <div class="luxury-hero__kicker">
+                <span class="luxury-hero__kicker-dot"></span>
+                <span class="luxury-hero__kicker-text">Clinically Proven Skincare Innovation</span>
+              </div>
+              <h1 class="luxury-hero__title">
+                Elevate Your Skin to its <em style="color:var(--lx-gold-primary);">Purest Radiance</em>
+              </h1>
+              <p class="luxury-hero__subheading">
+                Bio-active formulations engineered with pure botanical actives and dermatologist-backed science for visible, cellular-level transformation.
+              </p>
+              <div class="luxury-hero__actions">
+                <a href="#bestsellers" class="button-primary">Shop Bestsellers</a>
+                <a href="#" class="button-secondary" onclick="switchView('about')">The Clinical Philosophy</a>
+              </div>
+              
+              <div class="luxury-hero__metrics">
+                <div class="luxury-hero__metric-item">
+                  <span class="luxury-hero__metric-val">98%</span>
+                  <span class="luxury-hero__metric-desc">Firmer Skin</span>
+                </div>
+                <div class="luxury-hero__metric-divider"></div>
+                <div class="luxury-hero__metric-item">
+                  <span class="luxury-hero__metric-val">24H</span>
+                  <span class="luxury-hero__metric-desc">Hydration Lock</span>
+                </div>
+                <div class="luxury-hero__metric-divider"></div>
+                <div class="luxury-hero__metric-item">
+                  <span class="luxury-hero__metric-val">100%</span>
+                  <span class="luxury-hero__metric-desc">Clean &amp; Vegan</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="luxury-hero__media-col">
+            <div class="luxury-hero__media-card">
+              <img src="assets/luxury-hero-lifestyle.jpg" alt="Luxury Skincare Routine" class="luxury-hero__image">
+              <div class="luxury-hero__floating-badge">
+                <span class="luxury-hero__badge-star">★</span>
+                <span class="luxury-hero__badge-text">Award-Winning Formulation</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Trust Badges Bar -->
+    <div style="background-color: #FFFFFF; border-top: 1px solid var(--lx-border-subtle); border-bottom: 1px solid var(--lx-border-subtle); padding: 26px 0;">
+      <div class="page-width">
+        <div class="trust-badges-grid">
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg>
+            </div>
+            <div class="trust-badge__content">
+              <h4 class="trust-badge__title">Dermatologist Formulated</h4>
+              <p class="trust-badge__subtitle">Clinical-grade bio-actives</p>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg>
+            </div>
+            <div class="trust-badge__content">
+              <h4 class="trust-badge__title">100% Clean &amp; Vegan</h4>
+              <p class="trust-badge__subtitle">Zero parabens or sulfates</p>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            </div>
+            <div class="trust-badge__content">
+              <h4 class="trust-badge__title">Visible Radiance</h4>
+              <p class="trust-badge__subtitle">Proven cellular renewal</p>
+            </div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><path d="M17 10h4l3 4v5h-7v-9z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+            </div>
+            <div class="trust-badge__content">
+              <h4 class="trust-badge__title">Complimentary Delivery</h4>
+              <p class="trust-badge__subtitle">With luxury sample rituals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Curated Bestsellers Grid -->
+    <div id="bestsellers" class="products-section">
+      <div class="page-width">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end;">
+          <div>
+            <span class="luxury-kicker" style="margin-bottom:0.4rem;">CURATED FORMULATIONS</span>
+            <h2 style="font-family:var(--lx-font-heading); font-size:clamp(2rem,3.5vw,2.8rem); font-weight:500; margin:0; color:var(--lx-text-primary);">
+              Clinically Proven Bestsellers
+            </h2>
+          </div>
+          <a href="#" class="button-secondary" style="font-size:0.75rem; padding:0.65rem 1.4rem;">View All (12)</a>
+        </div>
+
+        <div class="product-grid-4">
+          
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-card__media">
+              <div class="product-card__badge-wrapper">
+                <span class="product-card__badge product-card__badge--bestseller">Bestseller</span>
+              </div>
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Advanced Cellular Renewal Serum" style="width:100%; height:280px; object-fit:cover; display:block;">
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__vendor">TENICIDE CLINICAL</span>
+              <h3 class="product-card__title"><a href="#">Advanced Cellular Renewal Serum</a></h3>
+              <div class="product-card__rating">
+                <span>★★★★★</span>
+                <span class="product-card__rating-count">(482 reviews)</span>
+              </div>
+              <div class="product-card__price">
+                <span>$78.00</span>
+              </div>
+              <button class="button-primary quick-add" style="width:100%; margin-top:1rem; padding:0.7rem;">Add To Bag</button>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-card__media">
+              <div class="product-card__badge-wrapper">
+                <span class="product-card__badge product-card__badge--clinical">Clinical Grade</span>
+              </div>
+              <img src="assets/luxury-hero-lifestyle.jpg" alt="Cellular Clarifying Cleanser" style="width:100%; height:280px; object-fit:cover; display:block;">
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__vendor">TENICIDE CLINICAL</span>
+              <h3 class="product-card__title"><a href="#">Cellular Clarifying Cleanser</a></h3>
+              <div class="product-card__rating">
+                <span>★★★★★</span>
+                <span class="product-card__rating-count">(319 reviews)</span>
+              </div>
+              <div class="product-card__price">
+                <span>$48.00</span>
+              </div>
+              <button class="button-primary quick-add" style="width:100%; margin-top:1rem; padding:0.7rem;">Add To Bag</button>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-card__media">
+              <div class="product-card__badge-wrapper">
+                <span class="product-card__badge product-card__badge--bestseller">Barrier Repair</span>
+              </div>
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Lipid Restorative Cream" style="width:100%; height:280px; object-fit:cover; display:block;">
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__vendor">TENICIDE CLINICAL</span>
+              <h3 class="product-card__title"><a href="#">Lipid Restorative Cream</a></h3>
+              <div class="product-card__rating">
+                <span>★★★★★</span>
+                <span class="product-card__rating-count">(254 reviews)</span>
+              </div>
+              <div class="product-card__price">
+                <span>$64.00</span>
+              </div>
+              <button class="button-primary quick-add" style="width:100%; margin-top:1rem; padding:0.7rem;">Add To Bag</button>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-card__media">
+              <div class="product-card__badge-wrapper">
+                <span class="product-card__badge" style="background:#9E7B4F; color:#fff;">Save 15%</span>
+              </div>
+              <img src="assets/luxury-hero-lifestyle.jpg" alt="The 3-Step Radiance Set" style="width:100%; height:280px; object-fit:cover; display:block;">
+            </div>
+            <div class="product-card__content">
+              <span class="product-card__vendor">TENICIDE CLINICAL</span>
+              <h3 class="product-card__title"><a href="#">The Complete 3-Step Radiance Set</a></h3>
+              <div class="product-card__rating">
+                <span>★★★★★</span>
+                <span class="product-card__rating-count">(612 reviews)</span>
+              </div>
+              <div class="product-card__price price--on-sale">
+                <span class="price-item--regular">$190.00</span>
+                <span class="price-item--sale">$162.00</span>
+              </div>
+              <button class="button-primary quick-add" style="width:100%; margin-top:1rem; padding:0.7rem;">Add To Bag</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Skincare Routine Regimen Section -->
+    <div id="routine" style="background-color: #FAF7F5; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle);">
+      <div class="page-width">
+        <div class="skincare-routine__header text-center">
+          <span class="luxury-kicker">THE DAILY REGIMEN</span>
+          <h2 class="skincare-routine__main-title">A Harmonious 3-Step Clinical Ritual</h2>
+          <p class="skincare-routine__main-subtitle">Synergistically engineered to purify, deeply regenerate, and lock moisture into the epidermal barrier.</p>
+        </div>
+
+        <div class="skincare-routine-grid">
+          
+          <!-- Step 1 -->
+          <div class="routine-step-card">
+            <div class="routine-step__header">
+              <span class="routine-step__badge">STEP 01</span>
+              <span class="routine-step__tag">Purify &amp; Prep</span>
+            </div>
+            <div class="routine-step__image-wrapper">
+              <img src="assets/luxury-hero-lifestyle.jpg" alt="Cellular Clarifying Cleanser" class="routine-step__image">
+              <div class="routine-step__ingredient-pill">Rose Bio-Ferment</div>
+            </div>
+            <div class="routine-step__body">
+              <h3 class="routine-step__title"><a href="#">Cellular Clarifying Cleanser</a></h3>
+              <p class="routine-step__benefit">Gently dissolves micro-impurities while replenishing vital ceramides to prevent post-cleanse barrier tightness.</p>
+              <div class="routine-step__footer">
+                <div class="routine-step__price">$48.00</div>
+                <a href="#" class="button-secondary routine-step__btn">Shop Step</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="routine-step-card">
+            <div class="routine-step__header">
+              <span class="routine-step__badge">STEP 02</span>
+              <span class="routine-step__tag">Treat &amp; Regenerate</span>
+            </div>
+            <div class="routine-step__image-wrapper">
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Advanced Cellular Renewal Serum" class="routine-step__image">
+              <div class="routine-step__ingredient-pill">Triple Hyaluronic + Niacinamide</div>
+            </div>
+            <div class="routine-step__body">
+              <h3 class="routine-step__title"><a href="#">Advanced Cellular Renewal Serum</a></h3>
+              <p class="routine-step__benefit">Targeted peptide molecules stimulate collagen synthesis and promote deep epidermal plumping.</p>
+              <div class="routine-step__footer">
+                <div class="routine-step__price">$78.00</div>
+                <a href="#" class="button-secondary routine-step__btn">Shop Step</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="routine-step-card">
+            <div class="routine-step__header">
+              <span class="routine-step__badge">STEP 03</span>
+              <span class="routine-step__tag">Fortify &amp; Seal</span>
+            </div>
+            <div class="routine-step__image-wrapper">
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Lipid Restorative Cream" class="routine-step__image">
+              <div class="routine-step__ingredient-pill">Ceramide Complex + Squalane</div>
+            </div>
+            <div class="routine-step__body">
+              <h3 class="routine-step__title"><a href="#">Lipid Restorative Cream</a></h3>
+              <p class="routine-step__benefit">Continuous 24-hour hydration lock shields against moisture loss and environmental oxidants.</p>
+              <div class="routine-step__footer">
+                <div class="routine-step__price">$64.00</div>
+                <a href="#" class="button-secondary routine-step__btn">Shop Step</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="skincare-routine__bundle-banner">
+          <div class="routine-bundle__text">
+            <h4 class="routine-bundle__title">Experience The Complete 3-Step Radiance Set</h4>
+            <p class="routine-bundle__desc">Save 15% when purchased together with complimentary luxury travel pouch.</p>
+          </div>
+          <a href="#" class="button-primary routine-bundle__btn">Shop The Complete Set ($162)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Editorial Philosophy Banner -->
+    <div style="background-color: #FAF7F5; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle); border-bottom: 1px solid var(--lx-border-subtle);">
+      <div class="page-width">
+        <div class="editorial-banner-grid">
+          <div class="editorial-banner__media-col">
+            <div class="editorial-banner__media-frame">
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Botanical Clinical Ritual" class="editorial-banner__img">
+              <div class="editorial-banner__stamp">
+                <span class="editorial-banner__stamp-text">EST. 2024</span>
+                <span class="editorial-banner__stamp-sub">CLINICAL LUXURY</span>
+              </div>
+            </div>
+          </div>
+          <div class="editorial-banner__content-col">
+            <div class="editorial-banner__content-inner">
+              <span class="luxury-kicker">OUR FORMULATION PHILOSOPHY</span>
+              <h2 class="editorial-banner__heading">Where Rare Botanicals Meet <em style="color:var(--lx-gold-primary);">Cellular Precision</em></h2>
+              <p class="editorial-banner__lead">Clean luxury backed by uncompromising clinical efficacy.</p>
+              <div class="editorial-banner__body rte">
+                <p>At Tenicide, we reject the false compromise between organic naturalness and clinical performance. Each formula is engineered with pure bio-identical actives at optimal concentration, harmonized to restore skin balance, luminosity, and youthfulness.</p>
+              </div>
+              <div class="editorial-banner__pillars">
+                <div class="editorial-pillar">
+                  <div class="editorial-pillar__num">01</div>
+                  <div class="editorial-pillar__info">
+                    <h4 class="editorial-pillar__title">Bio-Identical Actives</h4>
+                    <p class="editorial-pillar__desc">Formulated to mirror skin cellular architecture for rapid absorption and zero irritation.</p>
+                  </div>
+                </div>
+                <div class="editorial-pillar">
+                  <div class="editorial-pillar__num">02</div>
+                  <div class="editorial-pillar__info">
+                    <h4 class="editorial-pillar__title">Dermatologist Proven</h4>
+                    <p class="editorial-pillar__desc">Multi-panel clinical evaluations ensure verified, visible results within 14 days.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="editorial-banner__action">
+                <a href="#" class="button-primary" onclick="switchView('about')">Discover Our Story</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Testimonials Section -->
+    <div style="background-color: #FFFFFF; padding: 80px 0;">
+      <div class="page-width">
+        <div class="testimonials-header text-center">
+          <span class="luxury-kicker">REAL TRANSFORMATIONS</span>
+          <h2 class="testimonials-title">Loved by Thousands of Radiant Faces</h2>
+          <div class="testimonials-score-bar">
+            <span class="luxury-stars">★★★★★</span>
+            <span class="testimonials-score-text">4.9 / 5.0 from 2,400+ Verified Buyers</span>
+          </div>
+        </div>
+
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              "The glow I have achieved using these products is unmatched. My skin has never looked so healthy!"
+            </blockquote>
+            <div class="testimonial-card__author-info">
+              <div class="testimonial-card__avatar">E</div>
+              <div class="testimonial-card__author-details">
+                <span class="testimonial-card__name">Emma R.</span>
+                <span class="testimonial-card__badge">✓ Verified Buyer</span>
+                <span class="testimonial-card__product">Cellular Renewal Serum</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              "I love the clean, clinical formulations. They feel so luxurious on my skin without any heaviness."
+            </blockquote>
+            <div class="testimonial-card__author-info">
+              <div class="testimonial-card__avatar">S</div>
+              <div class="testimonial-card__author-details">
+                <span class="testimonial-card__name">Sophia L.</span>
+                <span class="testimonial-card__badge">✓ Verified Buyer</span>
+                <span class="testimonial-card__product">Lipid Restorative Cream</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-card__stars">★★★★★</div>
+            <blockquote class="testimonial-card__quote">
+              "These products transformed my dry, dull skin into radiant, supple perfection within two weeks."
+            </blockquote>
+            <div class="testimonial-card__author-info">
+              <div class="testimonial-card__avatar">O</div>
+              <div class="testimonial-card__author-details">
+                <span class="testimonial-card__name">Olivia M.</span>
+                <span class="testimonial-card__badge">✓ Verified Buyer</span>
+                <span class="testimonial-card__product">3-Step Radiance Set</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- =========================================================================
+       VIEW 2: ABOUT US PAGE (page.about.json)
+       ========================================================================= -->
+  <div id="view-about" class="page-view">
+    <!-- Hero Banner -->
+    <div style="background-color: #F5EDE6; padding: 80px 0; border-bottom: 1px solid var(--lx-border-subtle);">
+      <div class="page-width text-center">
+        <span class="luxury-kicker">OUR ORIGIN &amp; PHILOSOPHY</span>
+        <h1 class="luxury-page-hero__title">The Art of <em style="color:var(--lx-gold-primary);">Clinical Radiance</em></h1>
+        <p class="luxury-page-hero__subtitle" style="max-width:680px; margin:0 auto;">
+          Born from the conviction that clinical skincare should never sacrifice luxury, sensorial indulgence, or clean botanical purity.
+        </p>
+      </div>
+    </div>
+
+    <!-- Editorial Philosophy Story -->
+    <div style="background-color: #FAF7F5; padding: 80px 0;">
+      <div class="page-width">
+        <div class="editorial-banner-grid">
+          <div class="editorial-banner__media-col">
+            <div class="editorial-banner__media-frame">
+              <img src="assets/luxury-skincare-ritual.jpg" alt="Botanical Clinical Ritual" class="editorial-banner__img">
+            </div>
+          </div>
+          <div class="editorial-banner__content-col">
+            <div class="editorial-banner__content-inner">
+              <span class="luxury-kicker">THE FORMULATION STANDARD</span>
+              <h2 class="editorial-banner__heading">Where Dermatological Science Meets <em style="color:var(--lx-gold-primary);">Organic Purity</em></h2>
+              <p class="editorial-banner__lead">Engineered at the intersection of cellular biology and rare botanicals.</p>
+              <div class="editorial-banner__body rte">
+                <p>Tenicide was conceived by dermatological chemists with a singular purpose: to replace abrasive clinical treatments with deeply biocompatible formulas that fortify and nourish the skin from within.</p>
+                <p>We utilize bio-fermented actives, biomimetic peptides, and precious cold-pressed botanical essences to achieve radiant, long-lasting transformation.</p>
+              </div>
+              <div class="editorial-banner__pillars">
+                <div class="editorial-pillar">
+                  <div class="editorial-pillar__num">01</div>
+                  <div class="editorial-pillar__info">
+                    <h4 class="editorial-pillar__title">100% Bio-Identical Actives</h4>
+                    <p class="editorial-pillar__desc">Engineered to match the skin lipid matrix for effortless cellular absorption without redness or irritation.</p>
+                  </div>
+                </div>
+                <div class="editorial-pillar">
+                  <div class="editorial-pillar__num">02</div>
+                  <div class="editorial-pillar__info">
+                    <h4 class="editorial-pillar__title">Zero Compromise On Purity</h4>
+                    <p class="editorial-pillar__desc">Rigorously free from parabens, sulfates, phthalates, artificial fragrance, and harsh fillers.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Trust Seals -->
+    <div style="background-color: #FFFFFF; border-top: 1px solid var(--lx-border-subtle); padding: 35px 0;">
+      <div class="page-width">
+        <div class="trust-badges-grid">
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg></div>
+            <div class="trust-badge__content"><h4 class="trust-badge__title">Dermatologist Tested</h4><p class="trust-badge__subtitle">Clinical efficacy proven</p></div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div>
+            <div class="trust-badge__content"><h4 class="trust-badge__title">100% Clean &amp; Vegan</h4><p class="trust-badge__subtitle">Cruelty-free certified</p></div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div>
+            <div class="trust-badge__content"><h4 class="trust-badge__title">Sustainable Luxury</h4><p class="trust-badge__subtitle">Recyclable amber glass</p></div>
+          </div>
+          <div class="trust-badge-item">
+            <div class="trust-badge__icon-box"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><path d="M17 10h4l3 4v5h-7v-9z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div>
+            <div class="trust-badge__content"><h4 class="trust-badge__title">Global Delivery</h4><p class="trust-badge__subtitle">Carbon-neutral logistics</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       VIEW 3: FAQ PAGE (page.faq.json)
+       ========================================================================= -->
+  <div id="view-faq" class="page-view">
+    <div style="background-color: #FAF7F5; padding: 70px 0 90px;">
+      <div class="page-width">
+        <div class="luxury-faq__header text-center">
+          <span class="luxury-kicker">CLIENT CARE &amp; INQUIRIES</span>
+          <h1 class="luxury-faq__title">Frequently Asked Questions</h1>
+          <p class="luxury-faq__subtitle">Everything you need to know regarding our formulations, clinical integrity, and delivery rituals.</p>
+        </div>
+
+        <div class="luxury-faq-list">
+          
+          <div class="luxury-faq-item is-open">
+            <button type="button" class="luxury-faq-question" aria-expanded="true">
+              <span class="luxury-faq-question-text">Are your formulations suitable for sensitive or sensitized skin?</span>
+              <span class="luxury-faq-icon">+</span>
+            </button>
+            <div class="luxury-faq-answer" style="max-height: 200px;">
+              <div class="luxury-faq-answer-inner rte">
+                <p>Yes. Every Tenicide formula undergoes multi-panel clinical patch testing. We rigorously exclude known irritants including synthetic fragrances, drying alcohols, sulfates, and parabens.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="luxury-faq-item">
+            <button type="button" class="luxury-faq-question" aria-expanded="false">
+              <span class="luxury-faq-question-text">How quickly can I expect to observe visible results?</span>
+              <span class="luxury-faq-icon">+</span>
+            </button>
+            <div class="luxury-faq-answer">
+              <div class="luxury-faq-answer-inner rte">
+                <p>Initial epidermal hydration and radiance are typically visible within 24 to 48 hours. Deeper cellular improvements, including skin firmness and texture refinement, peak between 14 to 28 days with consistent daily application.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="luxury-faq-item">
+            <button type="button" class="luxury-faq-question" aria-expanded="false">
+              <span class="luxury-faq-question-text">Are your products cruelty-free and vegan?</span>
+              <span class="luxury-faq-icon">+</span>
+            </button>
+            <div class="luxury-faq-answer">
+              <div class="luxury-faq-answer-inner rte">
+                <p>Tenicide is proudly 100% cruelty-free and Leaping Bunny certified. We never test on animals at any stage of product development, and our active formulas are entirely vegan.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="luxury-faq-item">
+            <button type="button" class="luxury-faq-question" aria-expanded="false">
+              <span class="luxury-faq-question-text">What is your complimentary shipping and returns policy?</span>
+              <span class="luxury-faq-icon">+</span>
+            </button>
+            <div class="luxury-faq-answer">
+              <div class="luxury-faq-answer-inner rte">
+                <p>We offer complimentary carbon-neutral shipping on all domestic orders over $75. If you are not completely satisfied with your skin transformation, we honor a 30-day effortless return guarantee.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Concierge Box -->
+        <div class="luxury-faq__concierge">
+          <div class="faq-concierge__icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="faq-concierge__content">
+            <h3 class="faq-concierge__title">Require Personalized Skin Guidance?</h3>
+            <p class="faq-concierge__desc">Our clinical skincare specialists are available for bespoke formulation recommendations.</p>
+          </div>
+          <div class="faq-concierge__action">
+            <a href="#" class="button-primary" onclick="alert('Concierge consultation opened!')">Contact Skincare Concierge</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer style="background: linear-gradient(180deg, #FAF7F5 0%, #F3ECE6 100%); border-top: 1px solid var(--lx-border-subtle); padding: 70px 0 40px;">
+    <div class="page-width">
+      <div style="display:grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3.5rem;">
+        <div>
+          <span style="font-family:var(--lx-font-heading); font-size:1.6rem; letter-spacing:0.2em; font-weight:600; color:var(--lx-text-primary);">TENICIDE</span>
+          <p style="font-size:0.88rem; color:var(--lx-text-secondary); line-height:1.6; margin-top:1rem;">
+            Where clinical skincare science meets botanical refinement. Formulated for cellular rejuvenation and uncompromising skin health.
+          </p>
+        </div>
+        <div>
+          <h4 class="footer__heading">The Collection</h4>
+          <p><a href="#" class="footer__link">Cleanse &amp; Prep</a></p>
+          <p><a href="#" class="footer__link">Cellular Serums</a></p>
+          <p><a href="#" class="footer__link">Barrier Creams</a></p>
+          <p><a href="#" class="footer__link">Ritual Sets</a></p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Client Care</h4>
+          <p><a href="#" class="footer__link" onclick="switchView('about')">Our Story</a></p>
+          <p><a href="#" class="footer__link" onclick="switchView('faq')">Frequently Asked</a></p>
+          <p><a href="#" class="footer__link">Shipping &amp; Returns</a></p>
+          <p><a href="#" class="footer__link">Contact Concierge</a></p>
+        </div>
+        <div>
+          <h4 class="footer__heading">The Private Journal</h4>
+          <p style="font-size:0.86rem; color:var(--lx-text-secondary); margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p>
+          <div style="display:flex; gap:0.5rem;">
+            <input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem; border:1px solid var(--lx-border-subtle); border-radius:9999px; flex-grow:1; font-family:var(--lx-font-body); font-size:0.84rem; background:#fff;">
+            <button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--lx-border-subtle); padding-top:2rem; display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--lx-text-secondary);">
+        <div>&copy; 2026 Tenicide Co. All rights reserved. Clinical Luxury Skincare.</div>
+        <div style="display:flex; gap:1.5rem;">
+          <a href="#" class="footer__link">Privacy Policy</a>
+          <a href="#" class="footer__link">Terms of Service</a>
+          <a href="#" class="footer__link">Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/luxury-animations.js"></script>
+  <script>
+    function switchView(viewName) {
+      document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.preview-nav-btn').forEach(b => b.classList.remove('active'));
+
+      const targetView = document.getElementById('view-' + viewName);
+      if (targetView) targetView.classList.add('active');
+
+      const buttons = document.querySelectorAll('.preview-nav-btn');
+      if (viewName === 'homepage' && buttons[0]) buttons[0].classList.add('active');
+      if (viewName === 'about' && buttons[1]) buttons[1].classList.add('active');
+      if (viewName === 'faq' && buttons[2]) buttons[2].classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
