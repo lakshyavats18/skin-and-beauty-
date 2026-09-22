@@ -1,0 +1,333 @@
+{% doc %}
+  @prompt
+    Create a two-column image with text section for the homepage. Requirements:
+    - On desktop: two columns side by side, each with an image on top and text below
+    - On mobile: both columns stack vertically (full width), so BOTH images are visible when scrolling — not hidden
+    - Left column: image slot with heading "Your Daily Ritual" and description "Curated tools for a luxurious, results-driven skincare routine."
+    - Right column: image slot with heading "Clinical Precision" and description "Medical-grade technology engineered for professional results at home."
+    - Clean minimal styling: white background, no border radius, elegant sans-serif typography
+    - Both image slots and text fields should be editable in the theme editor
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-two-column-image-text-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    background-color: {{ block.settings.background_color }};
+    padding: {{ block.settings.section_padding }}px 20px;
+  }
+
+  .ai-two-column-container-{{ ai_gen_id }} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: {{ block.settings.column_gap }}px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .ai-column-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.content_gap }}px;
+  }
+
+  .ai-image-wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .ai-image-wrapper-{{ ai_gen_id }} img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .ai-image-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background-color: #f4f4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-image-placeholder-{{ ai_gen_id }} svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ai-text-content-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.text_gap }}px;
+  }
+
+  .ai-heading-{{ ai_gen_id }} {
+    font-family: {{ block.settings.heading_font.family }}, {{ block.settings.heading_font.fallback_families }};
+    font-weight: {{ block.settings.heading_font.weight }};
+    font-size: {{ block.settings.heading_size }}px;
+    line-height: 1.2;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .ai-description-{{ ai_gen_id }} {
+    font-family: {{ block.settings.body_font.family }}, {{ block.settings.body_font.fallback_families }};
+    font-weight: {{ block.settings.body_font.weight }};
+    font-size: {{ block.settings.body_size }}px;
+    line-height: 1.6;
+    color: {{ block.settings.text_color }};
+    margin: 0;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-two-column-container-{{ ai_gen_id }} {
+      grid-template-columns: 1fr;
+      gap: {{ block.settings.mobile_gap }}px;
+    }
+
+    .ai-heading-{{ ai_gen_id }} {
+      font-size: {{ block.settings.heading_size | times: 0.75 }}px;
+    }
+
+    .ai-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.body_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<two-column-image-text-{{ ai_gen_id }} class="ai-two-column-image-text-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="ai-two-column-container-{{ ai_gen_id }}">
+    <div class="ai-column-{{ ai_gen_id }}">
+      <div class="ai-image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image_left %}
+          <img
+            src="{{ block.settings.image_left | image_url: width: 800 }}"
+            alt="{{ block.settings.image_left.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image_left.width }}"
+            height="{{ block.settings.image_left.height }}"
+          >
+        {% else %}
+          <div class="ai-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="ai-text-content-{{ ai_gen_id }}">
+        {% if block.settings.heading_left != blank %}
+          <h3 class="ai-heading-{{ ai_gen_id }}">{{ block.settings.heading_left }}</h3>
+        {% endif %}
+        {% if block.settings.description_left != blank %}
+          <p class="ai-description-{{ ai_gen_id }}">{{ block.settings.description_left }}</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="ai-column-{{ ai_gen_id }}">
+      <div class="ai-image-wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image_right %}
+          <img
+            src="{{ block.settings.image_right | image_url: width: 800 }}"
+            alt="{{ block.settings.image_right.alt | escape }}"
+            loading="lazy"
+            width="{{ block.settings.image_right.width }}"
+            height="{{ block.settings.image_right.height }}"
+          >
+        {% else %}
+          <div class="ai-image-placeholder-{{ ai_gen_id }}">
+            {{ 'image' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+      <div class="ai-text-content-{{ ai_gen_id }}">
+        {% if block.settings.heading_right != blank %}
+          <h3 class="ai-heading-{{ ai_gen_id }}">{{ block.settings.heading_right }}</h3>
+        {% endif %}
+        {% if block.settings.description_right != blank %}
+          <p class="ai-description-{{ ai_gen_id }}">{{ block.settings.description_right }}</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</two-column-image-text-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class TwoColumnImageText{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+      }
+    }
+
+    customElements.define('two-column-image-text-{{ ai_gen_id }}', TwoColumnImageText{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Two column image text",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Left column"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_left",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_left",
+      "label": "Heading",
+      "default": "Your Daily Ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "description_left",
+      "label": "Description",
+      "default": "Curated tools for a luxurious, results-driven skincare routine."
+    },
+    {
+      "type": "header",
+      "content": "Right column"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_right",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading_right",
+      "label": "Heading",
+      "default": "Clinical Precision"
+    },
+    {
+      "type": "textarea",
+      "id": "description_right",
+      "label": "Description",
+      "default": "Medical-grade technology engineered for professional results at home."
+    },
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "section_padding",
+      "label": "Section padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "column_gap",
+      "label": "Column gap",
+      "min": 10,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "content_gap",
+      "label": "Image to text gap",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 25
+    },
+    {
+      "type": "range",
+      "id": "text_gap",
+      "label": "Heading to description gap",
+      "min": 5,
+      "max": 40,
+      "step": 5,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "mobile_gap",
+      "label": "Mobile column gap",
+      "min": 20,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Style"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#1f1f1f"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "instrument_sans_n4"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading size",
+      "min": 16,
+      "max": 48,
+      "step": 2,
+      "unit": "px",
+      "default": 28
+    },
+    {
+      "type": "font_picker",
+      "id": "body_font",
+      "label": "Body font",
+      "default": "geist_n4"
+    },
+    {
+      "type": "range",
+      "id": "body_size",
+      "label": "Body size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    }
+  ],
+  "presets": [
+    {
+      "name": "Two column image text"
+    }
+  ]
+}
+{% endschema %}
