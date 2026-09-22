@@ -3,6 +3,7 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/faq", "destination": "/faq.html" },
     { "source": "/preview", "destination": "/preview.html" }
   ]
 }

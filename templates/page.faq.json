@@ -4,15 +4,15 @@
       "type": "luxury-faq",
       "settings": {
         "bg_color": "#FAF7F5",
-        "kicker": "Client Care & Inquiries",
+        "kicker": "HELP CENTER & INQUIRIES",
         "title": "Frequently Asked Questions",
-        "subtitle": "Everything you need to know regarding our formulations, clinical integrity, and delivery rituals.",
+        "subtitle": "Everything you need to know regarding orders, global shipping, returns, and contacting the TENICIDE team.",
         "allow_multiple": false,
         "show_concierge": true,
-        "concierge_title": "Require Personalized Skin Guidance?",
-        "concierge_desc": "Our clinical skincare specialists are available for bespoke formulation recommendations.",
-        "concierge_btn": "Contact Skincare Concierge",
-        "concierge_link": "/pages/contact",
+        "concierge_title": "Still Have Questions?",
+        "concierge_desc": "Our customer service team is ready to assist you with any inquiry at info@tenicide.co.",
+        "concierge_btn": "Email Support Team",
+        "concierge_link": "mailto:info@tenicide.co",
         "padding_top": 70,
         "padding_bottom": 80
       },
@@ -20,36 +20,85 @@
         "faq_1": {
           "type": "faq_item",
           "settings": {
-            "question": "Are your formulations suitable for sensitive or sensitized skin?",
-            "answer": "<p>Yes. Every Tenicide formula undergoes multi-panel clinical patch testing. We rigorously exclude known irritants including synthetic fragrances, drying alcohols, sulfates, and parabens.</p>"
+            "question": "How can I contact TENICIDE?",
+            "answer": "<p>You can email us at <a href=\"mailto:info@tenicide.co\">info@tenicide.co</a> where our customer service team will be happy to help you with whatever you need!</p>"
           }
         },
         "faq_2": {
           "type": "faq_item",
           "settings": {
-            "question": "How quickly can I expect to observe visible results?",
-            "answer": "<p>Initial epidermal hydration and radiance are typically visible within 24 to 48 hours. Deeper cellular improvements, including skin firmness and texture refinement, peak between 14 to 28 days with consistent daily application.</p>"
+            "question": "Do you ship worldwide?",
+            "answer": "<p>Yes</p>"
           }
         },
         "faq_3": {
           "type": "faq_item",
           "settings": {
-            "question": "Are your products cruelty-free and vegan?",
-            "answer": "<p>Tenicide is proudly 100% cruelty-free and Leaping Bunny certified. We never test on animals at any stage of product development, and our active formulas are entirely vegan.</p>"
+            "question": "Where do you ship from?",
+            "answer": "<p>\"We ship from our partnership warehouses located in the US, Europe, and Asia. Depending on your location and stock availability, your package will be shipped from the nearest fulfillment center to ensure the fastest delivery.\"</p>"
           }
         },
         "faq_4": {
           "type": "faq_item",
           "settings": {
-            "question": "What is your complimentary shipping and returns policy?",
-            "answer": "<p>We offer complimentary carbon-neutral shipping on all domestic orders over $75. If you are not completely satisfied with your skin transformation, we honor a 30-day effortless return guarantee.</p>"
+            "question": "Can I change or cancel my order?",
+            "answer": "<p>As we aim to process orders as fast as possible, you must request any changes/cancellations within 12 hours of ordering. All requests after this time will be denied. Your order can be returned for a full refund after it is received.</p>"
           }
         },
         "faq_5": {
           "type": "faq_item",
           "settings": {
-            "question": "Can I layer Tenicide products with prescription retinol or acids?",
-            "answer": "<p>Our Cellular Clarifying Cleanser and Lipid Restorative Cream pair safely with topical prescription regimens. When using our Advanced Cellular Renewal Serum alongside potent retinoids, we recommend alternating evenings to respect your skin's protective lipid barrier.</p>"
+            "question": "What payment methods do you accept?",
+            "answer": "<p>We accept all major credit cards (VISA, Mastercard, AMEX) and PayPal payments.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will my order be processed?",
+            "answer": "<p>All orders are handled and shipped out from our warehouse. Please allow extra time for your order to be processed during holidays and sale seasons. We process orders between Monday and Friday. Orders will be processed within 1-3 business days from the order date and shipped the next day after the processing day. Please note that we don't ship on weekends.</p>"
+          }
+        },
+        "faq_7": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How long will it take to receive my order?",
+            "answer": "<p>Due to high demand, orders may take between 2-4 weeks to arrive.</p>"
+          }
+        },
+        "faq_8": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if I don't receive my order?",
+            "answer": "<p>If you don't receive your order within 30 days after shipping, you are eligible for a full refund.</p>"
+          }
+        },
+        "faq_9": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Will I be charged with customs and taxes?",
+            "answer": "<p>The prices displayed on our site are tax-free in US Dollars, which means you may be liable to pay for duties and taxes once you receive your order. Import taxes, duties and related customs fees may be charged once your order arrives to its final destination, which are determined by your local customs office. Payment of these charges and taxes are your responsibility and will not be covered by us. We are not responsible for delays caused by the customs department in your country. For further details of charges, please contact your local customs office.</p>"
+          }
+        },
+        "faq_10": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How do I return an item?",
+            "answer": "<p>Please contact us at <a href=\"mailto:info@tenicide.co\">info@tenicide.co</a></p>"
+          }
+        },
+        "faq_11": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What if the item(s) I received are defective/incorrect/damaged?",
+            "answer": "<p>Please contact us if you have received merchandise that is incorrect, missing, and/or defective. Please include your order number, photographs of the item(s) and all related references upon receiving your package. We will do our very best to resolve your case as soon as possible.</p>"
+          }
+        },
+        "faq_12": {
+          "type": "faq_item",
+          "settings": {
+            "question": "When will I receive my refund?",
+            "answer": "<p>All refunds will be credited to your original form of payment. If you paid by credit or debit card, refunds will be sent to the card-issuing bank within 7-10 business days of receipt of the returned item or cancellation request. Please contact the card-issuing bank with questions about when the credit will be posted to your account. If you haven't received a credit for your return yet, here's what to do: Contact the bank/credit card company. It may take some time before the refund is posted to your account.</p>"
           }
         }
       },
@@ -58,51 +107,38 @@
         "faq_2",
         "faq_3",
         "faq_4",
-        "faq_5"
+        "faq_5",
+        "faq_6",
+        "faq_7",
+        "faq_8",
+        "faq_9",
+        "faq_10",
+        "faq_11",
+        "faq_12"
       ]
     },
-    "trust_badges": {
-      "type": "trust-badges",
-      "settings": {
-        "bg_color": "#FFFFFF",
-        "padding_top": 30,
-        "padding_bottom": 30
-      },
+    "main_content": {
+      "type": "main-page",
       "blocks": {
-        "badge_1": {
-          "type": "badge",
-          "settings": {
-            "icon": "dermatologist",
-            "title": "Dermatologist Tested",
-            "subtitle": "Clinical grade safety"
-          }
-        },
-        "badge_2": {
-          "type": "badge",
-          "settings": {
-            "icon": "leaf",
-            "title": "100% Clean Formula",
-            "subtitle": "Zero harsh additives"
-          }
-        },
-        "badge_3": {
-          "type": "badge",
-          "settings": {
-            "icon": "shipping",
-            "title": "Complimentary Delivery",
-            "subtitle": "Orders over $75"
-          }
+        "page_content": {
+          "type": "page-content",
+          "settings": {}
         }
       },
       "block_order": [
-        "badge_1",
-        "badge_2",
-        "badge_3"
-      ]
+        "page_content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "#FAF7F5",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
     }
   },
   "order": [
     "luxury_faq",
-    "trust_badges"
+    "main_content"
   ]
 }
