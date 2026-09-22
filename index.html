@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tenicide Co. | Luxury Skincare Redesign Live Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/luxury-skin-beauty.css">
+  <link rel="stylesheet" href="assets/luxury-product-card.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+
+    /* Preview toolbar */
+    .preview-bar { position: sticky; top: 0; z-index: 99999; background: #1A1614; color: #FAF7F5; padding: 0.55rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #9E7B4F; font-family: var(--lx-font-body); font-size: 0.8rem; }
+    .preview-bar__left { display: flex; align-items: center; gap: 0.75rem; }
+    .preview-chip { background: #9E7B4F; color: #FFF; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.18rem 0.55rem; border-radius: 9999px; text-transform: uppercase; }
+    .preview-tabs { display: flex; gap: 0.4rem; }
+    .preview-tab { background: rgba(255,255,255,0.08); color: #FAF7F5; border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 0.3rem 0.85rem; cursor: pointer; font-size: 0.72rem; font-weight: 600; font-family: var(--lx-font-body); transition: all 0.2s; }
+    .preview-tab.active, .preview-tab:hover { background: #9E7B4F; border-color: #9E7B4F; color: #FFF; }
+    .page-view { display: none; } .page-view.active { display: block; }
+
+    /* Layout */
+    .page-width { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+    .text-center { text-align: center; }
+
+    /* Announcement Bar */
+    .announcement { background: linear-gradient(90deg, #1F1B18 0%, #2D2723 50%, #1F1B18 100%); color: #FAF7F5; text-align: center; font-family: var(--lx-font-body); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(158,123,79,0.2); }
+
+    /* Header */
+    .header { background: rgba(250,247,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--lx-border-subtle); padding: 1.1rem 0; position: relative; z-index: 100; }
+    .header__inner { display: flex; justify-content: space-between; align-items: center; }
+    .header__logo { font-family: var(--lx-font-heading); font-size: 1.85rem; font-weight: 600; letter-spacing: 0.22em; color: var(--lx-text-primary); text-decoration: none; }
+    .header__nav { display: flex; gap: 2rem; list-style: none; padding: 0; }
+    .header__link { font-family: var(--lx-font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lx-text-primary); text-decoration: none; transition: color 0.2s; }
+    .header__link:hover { color: var(--lx-gold-primary); }
+    .header__icons { display: flex; align-items: center; gap: 1.2rem; }
+    .icon-btn { background: none; border: none; cursor: pointer; color: var(--lx-text-primary); display: flex; align-items: center; position: relative; }
+    .cart-count { position: absolute; top: -5px; right: -8px; background: var(--lx-gold-primary); color: #fff; font-size: 9px; font-weight: 700; width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* ---- HERO ---- */
+    .hero-section { background: #FAF7F5; padding: 70px 0; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 3.5rem; align-items: center; }
+    .hero__kicker { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.35rem 0.95rem; background: rgba(158,123,79,0.1); border: 1px solid rgba(158,123,79,0.25); border-radius: 9999px; margin-bottom: 1.5rem; }
+    .hero__kicker-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--lx-gold-primary); animation: pulse 2s infinite ease-in-out; }
+    @keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.4; transform:scale(0.85); } }
+    .hero__kicker-text { font-family: var(--lx-font-body); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--lx-gold-primary); }
+    .hero__title { font-family: var(--lx-font-heading); font-size: clamp(2.6rem,5vw,4.4rem); line-height: 1.08; font-weight: 500; letter-spacing: -0.02em; color: var(--lx-text-primary); margin-bottom: 1.4rem; }
+    .hero__title em { font-style: italic; font-weight: 400; color: var(--lx-gold-primary); }
+    .hero__sub { font-family: var(--lx-font-body); font-size: 1.05rem; line-height: 1.65; color: var(--lx-text-secondary); margin-bottom: 2.2rem; }
+    .hero__actions { display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.8rem; }
+    .hero__metrics { display: flex; align-items: center; gap: 1.5rem; padding-top: 1.8rem; border-top: 1px solid var(--lx-border-subtle); }
+    .hero__metric { display: flex; flex-direction: column; }
+    .hero__metric-val { font-family: var(--lx-font-heading); font-size: 1.7rem; font-weight: 700; color: var(--lx-gold-primary); line-height: 1.1; }
+    .hero__metric-desc { font-family: var(--lx-font-body); font-size: 0.72rem; color: var(--lx-text-secondary); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 500; }
+    .hero__metric-divider { width: 1px; height: 36px; background: var(--lx-border-subtle); }
+    .hero__media-frame { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 48px rgba(45,41,38,0.1); border: 1px solid rgba(158,123,79,0.2); }
+    .hero__img { width: 100%; height: 100%; max-height: 640px; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(0.16,1,0.3,1); }
+    .hero__media-frame:hover .hero__img { transform: scale(1.03); }
+    .hero__badge { position: absolute; bottom: 1.8rem; left: 1.8rem; background: rgba(255,255,255,0.92); backdrop-filter: blur(12px); padding: 0.65rem 1.2rem; border-radius: 9999px; box-shadow: 0 10px 25px rgba(0,0,0,0.12); border: 1px solid rgba(158,123,79,0.3); display: flex; align-items: center; gap: 0.5rem; }
+    .hero__badge-star { color: #C69237; font-size: 0.9rem; }
+    .hero__badge-text { font-family: var(--lx-font-body); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lx-text-primary); }
+
+    /* ---- TRUST BADGES ---- */
+    .trust-section { background: #FFF; border-top: 1px solid var(--lx-border-subtle); border-bottom: 1px solid var(--lx-border-subtle); padding: 26px 0; }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .trust-item { display: flex; align-items: center; gap: 1rem; padding: 0.5rem 0.75rem; }
+    .trust-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%; background: var(--lx-bg-blush); border: 1px solid rgba(158,123,79,0.25); display: flex; align-items: center; justify-content: center; color: var(--lx-gold-primary); }
+    .trust-title { font-family: var(--lx-font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--lx-text-primary); margin: 0 0 0.15rem; }
+    .trust-sub { font-family: var(--lx-font-body); font-size: 0.74rem; color: var(--lx-text-secondary); margin: 0; line-height: 1.35; }
+
+    /* ---- PRODUCTS GRID ---- */
+    .products-section { background: #FAF7F5; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle); }
+    .products-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2.5rem; }
+    .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .pcard { background: #FFF; border: 1px solid var(--lx-border-subtle); border-radius: 8px; overflow: hidden; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); display: flex; flex-direction: column; }
+    .pcard:hover { transform: translateY(-5px); box-shadow: 0 16px 36px rgba(45,41,38,0.08); border-color: rgba(158,123,79,0.35); }
+    .pcard__media { position: relative; background: #FAF7F5; overflow: hidden; }
+    .pcard__badge { position: absolute; top: 0.85rem; left: 0.85rem; z-index: 2; background: rgba(31,27,24,0.88); color: #FFF; backdrop-filter: blur(8px); padding: 0.28rem 0.65rem; border-radius: 9999px; font-size: 0.64rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+    .pcard__badge--gold { background: var(--lx-gold-primary); }
+    .pcard__img { width: 100%; height: 320px; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .pcard:hover .pcard__img { transform: scale(1.06); }
+    .pcard__body { padding: 1.25rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .pcard__vendor { font-family: var(--lx-font-body); font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--lx-gold-primary); margin-bottom: 0.4rem; }
+    .pcard__title { font-family: var(--lx-font-heading); font-size: 1.25rem; font-weight: 600; line-height: 1.3; color: var(--lx-text-primary); margin-bottom: 0.5rem; }
+    .pcard__stars { color: #C69237; font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.5rem; }
+    .pcard__stars-count { font-family: var(--lx-font-body); font-size: 0.72rem; color: var(--lx-text-muted); letter-spacing: 0; }
+    .pcard__price { font-family: var(--lx-font-body); font-size: 1rem; font-weight: 600; color: var(--lx-text-primary); margin-top: auto; }
+    .pcard__price del { color: var(--lx-text-muted); font-weight: 400; font-size: 0.88rem; margin-right: 0.5rem; }
+    .pcard__price .sale { color: #A33A2B; font-weight: 700; }
+
+    /* ---- ROUTINE ---- */
+    .routine-section { background: #FAF7F5; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle); }
+    .routine-header { max-width: 650px; margin: 0 auto 3.5rem; text-align: center; }
+    .routine-heading { font-family: var(--lx-font-heading); font-size: clamp(2.2rem,3.8vw,3.2rem); font-weight: 500; color: var(--lx-text-primary); line-height: 1.15; margin: 0.5rem 0 1rem; }
+    .routine-subheading { font-family: var(--lx-font-body); font-size: 0.98rem; color: var(--lx-text-secondary); line-height: 1.6; margin: 0; }
+    .routine-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3.5rem; }
+    .step-card { background: #FFF; border: 1px solid var(--lx-border-subtle); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .step-card:hover { transform: translateY(-6px); box-shadow: 0 16px 36px rgba(45,41,38,0.08); border-color: rgba(158,123,79,0.4); }
+    .step-card__top { display: flex; justify-content: space-between; align-items: center; padding: 1.1rem 1.4rem; background: var(--lx-bg-blush); border-bottom: 1px solid var(--lx-border-subtle); }
+    .step-card__num { font-family: var(--lx-font-body); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; color: var(--lx-gold-primary); }
+    .step-card__tag { font-family: var(--lx-font-body); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--lx-text-secondary); font-weight: 600; }
+    .step-card__media { position: relative; background: #FAF7F5; padding: 1.5rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .step-card__img { max-width: 220px; height: 260px; object-fit: contain; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
+    .step-card:hover .step-card__img { transform: scale(1.05); }
+    .step-card__pill { position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,0.92); border: 1px solid var(--lx-border-subtle); backdrop-filter: blur(8px); padding: 0.3rem 0.75rem; border-radius: 9999px; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; color: var(--lx-text-primary); }
+    .step-card__body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .step-card__title { font-family: var(--lx-font-heading); font-size: 1.35rem; font-weight: 600; margin: 0 0 0.6rem; color: var(--lx-text-primary); }
+    .step-card__desc { font-family: var(--lx-font-body); font-size: 0.88rem; line-height: 1.55; color: var(--lx-text-secondary); margin: 0 0 1.5rem; flex-grow: 1; }
+    .step-card__foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(45,41,38,0.06); }
+    .step-card__price { font-family: var(--lx-font-body); font-weight: 700; font-size: 1.05rem; color: var(--lx-text-primary); }
+    .bundle-banner { display: flex; align-items: center; justify-content: space-between; background: linear-gradient(135deg, #2D2723 0%, #1A1614 100%); color: #FAF7F5; padding: 2.2rem 3rem; border-radius: 16px; border: 1px solid rgba(158,123,79,0.35); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+    .bundle-title { font-family: var(--lx-font-heading); font-size: 1.65rem; font-weight: 500; color: #FAF7F5; margin: 0 0 0.35rem; }
+    .bundle-desc { font-family: var(--lx-font-body); font-size: 0.9rem; color: #C9A87C; margin: 0; }
+
+    /* ---- EDITORIAL BANNER ---- */
+    .editorial-section { background: #FAF7F5; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle); border-bottom: 1px solid var(--lx-border-subtle); }
+    .editorial-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4.5rem; align-items: center; }
+    .editorial__media-frame { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 44px rgba(45,41,38,0.08); border: 1px solid rgba(158,123,79,0.25); }
+    .editorial__img { width: 100%; max-height: 550px; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+    .editorial__media-frame:hover .editorial__img { transform: scale(1.03); }
+    .editorial__stamp { position: absolute; bottom: 1.5rem; right: 1.5rem; background: rgba(31,27,24,0.88); backdrop-filter: blur(8px); color: #FAF7F5; padding: 0.6rem 1.1rem; border-radius: 9999px; display: flex; flex-direction: column; align-items: center; border: 1px solid rgba(158,123,79,0.4); }
+    .editorial__stamp-text { font-family: var(--lx-font-heading); font-size: 0.95rem; font-weight: 700; letter-spacing: 0.15em; color: var(--lx-gold-primary); }
+    .editorial__stamp-sub { font-family: var(--lx-font-body); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; }
+    .editorial__heading { font-family: var(--lx-font-heading); font-size: clamp(2.2rem,3.8vw,3.2rem); line-height: 1.12; font-weight: 500; color: var(--lx-text-primary); margin: 0 0 1.25rem; }
+    .editorial__heading em { font-style: italic; color: var(--lx-gold-primary); }
+    .editorial__lead { font-family: var(--lx-font-heading); font-size: 1.3rem; line-height: 1.45; font-style: italic; color: var(--lx-gold-primary); margin: 0 0 1.4rem; }
+    .editorial__body { font-family: var(--lx-font-body); font-size: 0.96rem; line-height: 1.68; color: var(--lx-text-secondary); margin-bottom: 2.2rem; }
+    .editorial__pillars { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--lx-border-subtle); }
+    .pillar { display: flex; align-items: flex-start; gap: 1.25rem; }
+    .pillar__num { font-family: var(--lx-font-heading); font-size: 1.6rem; font-weight: 700; color: var(--lx-gold-primary); line-height: 1; min-width: 32px; }
+    .pillar__title { font-family: var(--lx-font-body); font-size: 0.88rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--lx-text-primary); margin: 0 0 0.25rem; }
+    .pillar__desc { font-family: var(--lx-font-body); font-size: 0.84rem; color: var(--lx-text-secondary); margin: 0; line-height: 1.5; }
+
+    /* ---- TESTIMONIALS ---- */
+    .testimonials-section { background: #FFF; padding: 80px 0; border-top: 1px solid var(--lx-border-subtle); }
+    .testimonials-header { max-width: 600px; margin: 0 auto 3rem; text-align: center; }
+    .testimonials-heading { font-family: var(--lx-font-heading); font-size: clamp(2.2rem,3.8vw,3.2rem); font-weight: 500; line-height: 1.15; margin: 0.5rem 0 1rem; color: var(--lx-text-primary); }
+    .score-bar { display: inline-flex; align-items: center; gap: 0.75rem; background: #FFF; padding: 0.45rem 1.25rem; border-radius: 9999px; border: 1px solid var(--lx-border-subtle); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .score-text { font-family: var(--lx-font-body); font-size: 0.8rem; font-weight: 600; color: var(--lx-text-secondary); }
+    .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+    .review-card { background: #FFF; border: 1px solid var(--lx-border-subtle); border-radius: 8px; padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 4px 20px rgba(45,41,38,0.03); transition: all 0.35s cubic-bezier(0.16,1,0.3,1); }
+    .review-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(45,41,38,0.08); border-color: rgba(158,123,79,0.35); }
+    .review-stars { color: #C69237; font-size: 1.05rem; letter-spacing: 2px; margin-bottom: 1.25rem; }
+    .review-quote { font-family: var(--lx-font-heading); font-size: 1.22rem; line-height: 1.5; font-style: italic; color: var(--lx-text-primary); margin: 0 0 1.75rem; flex-grow: 1; }
+    .review-author { display: flex; align-items: center; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid rgba(45,41,38,0.06); }
+    .review-avatar { width: 42px; height: 42px; border-radius: 50%; background: var(--lx-bg-blush); border: 1px solid rgba(158,123,79,0.25); color: var(--lx-gold-primary); font-family: var(--lx-font-heading); font-size: 1.2rem; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .review-name { font-family: var(--lx-font-body); font-size: 0.88rem; font-weight: 600; color: var(--lx-text-primary); }
+    .review-verified { font-family: var(--lx-font-body); font-size: 0.72rem; color: var(--lx-gold-primary); font-weight: 500; }
+    .review-product { font-family: var(--lx-font-body); font-size: 0.7rem; color: var(--lx-text-muted); margin-top: 0.15rem; }
+
+    /* ---- PAGE HERO ---- */
+    .page-hero { background: #F5EDE6; padding: 80px 0; border-bottom: 1px solid var(--lx-border-subtle); }
+    .page-hero__title { font-family: var(--lx-font-heading); font-size: clamp(2.6rem,4.5vw,4rem); font-weight: 500; color: var(--lx-text-primary); line-height: 1.1; margin: 0.5rem 0 1rem; letter-spacing: -0.02em; }
+    .page-hero__title em { font-style: italic; color: var(--lx-gold-primary); }
+    .page-hero__sub { font-family: var(--lx-font-body); font-size: 1.05rem; line-height: 1.6; color: var(--lx-text-secondary); margin: 0; max-width: 680px; }
+    .page-hero__sub.centered { margin: 0 auto; }
+
+    /* ---- FAQ ---- */
+    .faq-section { background: #FAF7F5; padding: 70px 0 90px; }
+    .faq-list { max-width: 820px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item { background: #FFF; border: 1px solid var(--lx-border-subtle); border-radius: 8px; overflow: hidden; transition: all 0.3s cubic-bezier(0.16,1,0.3,1); }
+    .faq-item.is-open { border-color: rgba(158,123,79,0.45); box-shadow: 0 8px 24px rgba(45,41,38,0.05); }
+    .faq-question { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 1.8rem; background: none; border: none; cursor: pointer; text-align: left; transition: background 0.2s; font-family: var(--lx-font-heading); font-size: 1.35rem; font-weight: 600; color: var(--lx-text-primary); line-height: 1.3; }
+    .faq-question:hover { background: rgba(250,247,245,0.5); }
+    .faq-icon { font-size: 1.5rem; font-weight: 300; color: var(--lx-gold-primary); margin-left: 1rem; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.is-open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1); }
+    .faq-answer-inner { padding: 0 1.8rem 1.5rem; font-family: var(--lx-font-body); font-size: 0.95rem; line-height: 1.7; color: var(--lx-text-secondary); }
+    .faq-item.is-open .faq-answer { max-height: 300px; }
+    .concierge-box { max-width: 820px; margin: 4rem auto 0; display: flex; align-items: center; gap: 1.8rem; background: linear-gradient(135deg, #F5EDE6 0%, #FFFFFF 100%); border: 1px solid rgba(158,123,79,0.25); border-radius: 16px; padding: 2.2rem; box-shadow: 0 8px 24px rgba(0,0,0,0.03); }
+    .concierge-icon { width: 52px; height: 52px; border-radius: 50%; background: #FFF; border: 1px solid rgba(158,123,79,0.3); color: var(--lx-gold-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .concierge-title { font-family: var(--lx-font-heading); font-size: 1.45rem; font-weight: 600; margin: 0 0 0.3rem; color: var(--lx-text-primary); }
+    .concierge-desc { font-family: var(--lx-font-body); font-size: 0.88rem; color: var(--lx-text-secondary); margin: 0; line-height: 1.45; }
+
+    /* ---- FOOTER ---- */
+    .site-footer { background: linear-gradient(180deg, #FAF7F5 0%, #F3ECE6 100%); border-top: 1px solid var(--lx-border-subtle); padding: 70px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.5fr; gap: 3rem; margin-bottom: 3.5rem; }
+    .footer-bottom { border-top: 1px solid var(--lx-border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--lx-text-secondary); }
+
+    @media (max-width: 989px) {
+      .hero-grid, .editorial-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .routine-grid { grid-template-columns: 1fr; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .bundle-banner { flex-direction: column; text-align: center; gap: 1.4rem; padding: 1.8rem 1.5rem; }
+      .concierge-box { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Preview Toolbar -->
+  <div class="preview-bar">
+    <div class="preview-bar__left">
+      <span class="preview-chip">LIVE PREVIEW</span>
+      <span>Tenicide Skincare • Online Store 2.0</span>
+    </div>
+    <div class="preview-tabs">
+      <button class="preview-tab active" onclick="showView('homepage')">Homepage</button>
+      <button class="preview-tab" onclick="showView('about')">About Us (page.about.json)</button>
+      <button class="preview-tab" onclick="showView('faq')">FAQ (page.faq.json)</button>
+    </div>
+  </div>
+
+  <!-- Announcement -->
+  <div class="announcement">Complimentary Clinical Samples &amp; Global Express Delivery on Orders Over $75</div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="page-width header__inner">
+      <a href="#" class="header__logo" onclick="showView('homepage')">TENICIDE</a>
+      <ul class="header__nav">
+        <li><a href="#" class="header__link" onclick="showView('homepage')">Bestsellers</a></li>
+        <li><a href="#" class="header__link" onclick="showView('homepage')">The Ritual</a></li>
+        <li><a href="#" class="header__link" onclick="showView('about')">Philosophy</a></li>
+        <li><a href="#" class="header__link" onclick="showView('faq')">FAQ</a></li>
+      </ul>
+      <div class="header__icons">
+        <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
+        <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
+        <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="cart-count">3</span></button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== HOMEPAGE ===================== -->
+  <div id="view-homepage" class="page-view active">
+
+    <!-- Hero -->
+    <section class="hero-section">
+      <div class="page-width">
+        <div class="hero-grid">
+          <div>
+            <div class="hero__kicker"><span class="hero__kicker-dot"></span><span class="hero__kicker-text">Clinically Proven Skincare Innovation</span></div>
+            <h1 class="hero__title">Elevate Your Skin to its <em>Purest Radiance</em></h1>
+            <p class="hero__sub">Bio-active formulations engineered with pure botanical actives and dermatologist-backed science for visible, cellular-level transformation.</p>
+            <div class="hero__actions">
+              <a href="#" class="button-primary">Shop Bestsellers</a>
+              <a href="#" class="button-secondary" onclick="showView('about')">The Clinical Philosophy</a>
+            </div>
+            <div class="hero__metrics">
+              <div class="hero__metric"><span class="hero__metric-val">98%</span><span class="hero__metric-desc">Firmer Skin</span></div>
+              <div class="hero__metric-divider"></div>
+              <div class="hero__metric"><span class="hero__metric-val">24H</span><span class="hero__metric-desc">Hydration Lock</span></div>
+              <div class="hero__metric-divider"></div>
+              <div class="hero__metric"><span class="hero__metric-val">100%</span><span class="hero__metric-desc">Clean &amp; Vegan</span></div>
+            </div>
+          </div>
+          <div>
+            <div class="hero__media-frame">
+              <img src="assets/luxury-hero-lifestyle.jpg" alt="Luxury Skincare" class="hero__img">
+              <div class="hero__badge"><span class="hero__badge-star">★</span><span class="hero__badge-text">Award-Winning Formula</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+      <div class="page-width">
+        <div class="trust-grid">
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg></div><div><h4 class="trust-title">Dermatologist Formulated</h4><p class="trust-sub">Clinical-grade bio-actives</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div><div><h4 class="trust-title">100% Clean &amp; Vegan</h4><p class="trust-sub">Zero parabens or sulfates</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg></div><div><h4 class="trust-title">Visible Radiance</h4><p class="trust-sub">Proven cellular renewal</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><path d="M17 10h4l3 4v5h-7v-9z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><div><h4 class="trust-title">Complimentary Delivery</h4><p class="trust-sub">With luxury sample rituals</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestsellers Products Grid -->
+    <section class="products-section">
+      <div class="page-width">
+        <div class="products-header">
+          <div><span class="luxury-kicker" style="margin-bottom:0.4rem;">CURATED FORMULATIONS</span><h2 style="font-family:var(--lx-font-heading);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:500;margin:0;color:var(--lx-text-primary);">Clinically Proven Bestsellers</h2></div>
+          <a href="#" class="button-secondary" style="font-size:0.74rem;padding:0.6rem 1.3rem;">View All (12)</a>
+        </div>
+        <div class="products-grid">
+          <div class="pcard">
+            <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Bestseller</span><img src="assets/product-serum.jpg" alt="Advanced Cellular Renewal Serum" class="pcard__img"></div>
+            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Advanced Cellular Renewal Serum</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(482)</span></span><div class="pcard__price">$78.00</div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard__media"><span class="pcard__badge">Clinical Grade</span><img src="assets/product-cleanser.jpg" alt="Cellular Clarifying Cleanser" class="pcard__img"></div>
+            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Cellular Clarifying Cleanser</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(319)</span></span><div class="pcard__price">$48.00</div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Barrier Repair</span><img src="assets/product-cream.jpg" alt="Lipid Restorative Cream" class="pcard__img"></div>
+            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Lipid Restorative Cream</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(254)</span></span><div class="pcard__price">$64.00</div></div>
+          </div>
+          <div class="pcard">
+            <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Save 15%</span><img src="assets/product-set-bundle.jpg" alt="The 3-Step Radiance Set" class="pcard__img"></div>
+            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">The Complete 3-Step Radiance Set</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(612)</span></span><div class="pcard__price"><del>$190.00</del> <span class="sale">$162.00</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-Step Skincare Routine -->
+    <section class="routine-section">
+      <div class="page-width">
+        <div class="routine-header">
+          <span class="luxury-kicker">THE DAILY REGIMEN</span>
+          <h2 class="routine-heading">A Harmonious 3-Step Clinical Ritual</h2>
+          <p class="routine-subheading">Synergistically engineered to purify, deeply regenerate, and lock moisture into the epidermal barrier.</p>
+        </div>
+        <div class="routine-grid">
+          <div class="step-card">
+            <div class="step-card__top"><span class="step-card__num">STEP 01</span><span class="step-card__tag">Purify &amp; Prep</span></div>
+            <div class="step-card__media"><img src="assets/product-cleanser.jpg" alt="Cellular Clarifying Cleanser" class="step-card__img"><div class="step-card__pill">Rose Bio-Ferment</div></div>
+            <div class="step-card__body"><h3 class="step-card__title">Cellular Clarifying Cleanser</h3><p class="step-card__desc">Gently dissolves micro-impurities while replenishing vital ceramides to prevent post-cleanse barrier tightness.</p><div class="step-card__foot"><span class="step-card__price">$48.00</span><a href="#" class="button-secondary" style="padding:0.55rem 1.25rem;font-size:0.74rem;">Shop Step</a></div></div>
+          </div>
+          <div class="step-card">
+            <div class="step-card__top"><span class="step-card__num">STEP 02</span><span class="step-card__tag">Treat &amp; Regenerate</span></div>
+            <div class="step-card__media"><img src="assets/product-serum.jpg" alt="Advanced Cellular Renewal Serum" class="step-card__img"><div class="step-card__pill">Triple Hyaluronic + Niacinamide</div></div>
+            <div class="step-card__body"><h3 class="step-card__title">Advanced Cellular Renewal Serum</h3><p class="step-card__desc">Targeted peptide molecules stimulate collagen synthesis and promote deep epidermal plumping.</p><div class="step-card__foot"><span class="step-card__price">$78.00</span><a href="#" class="button-secondary" style="padding:0.55rem 1.25rem;font-size:0.74rem;">Shop Step</a></div></div>
+          </div>
+          <div class="step-card">
+            <div class="step-card__top"><span class="step-card__num">STEP 03</span><span class="step-card__tag">Fortify &amp; Seal</span></div>
+            <div class="step-card__media"><img src="assets/product-cream.jpg" alt="Lipid Restorative Cream" class="step-card__img"><div class="step-card__pill">Ceramide Complex + Squalane</div></div>
+            <div class="step-card__body"><h3 class="step-card__title">Lipid Restorative Cream</h3><p class="step-card__desc">Continuous 24-hour hydration lock shields against moisture loss and environmental oxidants.</p><div class="step-card__foot"><span class="step-card__price">$64.00</span><a href="#" class="button-secondary" style="padding:0.55rem 1.25rem;font-size:0.74rem;">Shop Step</a></div></div>
+          </div>
+        </div>
+        <div class="bundle-banner">
+          <div><h4 class="bundle-title">Experience The Complete 3-Step Radiance Set</h4><p class="bundle-desc">Save 15% when purchased together with complimentary luxury travel pouch.</p></div>
+          <a href="#" class="button-primary">Shop The Complete Set ($162)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Editorial Philosophy -->
+    <section class="editorial-section">
+      <div class="page-width">
+        <div class="editorial-grid">
+          <div>
+            <div class="editorial__media-frame">
+              <img src="assets/editorial-about-story.jpg" alt="Botanical Laboratory" class="editorial__img">
+              <div class="editorial__stamp"><span class="editorial__stamp-text">EST. 2024</span><span class="editorial__stamp-sub">CLINICAL LUXURY</span></div>
+            </div>
+          </div>
+          <div>
+            <span class="luxury-kicker">OUR FORMULATION PHILOSOPHY</span>
+            <h2 class="editorial__heading">Where Rare Botanicals Meet <em>Cellular Precision</em></h2>
+            <p class="editorial__lead">Clean luxury backed by uncompromising clinical efficacy.</p>
+            <p class="editorial__body">At Tenicide, we reject the false compromise between organic naturalness and clinical performance. Each formula is engineered with pure bio-identical actives at optimal concentration, harmonized to restore skin balance, luminosity, and youthfulness.</p>
+            <div class="editorial__pillars">
+              <div class="pillar"><div class="pillar__num">01</div><div><h4 class="pillar__title">Bio-Identical Actives</h4><p class="pillar__desc">Formulated to mirror skin cellular architecture for rapid absorption and zero irritation.</p></div></div>
+              <div class="pillar"><div class="pillar__num">02</div><div><h4 class="pillar__title">Dermatologist Proven</h4><p class="pillar__desc">Multi-panel clinical evaluations ensure verified, visible results within 14 days.</p></div></div>
+            </div>
+            <a href="#" class="button-primary" onclick="showView('about')">Discover Our Story</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+      <div class="page-width">
+        <div class="testimonials-header">
+          <span class="luxury-kicker">REAL TRANSFORMATIONS</span>
+          <h2 class="testimonials-heading">Loved by Thousands of Radiant Faces</h2>
+          <div class="score-bar"><span class="luxury-stars">★★★★★</span><span class="score-text">4.9 / 5.0 from 2,400+ Verified Buyers</span></div>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card"><div class="review-stars">★★★★★</div><blockquote class="review-quote">"The glow I have achieved using these products is unmatched. My skin has never looked so healthy!"</blockquote><div class="review-author"><div class="review-avatar">E</div><div><span class="review-name">Emma R.</span><br><span class="review-verified">✓ Verified Buyer</span><br><span class="review-product">Cellular Renewal Serum</span></div></div></div>
+          <div class="review-card"><div class="review-stars">★★★★★</div><blockquote class="review-quote">"I love the clean, clinical formulations. They feel so luxurious on my skin without any heaviness."</blockquote><div class="review-author"><div class="review-avatar">S</div><div><span class="review-name">Sophia L.</span><br><span class="review-verified">✓ Verified Buyer</span><br><span class="review-product">Lipid Restorative Cream</span></div></div></div>
+          <div class="review-card"><div class="review-stars">★★★★★</div><blockquote class="review-quote">"These products transformed my dry, dull skin into radiant, supple perfection within two weeks."</blockquote><div class="review-author"><div class="review-avatar">O</div><div><span class="review-name">Olivia M.</span><br><span class="review-verified">✓ Verified Buyer</span><br><span class="review-product">3-Step Radiance Set</span></div></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== ABOUT US ===================== -->
+  <div id="view-about" class="page-view">
+    <section class="page-hero">
+      <div class="page-width text-center"><span class="luxury-kicker">OUR ORIGIN &amp; PHILOSOPHY</span><h1 class="page-hero__title">The Art of <em>Clinical Radiance</em></h1><p class="page-hero__sub centered">Born from the conviction that clinical skincare should never sacrifice luxury, sensorial indulgence, or clean botanical purity.</p></div>
+    </section>
+    <section class="editorial-section">
+      <div class="page-width">
+        <div class="editorial-grid">
+          <div><div class="editorial__media-frame"><img src="assets/editorial-about-story.jpg" alt="Botanical Laboratory" class="editorial__img"></div></div>
+          <div>
+            <span class="luxury-kicker">THE FORMULATION STANDARD</span>
+            <h2 class="editorial__heading">Where Dermatological Science Meets <em>Organic Purity</em></h2>
+            <p class="editorial__lead">Engineered at the intersection of cellular biology and rare botanicals.</p>
+            <p class="editorial__body">Tenicide was conceived by dermatological chemists with a singular purpose: to replace abrasive clinical treatments with deeply biocompatible formulas that fortify and nourish the skin from within. We utilize bio-fermented actives, biomimetic peptides, and precious cold-pressed botanical essences to achieve radiant, long-lasting transformation.</p>
+            <div class="editorial__pillars">
+              <div class="pillar"><div class="pillar__num">01</div><div><h4 class="pillar__title">100% Bio-Identical Actives</h4><p class="pillar__desc">Engineered to match the skin lipid matrix for effortless cellular absorption without redness or irritation.</p></div></div>
+              <div class="pillar"><div class="pillar__num">02</div><div><h4 class="pillar__title">Zero Compromise On Purity</h4><p class="pillar__desc">Rigorously free from parabens, sulfates, phthalates, artificial fragrance, and harsh fillers.</p></div></div>
+            </div>
+            <a href="#" class="button-primary">Explore Our Formulas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="trust-section">
+      <div class="page-width">
+        <div class="trust-grid">
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20"/></svg></div><div><h4 class="trust-title">Dermatologist Tested</h4><p class="trust-sub">Clinical efficacy proven</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/></svg></div><div><h4 class="trust-title">100% Clean &amp; Vegan</h4><p class="trust-sub">Cruelty-free certified</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21"/></svg></div><div><h4 class="trust-title">Sustainable Luxury</h4><p class="trust-sub">Recyclable amber glass</p></div></div>
+          <div class="trust-item"><div class="trust-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg></div><div><h4 class="trust-title">Global Delivery</h4><p class="trust-sub">Carbon-neutral logistics</p></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===================== FAQ ===================== -->
+  <div id="view-faq" class="page-view">
+    <section class="faq-section">
+      <div class="page-width">
+        <div style="max-width:650px;margin:0 auto 3.5rem;" class="text-center">
+          <span class="luxury-kicker">CLIENT CARE &amp; INQUIRIES</span>
+          <h1 class="page-hero__title" style="margin-top:0.5rem;">Frequently Asked Questions</h1>
+          <p class="page-hero__sub centered">Everything you need to know regarding our formulations, clinical integrity, and delivery rituals.</p>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item is-open"><button class="faq-question" onclick="toggleFaq(this)">Are your formulations suitable for sensitive or sensitized skin?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><p>Yes. Every Tenicide formula undergoes multi-panel clinical patch testing. We rigorously exclude known irritants including synthetic fragrances, drying alcohols, sulfates, and parabens.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How quickly can I expect to observe visible results?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><p>Initial epidermal hydration and radiance are typically visible within 24 to 48 hours. Deeper cellular improvements, including skin firmness and texture refinement, peak between 14 to 28 days with consistent daily application.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Are your products cruelty-free and vegan?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><p>Tenicide is proudly 100% cruelty-free and Leaping Bunny certified. We never test on animals at any stage of product development, and our active formulas are entirely vegan.</p></div></div></div>
+          <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What is your complimentary shipping and returns policy?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner"><p>We offer complimentary carbon-neutral shipping on all domestic orders over $75. If you are not completely satisfied with your skin transformation, we honor a 30-day effortless return guarantee.</p></div></div></div>
+        </div>
+        <div class="concierge-box">
+          <div class="concierge-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+          <div style="flex-grow:1;"><h3 class="concierge-title">Require Personalized Skin Guidance?</h3><p class="concierge-desc">Our clinical skincare specialists are available for bespoke formulation recommendations.</p></div>
+          <div><a href="#" class="button-primary">Contact Skincare Concierge</a></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="page-width">
+      <div class="footer-grid">
+        <div><span style="font-family:var(--lx-font-heading);font-size:1.6rem;letter-spacing:0.2em;font-weight:600;color:var(--lx-text-primary);">TENICIDE</span><p style="font-size:0.88rem;color:var(--lx-text-secondary);line-height:1.6;margin-top:1rem;">Where clinical skincare science meets botanical refinement. Formulated for cellular rejuvenation and uncompromising skin health.</p></div>
+        <div><h4 class="footer__heading">The Collection</h4><p><a href="#" class="footer__link">Cleanse &amp; Prep</a></p><p><a href="#" class="footer__link">Cellular Serums</a></p><p><a href="#" class="footer__link">Barrier Creams</a></p><p><a href="#" class="footer__link">Ritual Sets</a></p></div>
+        <div><h4 class="footer__heading">Client Care</h4><p><a href="#" class="footer__link" onclick="showView('about')">Our Story</a></p><p><a href="#" class="footer__link" onclick="showView('faq')">Frequently Asked</a></p><p><a href="#" class="footer__link">Shipping &amp; Returns</a></p><p><a href="#" class="footer__link">Contact Concierge</a></p></div>
+        <div><h4 class="footer__heading">The Private Journal</h4><p style="font-size:0.86rem;color:var(--lx-text-secondary);margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p><div style="display:flex;gap:0.5rem;"><input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem;border:1px solid var(--lx-border-subtle);border-radius:9999px;flex-grow:1;font-family:var(--lx-font-body);font-size:0.84rem;background:#fff;"><button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button></div></div>
+      </div>
+      <div class="footer-bottom"><div>&copy; 2026 Tenicide Co. All rights reserved.</div><div style="display:flex;gap:1.5rem;"><a href="#" class="footer__link">Privacy Policy</a><a href="#" class="footer__link">Terms of Service</a><a href="#" class="footer__link">Refund Policy</a></div></div>
+    </div>
+  </footer>
+
+  <script>
+    function showView(name) {
+      document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.preview-tab').forEach(b => b.classList.remove('active'));
+      document.getElementById('view-' + name).classList.add('active');
+      const tabs = document.querySelectorAll('.preview-tab');
+      if (name === 'homepage') tabs[0].classList.add('active');
+      if (name === 'about') tabs[1].classList.add('active');
+      if (name === 'faq') tabs[2].classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      item.classList.toggle('is-open');
+    }
+  </script>
+</body>
+</html>
