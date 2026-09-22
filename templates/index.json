@@ -992,7 +992,7 @@
         "metric_2_val": "24H",
         "metric_2_desc": "Hydration Lock",
         "metric_3_val": "100%",
-        "metric_3_desc": "Clean & Vegan",
+        "metric_3_desc": "Pure & Clean",
         "padding_top": 70,
         "padding_bottom": 70
       }
@@ -1017,7 +1017,7 @@
           "type": "badge",
           "settings": {
             "icon": "leaf",
-            "title": "100% Clean & Vegan",
+            "title": "100% Pure & Clean",
             "subtitle": "Zero parabens or sulfates"
           }
         },
