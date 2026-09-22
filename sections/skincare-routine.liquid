@@ -1,0 +1,520 @@
+{% comment %}
+  Luxury 3-Step Clinical Skincare Routine Builder
+  Designed for Tenicide Beauty
+{% endcomment %}
+
+<div class="skincare-routine-wrapper" id="skincare-routine-{{ section.id }}">
+  <div class="page-width">
+    
+    <div class="skincare-routine__header text-center">
+      {% if section.settings.kicker != blank %}
+        <span class="luxury-kicker">{{ section.settings.kicker | escape }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="skincare-routine__main-title">{{ section.settings.title }}</h2>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <p class="skincare-routine__main-subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Step Grid Layout -->
+    <div class="skincare-routine-grid">
+      {% for block in section.blocks %}
+        {% assign product = block.settings.product %}
+        <div class="routine-step-card" {{ block.shopify_attributes }}>
+          
+          <div class="routine-step__header">
+            <span class="routine-step__badge">{{ block.settings.step_number | default: forloop.index | prepend: 'STEP 0' }}</span>
+            <span class="routine-step__tag">{{ block.settings.step_tag | escape }}</span>
+          </div>
+
+          <!-- Product Image Area -->
+          <div class="routine-step__image-wrapper">
+            {% if product != blank and product.featured_image != blank %}
+              <img
+                src="{{ product.featured_image | image_url: width: 600 }}"
+                alt="{{ product.title | escape }}"
+                class="routine-step__image"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+            {% elsif block.settings.custom_image != blank %}
+              <img
+                src="{{ block.settings.custom_image | image_url: width: 600 }}"
+                alt="{{ block.settings.title | escape }}"
+                class="routine-step__image"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+            {% else %}
+              <img
+                src="{{ 'luxury-skincare-ritual.jpg' | asset_url }}"
+                alt="Skincare Ritual Product"
+                class="routine-step__image"
+                loading="lazy"
+                width="600"
+                height="600"
+              >
+            {% endif %}
+
+            {% if block.settings.active_ingredient != blank %}
+              <div class="routine-step__ingredient-pill">
+                {{ block.settings.active_ingredient | escape }}
+              </div>
+            {% endif %}
+          </div>
+
+          <!-- Product / Step Info -->
+          <div class="routine-step__body">
+            <h3 class="routine-step__title">
+              {% if product != blank %}
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              {% else %}
+                {{ block.settings.title | escape }}
+              {% endif %}
+            </h3>
+
+            <p class="routine-step__benefit">
+              {{ block.settings.benefit | escape }}
+            </p>
+
+            <div class="routine-step__footer">
+              <div class="routine-step__price">
+                {% if product != blank %}
+                  {{ product.price | money }}
+                {% else %}
+                  {{ block.settings.fallback_price | default: '$68.00' }}
+                {% endif %}
+              </div>
+
+              {% if product != blank %}
+                <a href="{{ product.url }}" class="button-secondary routine-step__btn">
+                  View Product
+                </a>
+              {% else %}
+                <a href="/collections/all" class="button-secondary routine-step__btn">
+                  Shop Step
+                </a>
+              {% endif %}
+            </div>
+
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Complete Routine Bundle CTA -->
+    {% if section.settings.show_bundle_cta %}
+      <div class="skincare-routine__bundle-banner">
+        <div class="routine-bundle__text">
+          <h4 class="routine-bundle__title">{{ section.settings.bundle_title | escape }}</h4>
+          <p class="routine-bundle__desc">{{ section.settings.bundle_desc | escape }}</p>
+        </div>
+        <a href="{{ section.settings.bundle_url | default: '/collections/all' }}" class="button-primary routine-bundle__btn">
+          {{ section.settings.bundle_button_text | default: 'Shop The Complete 3-Step Ritual' }}
+        </a>
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+<style>
+  #skincare-routine-{{ section.id }} {
+    background: {{ section.settings.bg_color | default: '#FAF7F5' }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    border-top: 1px solid var(--lx-border-subtle, #E8E2DC);
+  }
+
+  .skincare-routine__header {
+    max-width: 650px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .skincare-routine__main-title {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 500;
+    color: var(--lx-text-primary, #2D2926);
+    line-height: 1.15;
+    margin: 0.5rem 0 1rem;
+  }
+
+  .skincare-routine__main-subtitle {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.98rem;
+    color: var(--lx-text-secondary, #6E665E);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .skincare-routine-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .routine-step-card {
+    background: #FFFFFF;
+    border: 1px solid var(--lx-border-subtle, #E8E2DC);
+    border-radius: var(--lx-radius-md, 8px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .routine-step-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 36px rgba(45, 41, 38, 0.08);
+    border-color: rgba(158, 123, 79, 0.4);
+  }
+
+  .routine-step__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.4rem;
+    background-color: var(--lx-bg-blush, #F5EDE6);
+    border-bottom: 1px solid var(--lx-border-subtle, #E8E2DC);
+  }
+
+  .routine-step__badge {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--lx-gold-primary, #9E7B4F);
+  }
+
+  .routine-step__tag {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--lx-text-secondary, #6E665E);
+    font-weight: 600;
+  }
+
+  .routine-step__image-wrapper {
+    position: relative;
+    background-color: #FAF7F5;
+    padding: 2rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .routine-step__image {
+    max-width: 240px;
+    height: 240px;
+    object-fit: contain;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .routine-step-card:hover .routine-step__image {
+    transform: scale(1.05);
+  }
+
+  .routine-step__ingredient-pill {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid var(--lx-border-subtle, #E8E2DC);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--lx-text-primary, #2D2926);
+  }
+
+  .routine-step__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .routine-step__title {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    color: var(--lx-text-primary, #2D2926);
+  }
+
+  .routine-step__title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.25s ease;
+  }
+
+  .routine-step__title a:hover {
+    color: var(--lx-gold-primary, #9E7B4F);
+  }
+
+  .routine-step__benefit {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--lx-text-secondary, #6E665E);
+    margin: 0 0 1.5rem;
+    flex-grow: 1;
+  }
+
+  .routine-step__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(45, 41, 38, 0.06);
+  }
+
+  .routine-step__price {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--lx-text-primary, #2D2926);
+  }
+
+  .routine-step__btn {
+    padding: 0.55rem 1.25rem !important;
+    font-size: 0.74rem !important;
+  }
+
+  .skincare-routine__bundle-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #2D2723 0%, #1A1614 100%);
+    color: #FAF7F5;
+    padding: 2.2rem 3rem;
+    border-radius: var(--lx-radius-lg, 16px);
+    border: 1px solid rgba(158, 123, 79, 0.35);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+  }
+
+  .routine-bundle__title {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.65rem;
+    font-weight: 500;
+    color: #FAF7F5;
+    margin: 0 0 0.35rem;
+  }
+
+  .routine-bundle__desc {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.9rem;
+    color: #C9A87C;
+    margin: 0;
+  }
+
+  @media (max-width: 989px) {
+    .skincare-routine-grid {
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+    }
+    .skincare-routine__bundle-banner {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.4rem;
+      padding: 1.8rem 1.5rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Skincare Routine",
+  "tag": "section",
+  "class": "skincare-routine-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FAF7F5"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "The Daily Ritual"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "A Harmonious 3-Step Clinical Regimen"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Synergistically designed to purify, deeply regenerate, and fortify the epidermal moisture barrier."
+    },
+    {
+      "type": "header",
+      "content": "Bundle Banner"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundle_cta",
+      "label": "Show Complete Ritual Banner",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "bundle_title",
+      "label": "Bundle Title",
+      "default": "Experience The Full 3-Step Radiance Set"
+    },
+    {
+      "type": "text",
+      "id": "bundle_desc",
+      "label": "Bundle Offer Description",
+      "default": "Save 15% when purchased as a comprehensive 3-step ritual set."
+    },
+    {
+      "type": "text",
+      "id": "bundle_button_text",
+      "label": "Bundle Button Label",
+      "default": "Shop The Set"
+    },
+    {
+      "type": "url",
+      "id": "bundle_url",
+      "label": "Bundle Link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "routine_step",
+      "name": "Routine Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_number",
+          "label": "Step Number",
+          "default": "1"
+        },
+        {
+          "type": "text",
+          "id": "step_tag",
+          "label": "Step Purpose",
+          "default": "Cleanse & Purify"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom Image (Fallback)"
+        },
+        {
+          "type": "text",
+          "id": "active_ingredient",
+          "label": "Active Key Ingredient",
+          "default": "Rose Bio-Ferment"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Name",
+          "default": "Cellular Clarifying Cleanser"
+        },
+        {
+          "type": "textarea",
+          "id": "benefit",
+          "label": "Clinical Benefit",
+          "default": "Removes micro-impurities while replenishing vital ceramides to prevent post-cleanse barrier tightness."
+        },
+        {
+          "type": "text",
+          "id": "fallback_price",
+          "label": "Display Price",
+          "default": "$54.00"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Skincare Routine",
+      "blocks": [
+        {
+          "type": "routine_step",
+          "settings": {
+            "step_number": "1",
+            "step_tag": "Prep & Clarify",
+            "title": "Gentle Botanical Cleanser",
+            "active_ingredient": "Rose Bio-Ferment",
+            "benefit": "Prepares the dermis by dissolving surface impurities without stripping natural lipid moisture.",
+            "fallback_price": "$48.00"
+          }
+        },
+        {
+          "type": "routine_step",
+          "settings": {
+            "step_number": "2",
+            "step_tag": "Treat & Regenerate",
+            "title": "Clinical Renewal Serum",
+            "active_ingredient": "Triple Hyaluronic + Niacinamide",
+            "benefit": "Concentrated bio-active peptides penetrate deep layers to stimulate elastin and even skin tone.",
+            "fallback_price": "$78.00"
+          }
+        },
+        {
+          "type": "routine_step",
+          "settings": {
+            "step_number": "3",
+            "step_tag": "Seal & Hydrate",
+            "title": "Lipid Barrier Restorative Cream",
+            "active_ingredient": "Ceramide Complex + Squalane",
+            "benefit": "24-hour continuous occlusion locks in nourishment while shielding against environmental oxidants.",
+            "fallback_price": "$64.00"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

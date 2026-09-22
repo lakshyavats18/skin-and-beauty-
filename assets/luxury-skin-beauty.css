@@ -1,0 +1,275 @@
+/* ==========================================================================
+   TENICIDE LUXURY SKIN & BEAUTY DESIGN SYSTEM
+   Inspired by SkinCeuticals, Augustinus Bader & Huda Beauty
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Luxury Color Palette Tokens */
+  --lx-bg-cream: #FAF7F5;
+  --lx-bg-surface: #FFFFFF;
+  --lx-bg-blush: #F5EDE6;
+  --lx-bg-dark: #1F1B18;
+  --lx-text-primary: #2D2926;
+  --lx-text-secondary: #6E665E;
+  --lx-text-muted: #9E948C;
+  --lx-text-light: #FDFBF7;
+  
+  /* Gold & Metallic Accents */
+  --lx-gold-primary: #9E7B4F;
+  --lx-gold-light: #C9A87C;
+  --lx-gold-glow: rgba(179, 143, 95, 0.18);
+  --lx-gold-border: rgba(158, 123, 79, 0.24);
+  --lx-rose-accent: #D4A89A;
+  --lx-rose-soft: #F2E4DE;
+  
+  /* Borders & Dividers */
+  --lx-border-subtle: #E8E2DC;
+  --lx-border-divider: rgba(45, 41, 38, 0.08);
+  
+  /* Radii & Shadows */
+  --lx-radius-sm: 4px;
+  --lx-radius-md: 8px;
+  --lx-radius-lg: 16px;
+  --lx-radius-pill: 9999px;
+  --lx-shadow-subtle: 0 4px 20px rgba(45, 41, 38, 0.04);
+  --lx-shadow-hover: 0 12px 36px rgba(45, 41, 38, 0.08);
+  --lx-shadow-gold: 0 8px 24px rgba(158, 123, 79, 0.15);
+
+  /* Typography */
+  --lx-font-heading: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --lx-font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Transitions */
+  --lx-transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Body Overrides for Luxury Feel */
+body {
+  background-color: var(--lx-bg-cream) !important;
+  color: var(--lx-text-primary) !important;
+  font-family: var(--lx-font-body) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+}
+
+/* Headings Typography */
+h1, h2, h3, .h1, .h2, .h3,
+.luxury-heading,
+.header__heading,
+.product-card__title,
+.featured-collection__title,
+.hero__heading {
+  font-family: var(--lx-font-heading) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--lx-text-primary);
+}
+
+/* Elegant Subheading / Kicker / Overline */
+.luxury-kicker,
+.kicker,
+.subheading-luxury {
+  font-family: var(--lx-font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--lx-gold-primary);
+  display: inline-block;
+  margin-bottom: 0.85rem;
+}
+
+/* Primary Luxury Buttons */
+.button-primary,
+.button--primary,
+.btn-primary,
+button.button:not(.button-secondary):not(.button-tertiary) {
+  background: linear-gradient(135deg, #2A2522 0%, #1A1614 100%) !important;
+  color: #FAF7F5 !important;
+  border: 1px solid var(--lx-border-subtle) !important;
+  border-radius: var(--lx-radius-pill) !important;
+  font-family: var(--lx-font-body) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 0.95rem 2.2rem !important;
+  transition: var(--lx-transition) !important;
+  box-shadow: 0 4px 14px rgba(26, 22, 20, 0.15) !important;
+}
+
+.button-primary:hover,
+.button--primary:hover,
+.btn-primary:hover,
+button.button:not(.button-secondary):not(.button-tertiary):hover {
+  background: linear-gradient(135deg, var(--lx-gold-primary) 0%, #7E5F3B 100%) !important;
+  color: #FFFFFF !important;
+  border-color: var(--lx-gold-primary) !important;
+  transform: translateY(-2px);
+  box-shadow: var(--lx-shadow-gold) !important;
+}
+
+/* Secondary Gold Outline Buttons */
+.button-secondary,
+.button--secondary,
+.btn-secondary {
+  background: transparent !important;
+  color: var(--lx-text-primary) !important;
+  border: 1px solid var(--lx-gold-primary) !important;
+  border-radius: var(--lx-radius-pill) !important;
+  font-family: var(--lx-font-body) !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  padding: 0.95rem 2.2rem !important;
+  transition: var(--lx-transition) !important;
+}
+
+.button-secondary:hover,
+.button--secondary:hover,
+.btn-secondary:hover {
+  background: var(--lx-gold-primary) !important;
+  color: #FFFFFF !important;
+  transform: translateY(-2px);
+  box-shadow: var(--lx-shadow-gold) !important;
+}
+
+/* Header Elevation */
+header-component,
+.header {
+  background-color: rgba(250, 247, 245, 0.96) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-bottom: 1px solid var(--lx-border-subtle) !important;
+  transition: var(--lx-transition);
+}
+
+.header__menu-item,
+.menu-link {
+  font-family: var(--lx-font-body) !important;
+  font-size: 0.86rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--lx-text-primary) !important;
+  transition: var(--lx-transition) !important;
+}
+
+.header__menu-item:hover,
+.menu-link:hover {
+  color: var(--lx-gold-primary) !important;
+}
+
+/* Announcement Bar Luxury Styling */
+.announcement-bar,
+[id^="shopify-section-announcement"] {
+  background: linear-gradient(90deg, #1F1B18 0%, #2D2723 50%, #1F1B18 100%) !important;
+  color: #FAF7F5 !important;
+  border-bottom: 1px solid rgba(179, 143, 95, 0.2) !important;
+  font-family: var(--lx-font-body) !important;
+  font-size: 0.74rem !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  padding: 0.6rem 1rem !important;
+}
+
+.announcement-bar a {
+  color: var(--lx-gold-light) !important;
+  text-decoration: underline !important;
+  text-underline-offset: 3px !important;
+}
+
+/* Global Container & Card Refinements */
+.card,
+.product-card,
+.product-card-wrapper {
+  border-radius: var(--lx-radius-md) !important;
+  background-color: var(--lx-bg-surface);
+  transition: var(--lx-transition);
+}
+
+/* Badges & Pills */
+.badge,
+.product-badge {
+  font-family: var(--lx-font-body) !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  border-radius: var(--lx-radius-pill) !important;
+  padding: 0.35rem 0.85rem !important;
+}
+
+.badge--sale,
+.badge[data-sale] {
+  background-color: var(--lx-gold-primary) !important;
+  color: #FFFFFF !important;
+}
+
+.badge--sold-out {
+  background-color: var(--lx-bg-blush) !important;
+  color: var(--lx-text-secondary) !important;
+  border: 1px solid var(--lx-border-subtle) !important;
+}
+
+/* Star Rating Gold Accent */
+.star-rating,
+.rating-stars,
+.luxury-stars {
+  color: #C69237;
+  letter-spacing: 2px;
+  font-size: 0.95rem;
+}
+
+/* Footer Elevation */
+footer,
+.footer-section,
+#shopify-section-footer {
+  background: linear-gradient(180deg, #FAF7F5 0%, #F3ECE6 100%) !important;
+  border-top: 1px solid var(--lx-border-subtle) !important;
+  color: var(--lx-text-primary);
+}
+
+.footer__heading {
+  font-family: var(--lx-font-heading) !important;
+  font-size: 1.25rem !important;
+  letter-spacing: -0.01em !important;
+  color: var(--lx-text-primary) !important;
+  margin-bottom: 1rem !important;
+}
+
+.footer__link {
+  font-size: 0.86rem !important;
+  color: var(--lx-text-secondary) !important;
+  transition: var(--lx-transition) !important;
+}
+
+.footer__link:hover {
+  color: var(--lx-gold-primary) !important;
+  padding-left: 3px;
+}
+
+/* Editorial Glassmorphic Panels */
+.glass-luxury-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--lx-shadow-subtle);
+  border-radius: var(--lx-radius-lg);
+}
+
+/* Smooth Scroll Reveal Animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

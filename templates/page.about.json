@@ -1,0 +1,108 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "luxury-page-hero",
+      "settings": {
+        "bg_color": "#F5EDE6",
+        "text_alignment": "center",
+        "kicker": "OUR ORIGIN & PHILOSOPHY",
+        "title": "The Art of <em>Clinical Radiance</em>",
+        "subtitle": "Born from the conviction that clinical skincare should never sacrifice luxury, sensorial indulgence, or clean botanical purity.",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "editorial_story": {
+      "type": "editorial-banner",
+      "settings": {
+        "bg_color": "#FAF7F5",
+        "image_position": "left",
+        "kicker": "THE FORMULATION STANDARD",
+        "heading": "Where Dermatological Science Meets <em>Organic Purity</em>",
+        "lead_text": "Engineered at the intersection of cellular biology and rare botanicals.",
+        "body_text": "<p>Tenicide was conceived by dermatological chemists with a singular purpose: to replace abrasive clinical treatments with deeply biocompatible formulas that fortify and nourish the skin from within. We utilize bio-fermented actives, biomimetic peptides, and precious cold-pressed botanical essences to achieve radiant, long-lasting transformation.</p>",
+        "pillar_1_title": "100% Bio-Identical Actives",
+        "pillar_1_desc": "Engineered to match the skin's natural lipid matrix for effortless cellular absorption without redness or irritation.",
+        "pillar_2_title": "Zero Compromise On Purity",
+        "pillar_2_desc": "Rigorously free from parabens, sulfates, phthalates, artificial fragrance, and harsh fillers.",
+        "button_label": "Explore Our Formulas",
+        "button_link": "/collections/all",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "padding_top": 35,
+        "padding_bottom": 35
+      },
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "dermatologist",
+            "title": "Dermatologist Tested",
+            "subtitle": "Clinical efficacy proven"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "title": "100% Clean & Vegan",
+            "subtitle": "Cruelty-free certified"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Sustainable Luxury",
+            "subtitle": "Recyclable amber glass"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "Global Shipping",
+            "subtitle": "Carbon-neutral delivery"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ]
+    },
+    "main_content": {
+      "type": "main-page",
+      "blocks": {
+        "page_content": {
+          "type": "page-content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "page_content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "#FAF7F5",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "editorial_story",
+    "trust_badges",
+    "main_content"
+  ]
+}

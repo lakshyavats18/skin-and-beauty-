@@ -1,0 +1,108 @@
+{
+  "sections": {
+    "luxury_faq": {
+      "type": "luxury-faq",
+      "settings": {
+        "bg_color": "#FAF7F5",
+        "kicker": "Client Care & Inquiries",
+        "title": "Frequently Asked Questions",
+        "subtitle": "Everything you need to know regarding our formulations, clinical integrity, and delivery rituals.",
+        "allow_multiple": false,
+        "show_concierge": true,
+        "concierge_title": "Require Personalized Skin Guidance?",
+        "concierge_desc": "Our clinical skincare specialists are available for bespoke formulation recommendations.",
+        "concierge_btn": "Contact Skincare Concierge",
+        "concierge_link": "/pages/contact",
+        "padding_top": 70,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your formulations suitable for sensitive or sensitized skin?",
+            "answer": "<p>Yes. Every Tenicide formula undergoes multi-panel clinical patch testing. We rigorously exclude known irritants including synthetic fragrances, drying alcohols, sulfates, and parabens.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "faq_item",
+          "settings": {
+            "question": "How quickly can I expect to observe visible results?",
+            "answer": "<p>Initial epidermal hydration and radiance are typically visible within 24 to 48 hours. Deeper cellular improvements, including skin firmness and texture refinement, peak between 14 to 28 days with consistent daily application.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Are your products cruelty-free and vegan?",
+            "answer": "<p>Tenicide is proudly 100% cruelty-free and Leaping Bunny certified. We never test on animals at any stage of product development, and our active formulas are entirely vegan.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "faq_item",
+          "settings": {
+            "question": "What is your complimentary shipping and returns policy?",
+            "answer": "<p>We offer complimentary carbon-neutral shipping on all domestic orders over $75. If you are not completely satisfied with your skin transformation, we honor a 30-day effortless return guarantee.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "faq_item",
+          "settings": {
+            "question": "Can I layer Tenicide products with prescription retinol or acids?",
+            "answer": "<p>Our Cellular Clarifying Cleanser and Lipid Restorative Cream pair safely with topical prescription regimens. When using our Advanced Cellular Renewal Serum alongside potent retinoids, we recommend alternating evenings to respect your skin's protective lipid barrier.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ]
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "padding_top": 30,
+        "padding_bottom": 30
+      },
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "dermatologist",
+            "title": "Dermatologist Tested",
+            "subtitle": "Clinical grade safety"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "title": "100% Clean Formula",
+            "subtitle": "Zero harsh additives"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "Complimentary Delivery",
+            "subtitle": "Orders over $75"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3"
+      ]
+    }
+  },
+  "order": [
+    "luxury_faq",
+    "trust_badges"
+  ]
+}

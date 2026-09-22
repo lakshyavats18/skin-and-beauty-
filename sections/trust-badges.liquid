@@ -1,0 +1,190 @@
+{% comment %}
+  Luxury Trust & Clinical Credibility Bar
+  Designed for Tenicide Beauty
+{% endcomment %}
+
+<div class="trust-badges-wrapper" id="trust-badges-{{ section.id }}">
+  <div class="page-width">
+    <div class="trust-badges-grid">
+      {% for block in section.blocks %}
+        <div class="trust-badge-item" {{ block.shopify_attributes }}>
+          <div class="trust-badge__icon-box">
+            {% case block.settings.icon %}
+              {% when 'dermatologist' %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 17"/></svg>
+              {% when 'shield' %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              {% when 'leaf' %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+              {% when 'sparkle' %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              {% when 'shipping' %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect width="16" height="13" x="1" y="6" rx="2"/><path d="M17 10h4l3 4v5h-7v-9z"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+              {% else %}
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            {% endcase %}
+          </div>
+          <div class="trust-badge__content">
+            <h4 class="trust-badge__title">{{ block.settings.title | escape }}</h4>
+            {% if block.settings.subtitle != blank %}
+              <p class="trust-badge__subtitle">{{ block.settings.subtitle | escape }}</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+  #trust-badges-{{ section.id }} {
+    background-color: {{ section.settings.bg_color | default: '#FFFFFF' }};
+    border-top: 1px solid var(--lx-border-subtle, #E8E2DC);
+    border-bottom: 1px solid var(--lx-border-subtle, #E8E2DC);
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+
+  .trust-badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .trust-badge-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem 0.75rem;
+    transition: transform 0.25s ease;
+  }
+
+  .trust-badge-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .trust-badge__icon-box {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: var(--lx-bg-blush, #F5EDE6);
+    border: 1px solid rgba(158, 123, 79, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--lx-gold-primary, #9E7B4F);
+  }
+
+  .trust-badge__title {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.84rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--lx-text-primary, #2D2926);
+    margin: 0 0 0.15rem;
+  }
+
+  .trust-badge__subtitle {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.76rem;
+    color: var(--lx-text-secondary, #6E665E);
+    margin: 0;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 749px) {
+    .trust-badges-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .trust-badges-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Trust Badges",
+  "tag": "section",
+  "class": "trust-badges-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 15,
+      "max": 80,
+      "step": 5,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Proof Badge",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "dermatologist", "label": "Clinical Cross" },
+            { "value": "shield", "label": "Security Shield" },
+            { "value": "leaf", "label": "Botanical Leaf" },
+            { "value": "sparkle", "label": "Sparkle Radiance" },
+            { "value": "shipping", "label": "Luxe Delivery" }
+          ],
+          "default": "dermatologist"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Badge Title",
+          "default": "Dermatologist Tested"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Badge Subtitle",
+          "default": "Rigorous clinical trials"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Trust Badges",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "dermatologist", "title": "Dermatologist Formulated", "subtitle": "Clinical grade bio-actives" } },
+        { "type": "badge", "settings": { "icon": "leaf", "title": "100% Clean & Vegan", "subtitle": "Zero parabens or sulfates" } },
+        { "type": "badge", "settings": { "icon": "sparkle", "title": "Visible Results", "subtitle": "Proven within 14 days" } },
+        { "type": "badge", "settings": { "icon": "shipping", "title": "Complimentary Delivery", "subtitle": "With luxury sample rituals" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

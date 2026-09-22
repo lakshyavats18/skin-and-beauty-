@@ -1,0 +1,138 @@
+{% comment %}
+  Luxury Page Hero Banner
+  Reusable editorial hero for content pages (About Us, Contact, FAQ, Philosophy)
+{% endcomment %}
+
+<div class="luxury-page-hero-wrapper" id="luxury-page-hero-{{ section.id }}">
+  <div class="page-width">
+    <div class="luxury-page-hero__inner text-{{ section.settings.text_alignment }}">
+      
+      {% if section.settings.kicker != blank %}
+        <span class="luxury-kicker">{{ section.settings.kicker | escape }}</span>
+      {% endif %}
+
+      <h1 class="luxury-page-hero__title">
+        {{ section.settings.title | default: page.title }}
+      </h1>
+
+      {% if section.settings.subtitle != blank %}
+        <p class="luxury-page-hero__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<style>
+  #luxury-page-hero-{{ section.id }} {
+    background-color: {{ section.settings.bg_color | default: '#F5EDE6' }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    border-bottom: 1px solid var(--lx-border-subtle, #E8E2DC);
+    position: relative;
+  }
+
+  .luxury-page-hero__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .text-center .luxury-page-hero__inner {
+    margin: 0 auto;
+  }
+
+  .text-left .luxury-page-hero__inner {
+    margin: 0 auto 0 0;
+  }
+
+  .luxury-page-hero__title {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-weight: 500;
+    color: var(--lx-text-primary, #2D2926);
+    line-height: 1.1;
+    margin: 0.5rem 0 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .luxury-page-hero__title em {
+    font-style: italic;
+    color: var(--lx-gold-primary, #9E7B4F);
+  }
+
+  .luxury-page-hero__subtitle {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--lx-text-secondary, #6E665E);
+    margin: 0;
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Page Hero",
+  "tag": "section",
+  "class": "luxury-page-hero-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F5EDE6"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "The Tenicide House"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The Art of <em>Clinical Radiance</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Rooted in clinical science, elevated by botanical refinement. Discover the philosophy behind our cellular formulations."
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 30,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 30,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Page Hero"
+    }
+  ]
+}
+{% endschema %}

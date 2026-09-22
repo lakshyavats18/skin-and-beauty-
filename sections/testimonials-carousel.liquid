@@ -1,0 +1,309 @@
+{% comment %}
+  Luxury Testimonials & Social Proof Carousel
+  Designed for Tenicide Beauty
+{% endcomment %}
+
+<div class="testimonials-wrapper" id="testimonials-{{ section.id }}">
+  <div class="page-width">
+    
+    <div class="testimonials-header text-center">
+      {% if section.settings.kicker != blank %}
+        <span class="luxury-kicker">{{ section.settings.kicker | escape }}</span>
+      {% endif %}
+      
+      {% if section.settings.title != blank %}
+        <h2 class="testimonials-title">{{ section.settings.title }}</h2>
+      {% endif %}
+
+      <div class="testimonials-score-bar">
+        <span class="luxury-stars">★★★★★</span>
+        <span class="testimonials-score-text">{{ section.settings.rating_text | default: '4.9 / 5.0 from 2,400+ Verified Buyers' }}</span>
+      </div>
+    </div>
+
+    <!-- Testimonials Grid / Carousel -->
+    <div class="testimonials-grid">
+      {% for block in section.blocks %}
+        <div class="testimonial-card" {{ block.shopify_attributes }}>
+          <div class="testimonial-card__stars">★★★★★</div>
+          
+          <blockquote class="testimonial-card__quote">
+            "{{ block.settings.quote | escape }}"
+          </blockquote>
+
+          <div class="testimonial-card__author-info">
+            <div class="testimonial-card__avatar">
+              {{ block.settings.author | slice: 0, 1 | default: 'A' }}
+            </div>
+            <div class="testimonial-card__author-details">
+              <span class="testimonial-card__name">{{ block.settings.author | escape }}</span>
+              <span class="testimonial-card__badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                Verified Buyer
+              </span>
+              {% if block.settings.product_bought != blank %}
+                <span class="testimonial-card__product">{{ block.settings.product_bought | escape }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>
+
+<style>
+  #testimonials-{{ section.id }} {
+    background: {{ section.settings.bg_color | default: '#FAF7F5' }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    border-top: 1px solid var(--lx-border-subtle, #E8E2DC);
+  }
+
+  .testimonials-header {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .testimonials-title {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+    font-weight: 500;
+    line-height: 1.15;
+    margin: 0.5rem 0 1rem;
+    color: var(--lx-text-primary, #2D2926);
+  }
+
+  .testimonials-score-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: #FFFFFF;
+    padding: 0.45rem 1.25rem;
+    border-radius: 9999px;
+    border: 1px solid var(--lx-border-subtle, #E8E2DC);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  }
+
+  .testimonials-score-text {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--lx-text-secondary, #6E665E);
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .testimonial-card {
+    background: #FFFFFF;
+    border: 1px solid var(--lx-border-subtle, #E8E2DC);
+    border-radius: var(--lx-radius-md, 8px);
+    padding: 2.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(45, 41, 38, 0.03);
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .testimonial-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 36px rgba(45, 41, 38, 0.08);
+    border-color: rgba(158, 123, 79, 0.35);
+  }
+
+  .testimonial-card__stars {
+    color: #C69237;
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+  }
+
+  .testimonial-card__quote {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.22rem;
+    line-height: 1.5;
+    font-style: italic;
+    color: var(--lx-text-primary, #2D2926);
+    margin: 0 0 1.75rem;
+    flex-grow: 1;
+  }
+
+  .testimonial-card__author-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(45, 41, 38, 0.06);
+  }
+
+  .testimonial-card__avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--lx-bg-blush, #F5EDE6);
+    border: 1px solid rgba(158, 123, 79, 0.25);
+    color: var(--lx-gold-primary, #9E7B4F);
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .testimonial-card__author-details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .testimonial-card__name {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--lx-text-primary, #2D2926);
+  }
+
+  .testimonial-card__badge {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.72rem;
+    color: var(--lx-gold-primary, #9E7B4F);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-weight: 500;
+  }
+
+  .testimonial-card__product {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.7rem;
+    color: var(--lx-text-muted, #9E948C);
+    margin-top: 0.15rem;
+  }
+
+  @media (max-width: 749px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Testimonials",
+  "tag": "section",
+  "class": "testimonials-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FAF7F5"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Real Skin Transformations"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Loved by Thousands of Radiant Faces"
+    },
+    {
+      "type": "text",
+      "id": "rating_text",
+      "label": "Rating Bar Summary",
+      "default": "4.9 / 5.0 from 2,400+ Verified Buyers"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote Text",
+          "default": "The glow I have achieved using these products is unmatched. My skin has never looked so healthy!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author Name",
+          "default": "Emma R."
+        },
+        {
+          "type": "text",
+          "id": "product_bought",
+          "label": "Product Purchased",
+          "default": "Cellular Clarifying Cleanser"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The glow I have achieved using these products is unmatched. My skin has never looked so healthy!",
+            "author": "Emma R.",
+            "product_bought": "Cellular Renewal Serum"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I love the clean, clinical formulations. They feel so luxurious on my skin without any heaviness.",
+            "author": "Sophia L.",
+            "product_bought": "Lipid Restorative Cream"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "quote": "These products transformed my dry, dull skin into radiant, supple perfection within two weeks.",
+            "author": "Olivia M.",
+            "product_bought": "3-Step Radiance Set"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

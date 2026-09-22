@@ -1,0 +1,385 @@
+{% comment %}
+  Luxury Editorial Brand Story & Philosophy Banner
+  Designed for Tenicide Beauty
+{% endcomment %}
+
+<div class="editorial-banner-wrapper" id="editorial-banner-{{ section.id }}">
+  <div class="page-width">
+    <div class="editorial-banner-grid {% if section.settings.image_position == 'right' %}editorial-banner--reverse{% endif %}">
+      
+      <!-- Media Frame -->
+      <div class="editorial-banner__media-col">
+        <div class="editorial-banner__media-frame">
+          {% if section.settings.image != blank %}
+            <img
+              src="{{ section.settings.image | image_url: width: 1200 }}"
+              alt="{{ section.settings.heading | escape }}"
+              class="editorial-banner__img"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          {% else %}
+            <img
+              src="{{ 'luxury-skincare-ritual.jpg' | asset_url }}"
+              alt="Botanical Clinical Ritual"
+              class="editorial-banner__img"
+              loading="lazy"
+              width="1200"
+              height="800"
+            >
+          {% endif %}
+
+          <div class="editorial-banner__stamp">
+            <span class="editorial-banner__stamp-text">EST. 2024</span>
+            <span class="editorial-banner__stamp-sub">CLINICAL LUXURY</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editorial Story Content -->
+      <div class="editorial-banner__content-col">
+        <div class="editorial-banner__content-inner">
+          {% if section.settings.kicker != blank %}
+            <span class="luxury-kicker">{{ section.settings.kicker | escape }}</span>
+          {% endif %}
+
+          {% if section.settings.heading != blank %}
+            <h2 class="editorial-banner__heading">{{ section.settings.heading }}</h2>
+          {% endif %}
+
+          {% if section.settings.lead_text != blank %}
+            <p class="editorial-banner__lead">{{ section.settings.lead_text }}</p>
+          {% endif %}
+
+          {% if section.settings.body_text != blank %}
+            <div class="editorial-banner__body rte">
+              {{ section.settings.body_text }}
+            </div>
+          {% endif %}
+
+          <!-- Key Pillars -->
+          <div class="editorial-banner__pillars">
+            <div class="editorial-pillar">
+              <div class="editorial-pillar__num">01</div>
+              <div class="editorial-pillar__info">
+                <h4 class="editorial-pillar__title">{{ section.settings.pillar_1_title | default: 'Bio-Identical Actives' }}</h4>
+                <p class="editorial-pillar__desc">{{ section.settings.pillar_1_desc | default: 'Formulated to mimic skin natural molecular structure for superior absorption.' }}</p>
+              </div>
+            </div>
+
+            <div class="editorial-pillar">
+              <div class="editorial-pillar__num">02</div>
+              <div class="editorial-pillar__info">
+                <h4 class="editorial-pillar__title">{{ section.settings.pillar_2_title | default: 'Dermatologist Proven' }}</h4>
+                <p class="editorial-pillar__desc">{{ section.settings.pillar_2_desc | default: 'Every active concentration is backed by rigorous clinical skin assessments.' }}</p>
+              </div>
+            </div>
+          </div>
+
+          {% if section.settings.button_label != blank %}
+            <div class="editorial-banner__action">
+              <a href="{{ section.settings.button_link | default: '/pages/about-us' }}" class="button-primary">
+                {{ section.settings.button_label | escape }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  #editorial-banner-{{ section.id }} {
+    background-color: {{ section.settings.bg_color | default: '#FAF7F5' }};
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    border-top: 1px solid var(--lx-border-subtle, #E8E2DC);
+    border-bottom: 1px solid var(--lx-border-subtle, #E8E2DC);
+  }
+
+  .editorial-banner-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap: 4.5rem;
+    align-items: center;
+  }
+
+  .editorial-banner--reverse {
+    grid-template-columns: 1.15fr 1fr;
+  }
+
+  .editorial-banner--reverse .editorial-banner__media-col {
+    order: 2;
+  }
+
+  .editorial-banner--reverse .editorial-banner__content-col {
+    order: 1;
+  }
+
+  .editorial-banner__media-frame {
+    position: relative;
+    border-radius: var(--lx-radius-lg, 16px);
+    overflow: hidden;
+    box-shadow: 0 20px 44px rgba(45, 41, 38, 0.08);
+    border: 1px solid rgba(158, 123, 79, 0.25);
+  }
+
+  .editorial-banner__img {
+    width: 100%;
+    height: 100%;
+    max-height: 600px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .editorial-banner__media-frame:hover .editorial-banner__img {
+    transform: scale(1.03);
+  }
+
+  .editorial-banner__stamp {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    background: rgba(31, 27, 24, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #FAF7F5;
+    padding: 0.6rem 1.1rem;
+    border-radius: 9999px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(158, 123, 79, 0.4);
+  }
+
+  .editorial-banner__stamp-text {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--lx-gold-primary, #9E7B4F);
+  }
+
+  .editorial-banner__stamp-sub {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .editorial-banner__heading {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+    line-height: 1.12;
+    font-weight: 500;
+    color: var(--lx-text-primary, #2D2926);
+    margin: 0 0 1.25rem;
+  }
+
+  .editorial-banner__lead {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    font-style: italic;
+    color: var(--lx-gold-primary, #9E7B4F);
+    margin: 0 0 1.4rem;
+  }
+
+  .editorial-banner__body {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.96rem;
+    line-height: 1.68;
+    color: var(--lx-text-secondary, #6E665E);
+    margin-bottom: 2.2rem;
+  }
+
+  .editorial-banner__pillars {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--lx-border-subtle, #E8E2DC);
+  }
+
+  .editorial-pillar {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .editorial-pillar__num {
+    font-family: var(--lx-font-heading, 'Cormorant Garamond', serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--lx-gold-primary, #9E7B4F);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .editorial-pillar__title {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--lx-text-primary, #2D2926);
+    margin: 0 0 0.25rem;
+  }
+
+  .editorial-pillar__desc {
+    font-family: var(--lx-font-body, 'Plus Jakarta Sans', sans-serif);
+    font-size: 0.84rem;
+    color: var(--lx-text-secondary, #6E665E);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  @media (max-width: 989px) {
+    .editorial-banner-grid,
+    .editorial-banner--reverse {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .editorial-banner--reverse .editorial-banner__media-col {
+      order: 1;
+    }
+    .editorial-banner--reverse .editorial-banner__content-col {
+      order: 2;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Luxury Editorial Story",
+  "tag": "section",
+  "class": "editorial-banner-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FAF7F5"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "options": [
+        { "value": "left", "label": "Image Left" },
+        { "value": "right", "label": "Image Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Editorial Image"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Our Formulation Philosophy"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Intersection of Rare Botanicals & Cellular Science"
+    },
+    {
+      "type": "text",
+      "id": "lead_text",
+      "label": "Lead Quote",
+      "default": "Clean luxury backed by rigorous clinical purity."
+    },
+    {
+      "type": "richtext",
+      "id": "body_text",
+      "label": "Body Description",
+      "default": "<p>At Tenicide, we reject the false compromise between botanical naturalness and clinical performance. Each formula begins with bio-active compounds extracted at optimal potency, paired with lipid-transport technology to nourish skin at the cellular level.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Pillar 1"
+    },
+    {
+      "type": "text",
+      "id": "pillar_1_title",
+      "label": "Pillar 1 Title",
+      "default": "Bio-Identical Actives"
+    },
+    {
+      "type": "text",
+      "id": "pillar_1_desc",
+      "label": "Pillar 1 Description",
+      "default": "Formulated to mimic skin natural molecular structure for superior absorption."
+    },
+    {
+      "type": "header",
+      "content": "Pillar 2"
+    },
+    {
+      "type": "text",
+      "id": "pillar_2_title",
+      "label": "Pillar 2 Title",
+      "default": "Dermatologist Proven"
+    },
+    {
+      "type": "text",
+      "id": "pillar_2_desc",
+      "label": "Pillar 2 Description",
+      "default": "Every active concentration is verified through multi-panel clinical skin trials."
+    },
+    {
+      "type": "header",
+      "content": "Call To Action"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Discover Our Clinical Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 20,
+      "max": 140,
+      "step": 10,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 80
+    }
+  ],
+  "presets": [
+    {
+      "name": "Luxury Editorial Story"
+    }
+  ]
+}
+{% endschema %}
