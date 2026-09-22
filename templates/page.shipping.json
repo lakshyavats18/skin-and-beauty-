@@ -1,0 +1,110 @@
+{
+  "sections": {
+    "page_hero": {
+      "type": "luxury-page-hero",
+      "settings": {
+        "bg_color": "#F5EDE6",
+        "text_alignment": "center",
+        "kicker": "GLOBAL LOGISTICS & FULFILLMENT",
+        "title": "SHIPPING",
+        "subtitle": "Delivering clinical luxury directly to your door with care, precision, and global fulfillment partner centers.",
+        "padding_top": 90,
+        "padding_bottom": 65
+      }
+    },
+    "editorial_shipping": {
+      "type": "editorial-banner",
+      "settings": {
+        "bg_color": "#FAF7F5",
+        "image_position": "left",
+        "kicker": "DELIVERY TIMEFRAME & SUPPORT",
+        "heading": "Shipping Policy & Timelines",
+        "lead_text": "",
+        "body_text": "<p>Due to high demand, orders may take 2-4 weeks to arrive. Please email us at <a href=\"mailto:info@tenicide.co\">info@tenicide.co</a> if you have any questions.</p>",
+        "pillar_1_title": "Worldwide Fulfillment",
+        "pillar_1_desc": "We ship from partnership warehouses in the US, Europe, and Asia. Dispatched from the nearest available facility for optimal transit.",
+        "pillar_2_title": "Order Processing",
+        "pillar_2_desc": "Orders are processed Monday through Friday within 1–3 business days. Please allow extra time during holidays and sale seasons.",
+        "pillar_3_title": "Guaranteed Arrival",
+        "pillar_3_desc": "If you don't receive your order within 30 days after shipping, you are eligible for an immediate full refund.",
+        "button_label": "Email Logistics Team",
+        "button_link": "mailto:info@tenicide.co",
+        "padding_top": 70,
+        "padding_bottom": 80
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "padding_top": 35,
+        "padding_bottom": 35
+      },
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "Global Express",
+            "subtitle": "Complimentary over $75"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Insured Transit",
+            "subtitle": "Safe delivery guarantee"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "title": "30-Day Guarantee",
+            "subtitle": "Effortless refunds"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "dermatologist",
+            "title": "Dedicated Care",
+            "subtitle": "info@tenicide.co"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ]
+    },
+    "main_content": {
+      "type": "main-page",
+      "blocks": {
+        "page_content": {
+          "type": "page-content",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "page_content"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "background_color": "#FAF7F5",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": [
+    "page_hero",
+    "editorial_shipping",
+    "trust_badges",
+    "main_content"
+  ]
+}
