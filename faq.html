@@ -21,8 +21,8 @@
     .header { background: rgba(250,247,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--lx-border-subtle); padding: 1.1rem 0; position: sticky; top: 0; z-index: 100; }
     .header__inner { display: flex; justify-content: space-between; align-items: center; }
     .header__logo { font-family: var(--lx-font-heading); font-size: 1.85rem; font-weight: 600; letter-spacing: 0.22em; color: var(--lx-text-primary); text-decoration: none; }
-    .header__nav { display: flex; gap: 2rem; list-style: none; padding: 0; }
-    .header__link { font-family: var(--lx-font-body); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lx-text-primary); text-decoration: none; transition: color 0.2s; }
+    .header__nav { display: flex; gap: 1.6rem; list-style: none; padding: 0; align-items: center; }
+    .header__link { font-family: var(--lx-font-body); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.04em; text-transform: none; color: var(--lx-text-primary); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
     .header__link:hover, .header__link.active { color: var(--lx-gold-primary); }
     .header__icons { display: flex; align-items: center; gap: 1.2rem; }
     .icon-btn { background: none; border: none; cursor: pointer; color: var(--lx-text-primary); display: flex; align-items: center; position: relative; }
@@ -79,6 +79,8 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .faq-btn { padding: 1.25rem 1.4rem; font-size: 1.15rem; }
       .faq-content__inner { padding: 0 1.4rem 1.4rem; }
+      .header__inner { flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; }
+      .header__nav { order: 3; width: 100%; overflow-x: auto; padding: 0.5rem 0; gap: 1.2rem; }
     }
   </style>
 </head>
@@ -91,10 +93,13 @@
     <div class="page-width header__inner">
       <a href="/" class="header__logo">TENICIDE</a>
       <ul class="header__nav">
-        <li><a href="/#products" class="header__link">Bestsellers</a></li>
-        <li><a href="/#routine" class="header__link">The Ritual</a></li>
-        <li><a href="/about" class="header__link">About Us</a></li>
-        <li><a href="/faq" class="header__link active">FAQ</a></li>
+        <li><a href="/" class="header__link">Home</a></li>
+        <li><a href="/about" class="header__link">ABOUT US</a></li>
+        <li><a href="/#products" class="header__link">FEATURED COLLECTION</a></li>
+        <li><a href="/faq" class="header__link active">FAQs</a></li>
+        <li><a href="/shipping#tracking" class="header__link">ORDER LOOKUP</a></li>
+        <li><a href="/shipping" class="header__link">SHIPPING</a></li>
+        <li><a href="mailto:info@tenicide.co" class="header__link">CONTACT US</a></li>
       </ul>
       <div class="header__icons">
         <a href="/" class="icon-btn" title="Search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></a>
