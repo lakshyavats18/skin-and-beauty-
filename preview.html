@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tenicide Co. | Luxury Skincare Redesign Live Preview</title>
+  <title>TENICIDE | Clinical &amp; Luxury Skincare</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,14 +12,7 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; }
 
-    /* Preview toolbar */
-    .preview-bar { position: sticky; top: 0; z-index: 99999; background: #1A1614; color: #FAF7F5; padding: 0.55rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #9E7B4F; font-family: var(--lx-font-body); font-size: 0.8rem; }
-    .preview-bar__left { display: flex; align-items: center; gap: 0.75rem; }
-    .preview-chip { background: #9E7B4F; color: #FFF; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; padding: 0.18rem 0.55rem; border-radius: 9999px; text-transform: uppercase; }
-    .preview-tabs { display: flex; gap: 0.4rem; }
-    .preview-tab { background: rgba(255,255,255,0.08); color: #FAF7F5; border: 1px solid rgba(255,255,255,0.15); border-radius: 9999px; padding: 0.3rem 0.85rem; cursor: pointer; font-size: 0.72rem; font-weight: 600; font-family: var(--lx-font-body); transition: all 0.2s; }
-    .preview-tab.active, .preview-tab:hover { background: #9E7B4F; border-color: #9E7B4F; color: #FFF; }
-    .page-view { display: none; } .page-view.active { display: block; }
+
 
     /* Layout */
     .page-width { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
@@ -192,18 +185,6 @@
   </style>
 </head>
 <body>
-  <!-- Preview Toolbar -->
-  <div class="preview-bar">
-    <div class="preview-bar__left">
-      <span class="preview-chip">LIVE PREVIEW</span>
-      <span>Tenicide Skincare • Online Store 2.0</span>
-    </div>
-    <div class="preview-tabs">
-      <button class="preview-tab active" onclick="showView('homepage')">Homepage</button>
-      <button class="preview-tab" onclick="window.location.href='/about'">About Us (page.about.json)</button>
-      <button class="preview-tab" onclick="window.location.href='/faq'">FAQ (page.faq.json)</button>
-    </div>
-  </div>
 
   <!-- Announcement -->
   <div class="announcement">Complimentary Clinical Samples &amp; Global Express Delivery on Orders Over $75</div>
@@ -484,16 +465,7 @@
   </footer>
 
   <script>
-    function showView(name) {
-      document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.preview-tab').forEach(b => b.classList.remove('active'));
-      document.getElementById('view-' + name).classList.add('active');
-      const tabs = document.querySelectorAll('.preview-tab');
-      if (name === 'homepage') tabs[0].classList.add('active');
-      if (name === 'about') tabs[1].classList.add('active');
-      if (name === 'faq') tabs[2].classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+
     function toggleFaq(btn) {
       const item = btn.closest('.faq-item');
       item.classList.toggle('is-open');
