@@ -1045,61 +1045,15 @@
         "badge_4"
       ]
     },
-    "skincare_routine": {
-      "type": "skincare-routine",
+    "clinical_diagnostic": {
+      "type": "clinical-diagnostic",
       "settings": {
-        "bg_color": "#FAF7F5",
-        "kicker": "The Daily Regimen",
-        "title": "A Harmonious 3-Step Clinical Ritual",
-        "subtitle": "Synergistically engineered to purify, deeply regenerate, and lock moisture into the epidermal barrier.",
-        "show_bundle_cta": true,
-        "bundle_title": "Experience The Complete 3-Step Radiance Set",
-        "bundle_desc": "Save 15% when purchased together with complimentary luxury travel pouch.",
-        "bundle_button_text": "Shop The Complete Set",
-        "bundle_url": "/collections/all",
-        "padding_top": 80,
-        "padding_bottom": 80
-      },
-      "blocks": {
-        "step_1": {
-          "type": "routine_step",
-          "settings": {
-            "step_number": "1",
-            "step_tag": "Purify & Prep",
-            "title": "Cellular Clarifying Cleanser",
-            "active_ingredient": "Rose Bio-Ferment",
-            "benefit": "Gently dissolves micro-impurities while replenishing vital ceramides to prevent post-cleanse barrier tightness.",
-            "fallback_price": "$48.00"
-          }
-        },
-        "step_2": {
-          "type": "routine_step",
-          "settings": {
-            "step_number": "2",
-            "step_tag": "Treat & Regenerate",
-            "title": "Advanced Cellular Renewal Serum",
-            "active_ingredient": "Triple Hyaluronic + Niacinamide",
-            "benefit": "Targeted peptide molecules stimulate collagen synthesis and promote deep epidermal plumping.",
-            "fallback_price": "$78.00"
-          }
-        },
-        "step_3": {
-          "type": "routine_step",
-          "settings": {
-            "step_number": "3",
-            "step_tag": "Fortify & Seal",
-            "title": "Lipid Restorative Cream",
-            "active_ingredient": "Ceramide Complex + Squalane",
-            "benefit": "Continuous 24-hour hydration lock shields against moisture loss and environmental oxidants.",
-            "fallback_price": "$64.00"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3"
-      ]
+        "kicker": "THE BESPOKE CONSULTATION",
+        "title": "Discover Your Personalized Clinical Ritual",
+        "subtitle": "Every complexion is distinct. Select your primary wellness focus below to reveal an engineered regimen, key bio-active compounds, and proven clinical timelines.",
+        "collection_url": "/collections/all",
+        "cta_label": "Explore Curated Essentials"
+      }
     },
     "editorial_banner": {
       "type": "editorial-banner",
@@ -1185,7 +1139,7 @@
     "luxury_hero",
     "trust_badges",
     "product_list_themegen",
-    "skincare_routine",
+    "clinical_diagnostic",
     "editorial_banner",
     "testimonials_carousel"
   ]

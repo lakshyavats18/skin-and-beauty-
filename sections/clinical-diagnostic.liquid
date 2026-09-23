@@ -1,0 +1,362 @@
+{% comment %}
+  The Bespoke Skincare Diagnostic & Clinical Ritual Concierge
+  Designed for Tenicide Beauty
+{% endcomment %}
+
+<section class="diagnostic-section" id="diagnostic-{{ section.id }}">
+  <div class="page-width">
+    <div class="diagnostic-header text-center">
+      {% if section.settings.kicker != blank %}
+        <span class="luxury-kicker">{{ section.settings.kicker | escape }}</span>
+      {% endif %}
+      <h2 class="diagnostic-heading">{{ section.settings.title | default: 'Discover Your Personalized Clinical Ritual' }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="diagnostic-subheading">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    <!-- Focus Selector Tabs -->
+    <div class="diagnostic-tabs" role="tablist">
+      <button type="button" class="diagnostic-tab active" onclick="selectDiagnostic('glow', this)">
+        <span class="tab-icon">✦</span>
+        <span class="tab-title">Cellular Glow &amp; Radiance</span>
+        <span class="tab-sub">Dullness &bull; Uneven Tone</span>
+      </button>
+      <button type="button" class="diagnostic-tab" onclick="selectDiagnostic('barrier', this)">
+        <span class="tab-icon">◈</span>
+        <span class="tab-title">Deep Barrier Defense</span>
+        <span class="tab-sub">Dryness &bull; Sensitivity</span>
+      </button>
+      <button type="button" class="diagnostic-tab" onclick="selectDiagnostic('clarity', this)">
+        <span class="tab-icon">◇</span>
+        <span class="tab-title">Pore Clarity &amp; Balance</span>
+        <span class="tab-sub">Congestion &bull; Micro-Texture</span>
+      </button>
+      <button type="button" class="diagnostic-tab" onclick="selectDiagnostic('longevity', this)">
+        <span class="tab-icon">◎</span>
+        <span class="tab-title">Cellular Longevity</span>
+        <span class="tab-sub">Firmness &bull; Elasticity</span>
+      </button>
+    </div>
+
+    <!-- Dynamic Consultation Card -->
+    <div class="diagnostic-display" id="diagnostic-display">
+      <div class="diagnostic-card">
+        <div class="diagnostic-card__left">
+          <div class="diagnostic-badge">RECOMMENDED PROTOCOL</div>
+          <h3 class="diagnostic-protocol-title" id="diag-title">The Cellular Radiance Regimen</h3>
+          <p class="diagnostic-protocol-desc" id="diag-desc">Specially formulated for skin experiencing environmental stress, oxidative fatigue, and diminished luminosity. This protocol activates micro-exfoliation and deep cellular moisture infusion to unveil an incandescent, glass-skin clarity.</p>
+          
+          <div class="diagnostic-steps">
+            <div class="diag-step">
+              <div class="diag-step__num">Phase 1</div>
+              <div class="diag-step__content">
+                <h4 id="diag-step1-title">Bio-Enzymatic Gentle Awakening</h4>
+                <p id="diag-step1-desc">Dissolves oxidized surface lipids and dead cells without disturbing the delicate acid mantle.</p>
+              </div>
+            </div>
+            <div class="diag-step">
+              <div class="diag-step__num">Phase 2</div>
+              <div class="diag-step__content">
+                <h4 id="diag-step2-title">Triple Hyaluronic &amp; Bio-Ferment Infusion</h4>
+                <p id="diag-step2-desc">Multi-depth hydration drives stabilized botanical antioxidants deep into intercellular channels.</p>
+              </div>
+            </div>
+            <div class="diag-step">
+              <div class="diag-step__num">Phase 3</div>
+              <div class="diag-step__content">
+                <h4 id="diag-step3-title">Lipid Shield &amp; Moisture Seal</h4>
+                <p id="diag-step3-desc">Phytoceramides lock in hydration for up to 48 hours, shielding from urban pollutants.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="diagnostic-action">
+            <a href="{{ section.settings.collection_url | default: '/collections/all' }}" class="button-primary" id="diag-cta">{{ section.settings.cta_label | default: 'Explore Curated Essentials' }}</a>
+            <a href="mailto:{{ shop.email | default: 'info@tenicide.co' }}?subject=Skincare%20Ritual%20Consultation" class="button-secondary">Ask Skincare Concierge</a>
+          </div>
+        </div>
+
+        <div class="diagnostic-card__right">
+          <div class="actives-card">
+            <h4 class="actives-heading">Clinical Bio-Actives Profile</h4>
+            <div class="actives-list" id="diag-actives">
+              <div class="active-item">
+                <span class="active-name">Stabilized Niacinamide (5%)</span>
+                <span class="active-benefit">Tone Evenness &amp; Pore Refinement</span>
+              </div>
+              <div class="active-item">
+                <span class="active-name">Multi-Weight Hyaluronate</span>
+                <span class="active-benefit">Deep Epidermal Hydro-Plumping</span>
+              </div>
+              <div class="active-item">
+                <span class="active-name">Rose Damascena Bio-Ferment</span>
+                <span class="active-benefit">Cellular Antioxidant Shield</span>
+              </div>
+              <div class="active-item">
+                <span class="active-name">Plant Squalane &amp; Ceramides</span>
+                <span class="active-benefit">Barrier Fortification &amp; Softness</span>
+              </div>
+            </div>
+
+            <div class="clinical-metrics">
+              <div class="metric-box">
+                <span class="metric-num" id="diag-stat1">96%</span>
+                <span class="metric-label" id="diag-stat1-label">Noticed immediate radiance upon application</span>
+              </div>
+              <div class="metric-box">
+                <span class="metric-num" id="diag-stat2">+84%</span>
+                <span class="metric-label" id="diag-stat2-label">Measured hydration boost across 14-day study</span>
+              </div>
+            </div>
+
+            <div class="timeline-box">
+              <div class="timeline-header">
+                <span class="timeline-title">Expected Transformation Timeline</span>
+              </div>
+              <div class="timeline-items">
+                <div class="timeline-step">
+                  <span class="timeline-marker">Day 1</span>
+                  <span class="timeline-text" id="diag-time1">Instant barrier calm, softness, and supple dewy finish</span>
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-marker">Day 14</span>
+                  <span class="timeline-text" id="diag-time2">Visibly more uniform tone with enhanced natural luminosity</span>
+                </div>
+                <div class="timeline-step">
+                  <span class="timeline-marker">Day 28</span>
+                  <span class="timeline-text" id="diag-time3">Reinforced cellular barrier resilience and lasting glow</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The 4 Tenicide Clinical Standards -->
+    <div class="standards-banner">
+      <div class="standards-header">
+        <span class="luxury-kicker">THE TENICIDE CODE</span>
+        <h3 class="standards-title">Four Uncompromising Standards in Every Bottle</h3>
+      </div>
+      <div class="standards-grid">
+        <div class="standard-card">
+          <span class="standard-num">01</span>
+          <h4 class="standard-title">Cellular Biocompatibility</h4>
+          <p class="standard-desc">Formulations tailored to assimilate harmoniously with human lipid matrices for swift cellular uptake without congestion or irritation.</p>
+        </div>
+        <div class="standard-card">
+          <span class="standard-num">02</span>
+          <h4 class="standard-title">Clinical Potency</h4>
+          <p class="standard-desc">Active ingredients incorporated at strictly evidence-based therapeutic concentrations for quantifiable, proven skin results.</p>
+        </div>
+        <div class="standard-card">
+          <span class="standard-num">03</span>
+          <h4 class="standard-title">Zero Compromise Purity</h4>
+          <p class="standard-desc">100% free of sulfates, parabens, phthalates, synthetic colorants, and toxic fillers. Cruelty-free and consciously formulated.</p>
+        </div>
+        <div class="standard-card">
+          <span class="standard-num">04</span>
+          <h4 class="standard-title">30-Day Radiant Guarantee</h4>
+          <p class="standard-desc">We hold our craftsmanship to the highest standard. Experience guaranteed transformation or enjoy a simple, full refund.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    const diagnosticData = {
+      glow: {
+        title: "The Cellular Radiance Regimen",
+        desc: "Specially formulated for skin experiencing environmental stress, oxidative fatigue, and diminished luminosity. This protocol activates micro-exfoliation and deep cellular moisture infusion to unveil an incandescent, glass-skin clarity.",
+        step1Title: "Bio-Enzymatic Gentle Awakening",
+        step1Desc: "Dissolves oxidized surface lipids and dead cells without disturbing the delicate acid mantle.",
+        step2Title: "Triple Hyaluronic & Bio-Ferment Infusion",
+        step2Desc: "Multi-depth hydration drives stabilized botanical antioxidants deep into intercellular channels.",
+        step3Title: "Lipid Shield & Moisture Seal",
+        step3Desc: "Phytoceramides lock in hydration for up to 48 hours, shielding from urban pollutants.",
+        actives: [
+          { name: "Stabilized Niacinamide (5%)", benefit: "Tone Evenness & Pore Refinement" },
+          { name: "Multi-Weight Hyaluronate", benefit: "Deep Epidermal Hydro-Plumping" },
+          { name: "Rose Damascena Bio-Ferment", benefit: "Cellular Antioxidant Shield" },
+          { name: "Plant Squalane & Ceramides", benefit: "Barrier Fortification & Softness" }
+        ],
+        stat1: "96%",
+        stat1Label: "Noticed immediate radiance upon application",
+        stat2: "+84%",
+        stat2Label: "Measured hydration boost across 14-day study",
+        time1: "Instant barrier calm, softness, and supple dewy finish",
+        time2: "Visibly more uniform tone with enhanced natural luminosity",
+        time3: "Reinforced cellular barrier resilience and lasting glow"
+      },
+      barrier: {
+        title: "The Intensive Barrier Recovery Regimen",
+        desc: "Engineered for sensitized, compromised, or severely depleted complexions. This ultra-restorative protocol bio-mimics intercellular lipids to calm reactive flushing, replenish ceramides, and restore continuous epidermal defense.",
+        step1Title: "Lipid-Replenishing Gentle Cleanse",
+        step1Desc: "Non-stripping formulation infused with botanical oils that leaves skin deeply comforted.",
+        step2Title: "Bio-Identical Ceramide & Ectoin Infusion",
+        step2Desc: "Rebuilds structural integrity and arrests trans-epidermal water loss (TEWL) at the cellular source.",
+        step3Title: "Deep Occlusive Nourishment Shield",
+        step3Desc: "Seals vulnerable skin with medical-grade plant sterols to accelerate tissue rejuvenation.",
+        actives: [
+          { name: "Ceramide NP, AP & EOP Complex", benefit: "Restores Natural Intercellular Lipids" },
+          { name: "Ectoin & Madecassoside (2%)", benefit: "Calms Redness & Environmental Stress" },
+          { name: "Pure Golden Jojoba Esters", benefit: "Bio-Identical Sebum Equilibrium" },
+          { name: "Colloidal Beta-Glucan", benefit: "Immediate Irritation Relief & Soothing" }
+        ],
+        stat1: "99%",
+        stat1Label: "Reported immediate reduction in tightness and stinging",
+        stat2: "+92%",
+        stat2Label: "Observed barrier moisture retention after 72 hours",
+        time1: "Instant relief from tightness, dryness, and visible irritation",
+        time2: "Noticeably calmer complexion with restored suppleness",
+        time3: "Resilient epidermal barrier with lasting comfort"
+      },
+      clarity: {
+        title: "The Clarifying Equilibrium Regimen",
+        desc: "Designed for congested, micro-textured, or imbalance-prone complexions. Delivers precision micro-purification while nourishing the microbiome, achieving refined pores without stripping vital moisture.",
+        step1Title: "Botanical Salicylic & Tea Tree Clarifier",
+        step1Desc: "Deeply unblocks congested pores and dissolves sebum buildup at the follicle level.",
+        step2Title: "Zinc PCA & Botanical Niacinamide Serum",
+        step2Desc: "Regulates hyperactive oil production and reduces the appearance of post-blemish marks.",
+        step3Title: "Weightless Water-Gel Hydrator",
+        step3Desc: "Provides non-comedogenic, oil-free hydration with a velvety matte-silk finish.",
+        actives: [
+          { name: "Natural Willow Bark BHA (2%)", benefit: "Deep Pore Decongestant & Smoothing" },
+          { name: "Zinc PCA & Niacinamide", benefit: "Sebum Regulation & Blemish Control" },
+          { name: "Prebiotic Oat Ferment", benefit: "Microbiome Balancing & Anti-Inflammatory" },
+          { name: "Weightless Marine Polysaccharides", benefit: "Oil-Free Micro-Reservoir Hydration" }
+        ],
+        stat1: "91%",
+        stat1Label: "Reported refined pore visibility within 10 days",
+        stat2: "-76%",
+        stat2Label: "Reduction in excess daytime surface shine and oiliness",
+        time1: "Refreshed, thoroughly clarified feel without any tightness",
+        time2: "Visible reduction in pore congestion and redness",
+        time3: "Balanced, clear, and velvety smooth skin equilibrium"
+      },
+      longevity: {
+        title: "The Cellular Longevity & Lift Regimen",
+        desc: "Our most advanced restorative ritual targeting elasticity decline, collagen depletion, and structural matrix degradation. Harnesses cutting-edge peptides and cellular energizers for supreme firmness.",
+        step1Title: "Antioxidant Conditioning Elixir",
+        step1Desc: "Prepares skin to receive high-potency actives while neutralizing ambient free radicals.",
+        step2Title: "Matrixyl Peptide & Copper Tripeptide Complex",
+        step2Desc: "Signals fibroblast activation to stimulate native collagen and elastin synthesis.",
+        step3Title: "Velvet Firming Peptide Cream",
+        step3Desc: "Visibly tightens facial contours and cushions micro-lines with multi-weight nourishment.",
+        actives: [
+          { name: "Copper Tripeptide-1 & Peptides", benefit: "Collagen & Elastin Cellular Signaling" },
+          { name: "Plant-Derived Bakuchiol (1.5%)", benefit: "Gentle Retinoid Alternative for Renewal" },
+          { name: "Resveratrol & Camellia Sinensis", benefit: "Potent Free-Radical Defense Complex" },
+          { name: "Tremella Fuciformis Mushroom", benefit: "Superior Moisture Matrix Cushioning" }
+        ],
+        stat1: "95%",
+        stat1Label: "Observed visibly firmer and bouncier skin texture",
+        stat2: "+78%",
+        stat2Label: "Measured improvement in dermal elasticity after 28 days",
+        time1: "Supple, plumped appearance with exquisite radiant finish",
+        time2: "Smoother micro-texture and softening of fine expression lines",
+        time3: "Sculpted resilience, lifted look, and revitalized youthfulness"
+      }
+    };
+
+    window.selectDiagnostic = function(focus, btn) {
+      document.querySelectorAll('.diagnostic-tab').forEach(t => t.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const data = diagnosticData[focus];
+      if (!data) return;
+
+      const titleEl = document.getElementById('diag-title');
+      const descEl = document.getElementById('diag-desc');
+      if (titleEl) titleEl.textContent = data.title;
+      if (descEl) descEl.textContent = data.desc;
+
+      const s1t = document.getElementById('diag-step1-title');
+      const s1d = document.getElementById('diag-step1-desc');
+      const s2t = document.getElementById('diag-step2-title');
+      const s2d = document.getElementById('diag-step2-desc');
+      const s3t = document.getElementById('diag-step3-title');
+      const s3d = document.getElementById('diag-step3-desc');
+
+      if (s1t) s1t.textContent = data.step1Title;
+      if (s1d) s1d.textContent = data.step1Desc;
+      if (s2t) s2t.textContent = data.step2Title;
+      if (s2d) s2d.textContent = data.step2Desc;
+      if (s3t) s3t.textContent = data.step3Title;
+      if (s3d) s3d.textContent = data.step3Desc;
+
+      const st1 = document.getElementById('diag-stat1');
+      const st1l = document.getElementById('diag-stat1-label');
+      const st2 = document.getElementById('diag-stat2');
+      const st2l = document.getElementById('diag-stat2-label');
+
+      if (st1) st1.textContent = data.stat1;
+      if (st1l) st1l.textContent = data.stat1Label;
+      if (st2) st2.textContent = data.stat2;
+      if (st2l) st2l.textContent = data.stat2Label;
+
+      const tm1 = document.getElementById('diag-time1');
+      const tm2 = document.getElementById('diag-time2');
+      const tm3 = document.getElementById('diag-time3');
+
+      if (tm1) tm1.textContent = data.time1;
+      if (tm2) tm2.textContent = data.time2;
+      if (tm3) tm3.textContent = data.time3;
+
+      const activesContainer = document.getElementById('diag-actives');
+      if (activesContainer && data.actives) {
+        activesContainer.innerHTML = data.actives.map(a => `
+          <div class="active-item">
+            <span class="active-name">${a.name}</span>
+            <span class="active-benefit">${a.benefit}</span>
+          </div>
+        `).join('');
+      }
+    };
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Clinical Diagnostic",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "THE BESPOKE CONSULTATION"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Discover Your Personalized Clinical Ritual"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Every complexion is distinct. Select your primary wellness focus below to reveal an engineered regimen, key bio-active compounds, and proven clinical timelines."
+    },
+    {
+      "type": "url",
+      "id": "collection_url",
+      "label": "Collection Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Button Label",
+      "default": "Explore Curated Essentials"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Clinical Diagnostic"
+    }
+  ]
+}
+{% endschema %}
