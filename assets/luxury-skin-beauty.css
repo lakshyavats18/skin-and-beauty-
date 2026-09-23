@@ -87,6 +87,14 @@ h1, h2, h3, .h1, .h2, .h3,
 .button--primary,
 .btn-primary,
 button.button:not(.button-secondary):not(.button-tertiary) {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  line-height: 1.25 !important;
+  max-width: 100% !important;
   background: linear-gradient(135deg, #2A2522 0%, #1A1614 100%) !important;
   color: #FAF7F5 !important;
   border: 1px solid var(--lx-border-subtle) !important;
@@ -94,11 +102,12 @@ button.button:not(.button-secondary):not(.button-tertiary) {
   font-family: var(--lx-font-body) !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.14em !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   padding: 0.95rem 2.2rem !important;
   transition: var(--lx-transition) !important;
   box-shadow: 0 4px 14px rgba(26, 22, 20, 0.15) !important;
+  cursor: pointer !important;
 }
 
 .button-primary:hover,
@@ -116,6 +125,14 @@ button.button:not(.button-secondary):not(.button-tertiary):hover {
 .button-secondary,
 .button--secondary,
 .btn-secondary {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  text-decoration: none !important;
+  box-sizing: border-box !important;
+  line-height: 1.25 !important;
+  max-width: 100% !important;
   background: transparent !important;
   color: var(--lx-text-primary) !important;
   border: 1px solid var(--lx-gold-primary) !important;
@@ -123,10 +140,11 @@ button.button:not(.button-secondary):not(.button-tertiary):hover {
   font-family: var(--lx-font-body) !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
-  letter-spacing: 0.14em !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   padding: 0.95rem 2.2rem !important;
   transition: var(--lx-transition) !important;
+  cursor: pointer !important;
 }
 
 .button-secondary:hover,
@@ -272,4 +290,25 @@ footer,
 .fade-in-up.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Responsive Mobile Safeguards */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+  width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  .button-primary,
+  .button--primary,
+  .btn-primary,
+  .button-secondary,
+  .button--secondary,
+  .btn-secondary,
+  button.button:not(.button-secondary):not(.button-tertiary) {
+    padding: 0.85rem 1.6rem !important;
+    font-size: 0.78rem !important;
+    letter-spacing: 0.08em !important;
+  }
 }

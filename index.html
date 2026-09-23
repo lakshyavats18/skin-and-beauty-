@@ -11,21 +11,20 @@
   <link rel="stylesheet" href="assets/luxury-product-card.css">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; }
-
-
+    html, body { overflow-x: hidden; max-width: 100vw; width: 100%; }
 
     /* Layout */
-    .page-width { max-width: 1320px; margin: 0 auto; padding: 0 2rem; }
+    .page-width { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 2rem; box-sizing: border-box; }
     .text-center { text-align: center; }
 
     /* Announcement Bar */
-    .announcement { background: linear-gradient(90deg, #1F1B18 0%, #2D2723 50%, #1F1B18 100%); color: #FAF7F5; text-align: center; font-family: var(--lx-font-body); font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(158,123,79,0.2); }
+    .announcement { width: 100%; max-width: 100vw; box-sizing: border-box; background: linear-gradient(90deg, #1F1B18 0%, #2D2723 50%, #1F1B18 100%); color: #FAF7F5; text-align: center; font-family: var(--lx-font-body); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 1rem; border-bottom: 1px solid rgba(158,123,79,0.2); }
 
     /* Header */
-    .header { background: rgba(250,247,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--lx-border-subtle); padding: 1.1rem 0; position: relative; z-index: 100; }
-    .header__inner { display: flex; justify-content: space-between; align-items: center; }
+    .header { width: 100%; max-width: 100vw; box-sizing: border-box; background: rgba(250,247,245,0.98); backdrop-filter: blur(12px); border-bottom: 1px solid var(--lx-border-subtle); padding: 1.1rem 0; position: relative; z-index: 100; }
+    .header__inner { width: 100%; max-width: 100%; min-width: 0; display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
     .header__logo { font-family: var(--lx-font-heading); font-size: 1.85rem; font-weight: 600; letter-spacing: 0.22em; color: var(--lx-text-primary); text-decoration: none; }
-    .header__nav { display: flex; gap: 1.6rem; list-style: none; padding: 0; align-items: center; }
+    .header__nav { display: flex; gap: 1.4rem; list-style: none; padding: 0; align-items: center; min-width: 0; max-width: 100%; }
     .header__link { font-family: var(--lx-font-body); font-size: 0.84rem; font-weight: 600; letter-spacing: 0.04em; text-transform: none; color: var(--lx-text-primary); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
     .header__link:hover, .header__link.active { color: var(--lx-gold-primary); }
     .header__icons { display: flex; align-items: center; gap: 1.2rem; }
@@ -173,16 +172,39 @@
     .footer-bottom { border-top: 1px solid var(--lx-border-subtle); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: var(--lx-text-secondary); }
 
     @media (max-width: 989px) {
+      .page-width { padding: 0 1.25rem; }
       .hero-grid, .editorial-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .routine-grid { grid-template-columns: 1fr; }
       .products-grid { grid-template-columns: repeat(2, 1fr); }
-      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
       .reviews-grid { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
       .header__inner { flex-wrap: wrap; gap: 0.8rem; justify-content: space-between; }
-      .header__nav { order: 3; width: 100%; overflow-x: auto; padding: 0.5rem 0; gap: 1.2rem; }
+      .header__nav {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding: 0.5rem 0.25rem 0.3rem;
+        gap: 1.2rem;
+      }
+      .header__nav::-webkit-scrollbar { display: none; }
       .bundle-banner { flex-direction: column; text-align: center; gap: 1.4rem; padding: 1.8rem 1.5rem; }
       .concierge-box { flex-direction: column; text-align: center; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-section { padding: 45px 0; }
+      .hero__title { font-size: 2.3rem; }
+      .hero__actions { flex-direction: column; width: 100%; }
+      .hero__actions .button-primary, .hero__actions .button-secondary { width: 100% !important; justify-content: center; }
+      .products-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .trust-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
@@ -463,7 +485,7 @@
         <div><span style="font-family:var(--lx-font-heading);font-size:1.6rem;letter-spacing:0.2em;font-weight:600;color:var(--lx-text-primary);">TENICIDE</span><p style="font-size:0.88rem;color:var(--lx-text-secondary);line-height:1.6;margin-top:1rem;">Where clinical skincare science meets botanical refinement. Formulated for cellular rejuvenation and uncompromising skin health.</p></div>
         <div><h4 class="footer__heading">The Collection</h4><p><a href="#products" class="footer__link">Cleanse &amp; Prep</a></p><p><a href="#products" class="footer__link">Cellular Serums</a></p><p><a href="#products" class="footer__link">Barrier Creams</a></p><p><a href="#routine" class="footer__link">Ritual Sets</a></p></div>
         <div><h4 class="footer__heading">Client Care</h4><p><a href="/about" class="footer__link">About Us</a></p><p><a href="/faq" class="footer__link">Frequently Asked (FAQ)</a></p><p><a href="/shipping" class="footer__link">Shipping Information</a></p><p><a href="/faq" class="footer__link">Returns &amp; Refunds</a></p></div>
-        <div><h4 class="footer__heading">The Private Journal</h4><p style="font-size:0.86rem;color:var(--lx-text-secondary);margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p><div style="display:flex;gap:0.5rem;"><input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem;border:1px solid var(--lx-border-subtle);border-radius:9999px;flex-grow:1;font-family:var(--lx-font-body);font-size:0.84rem;background:#fff;"><button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button></div></div>
+        <div><h4 class="footer__heading">The Private Journal</h4><p style="font-size:0.86rem;color:var(--lx-text-secondary);margin-bottom:1rem;">Receive private access to clinical study findings, formulation releases, and complimentary travel gifts.</p><div style="display:flex;gap:0.5rem;flex-wrap:wrap;"><input type="email" placeholder="Enter your email" style="padding:0.75rem 1rem;border:1px solid var(--lx-border-subtle);border-radius:9999px;flex:1;min-width:160px;font-family:var(--lx-font-body);font-size:0.84rem;background:#fff;"><button class="button-primary" style="padding:0.75rem 1.4rem;">Join</button></div></div>
       </div>
       <div class="footer-bottom"><div>&copy; 2026 Tenicide Co. All rights reserved.</div><div style="display:flex;gap:1.5rem;"><a href="#" class="footer__link">Privacy Policy</a><a href="#" class="footer__link">Terms of Service</a><a href="#" class="footer__link">Refund Policy</a></div></div>
     </div>
