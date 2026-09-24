@@ -24,7 +24,12 @@ const server = http.createServer((req, res) => {
     reqPath = '/preview.html';
   }
 
-  const filePath = path.join(ROOT, reqPath);
+  let filePath = path.join(ROOT, reqPath);
+
+  // If path doesn't have an extension, try appending .html
+  if (!path.extname(filePath) && fs.existsSync(filePath + '.html')) {
+    filePath = filePath + '.html';
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {

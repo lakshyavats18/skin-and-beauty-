@@ -3,30 +3,6 @@
     "main": {
       "type": "main-page",
       "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
         "content": {
           "type": "text",
           "name": "t:names.content",
@@ -53,7 +29,6 @@
         }
       },
       "block_order": [
-        "title",
         "content"
       ],
       "settings": {
@@ -135,8 +110,8 @@
         "bg_color": "#F5EDE6",
         "text_alignment": "center",
         "kicker": "CLIENT CARE & CONCIERGE",
-        "title": "Connect With Our <em>Skin Specialists</em>",
-        "subtitle": "Whether seeking formulation guidance, bespoke regimen advice, or order inquiries, our concierge is at your service.",
+        "title": "CONTACT US",
+        "subtitle": "If you have any questions, please email us at info@tenicide.co. We will respond to you within 24 hours.",
         "padding_top": 70,
         "padding_bottom": 70
       }
