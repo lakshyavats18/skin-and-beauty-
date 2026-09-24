@@ -273,7 +273,7 @@
       <div class="header__icons">
         <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button>
         <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
-        <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="cart-count">3</span></button>
+        <button class="icon-btn cart-drawer-trigger" id="cart-btn" aria-label="Open Cart" title="Cart" onclick="TenicideCart.open()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg><span class="cart-count">3</span></button>
       </div>
     </div>
   </header>
@@ -333,19 +333,55 @@
         <div class="products-grid">
           <div class="pcard">
             <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Bestseller</span><img src="assets/product-serum.jpg" alt="Advanced Cellular Renewal Serum" class="pcard__img"></div>
-            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Advanced Cellular Renewal Serum</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(482)</span></span><div class="pcard__price">$78.00</div></div>
+            <div class="pcard__body">
+              <span class="pcard__vendor">Tenicide Clinical</span>
+              <h3 class="pcard__title">Advanced Cellular Renewal Serum</h3>
+              <span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(482)</span></span>
+              <div class="pcard__price">$78.00</div>
+              <button class="pcard__add-btn" onclick="TenicideCart.addItem({id:'serum', title:'Advanced Cellular Renewal Serum', price:78.00, image:'assets/product-serum.jpg', variant:'30ml / 1.0 fl oz'})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add to Bag &bull; $78.00
+              </button>
+            </div>
           </div>
           <div class="pcard">
             <div class="pcard__media"><span class="pcard__badge">Clinical Grade</span><img src="assets/product-cleanser.jpg" alt="Cellular Clarifying Cleanser" class="pcard__img"></div>
-            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Cellular Clarifying Cleanser</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(319)</span></span><div class="pcard__price">$48.00</div></div>
+            <div class="pcard__body">
+              <span class="pcard__vendor">Tenicide Clinical</span>
+              <h3 class="pcard__title">Cellular Clarifying Cleanser</h3>
+              <span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(319)</span></span>
+              <div class="pcard__price">$48.00</div>
+              <button class="pcard__add-btn" onclick="TenicideCart.addItem({id:'cleanser', title:'Cellular Clarifying Cleanser', price:48.00, image:'assets/product-cleanser.jpg', variant:'150ml / 5.1 fl oz'})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add to Bag &bull; $48.00
+              </button>
+            </div>
           </div>
           <div class="pcard">
             <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Barrier Repair</span><img src="assets/product-cream.jpg" alt="Lipid Restorative Cream" class="pcard__img"></div>
-            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">Lipid Restorative Cream</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(254)</span></span><div class="pcard__price">$64.00</div></div>
+            <div class="pcard__body">
+              <span class="pcard__vendor">Tenicide Clinical</span>
+              <h3 class="pcard__title">Lipid Restorative Cream</h3>
+              <span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(254)</span></span>
+              <div class="pcard__price">$64.00</div>
+              <button class="pcard__add-btn" onclick="TenicideCart.addItem({id:'cream', title:'Lipid Restorative Cream', price:64.00, image:'assets/product-cream.jpg', variant:'50ml / 1.7 fl oz'})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add to Bag &bull; $64.00
+              </button>
+            </div>
           </div>
           <div class="pcard">
             <div class="pcard__media"><span class="pcard__badge pcard__badge--gold">Save 15%</span><img src="assets/product-set-bundle.jpg" alt="The 3-Step Radiance Set" class="pcard__img"></div>
-            <div class="pcard__body"><span class="pcard__vendor">Tenicide Clinical</span><h3 class="pcard__title">The Complete 3-Step Radiance Set</h3><span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(612)</span></span><div class="pcard__price"><del>$190.00</del> <span class="sale">$162.00</span></div></div>
+            <div class="pcard__body">
+              <span class="pcard__vendor">Tenicide Clinical</span>
+              <h3 class="pcard__title">The Complete 3-Step Radiance Set</h3>
+              <span class="pcard__stars">★★★★★ <span class="pcard__stars-count">(612)</span></span>
+              <div class="pcard__price"><del>$190.00</del> <span class="sale">$162.00</span></div>
+              <button class="pcard__add-btn" onclick="TenicideCart.addItem({id:'bundle', title:'The Complete 3-Step Radiance Set', price:162.00, image:'assets/product-set-bundle.jpg', variant:'Full 3-Step Clinical Regimen'})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                Add Set to Bag &bull; $162.00
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -795,5 +831,6 @@
       item.classList.toggle('is-open');
     }
   </script>
+  <script src="assets/luxury-cart.js"></script>
 </body>
 </html>
