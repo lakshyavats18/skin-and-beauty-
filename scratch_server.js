@@ -22,6 +22,8 @@ const server = http.createServer((req, res) => {
   let reqPath = req.url.split('?')[0];
   if (reqPath === '/' || reqPath === '') {
     reqPath = '/preview.html';
+  } else if (reqPath === '/collections/all' || reqPath === '/collections' || reqPath === '/collection') {
+    reqPath = '/collection.html';
   }
 
   let filePath = path.join(ROOT, reqPath);
