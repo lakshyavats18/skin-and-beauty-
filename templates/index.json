@@ -1,1 +1,324 @@
-{"sections":{"luxury_hero":{"type":"luxury-hero","settings":{"bg_color":"#FAF7F5","layout":"text_first","full_width":false,"kicker":"Clinically Proven Skincare Innovation","heading":"Elevate Your Skin to its Purest Radiance","subheading":"Bio-active formulations engineered with pure botanical actives.","button_label_1":"Shop Bestsellers","button_label_2":"The Clinical Philosophy","badge_text":"Award-Winning Formula","show_metrics":true,"metric_1_val":"98%","metric_1_desc":"Firmer Skin","metric_2_val":"24H","metric_2_desc":"Hydration Lock","metric_3_val":"100%","metric_3_desc":"Pure & Clean","padding_top":70,"padding_bottom":70}},"trust_badges":{"type":"trust-badges","settings":{"bg_color":"#FFFFFF","padding_top":25,"padding_bottom":25},"blocks":{"badge_1":{"type":"badge","settings":{"icon":"dermatologist","title":"Dermatologist Formulated","subtitle":"Clinical-grade bio-actives"}},"badge_2":{"type":"badge","settings":{"icon":"leaf","title":"100% Pure & Clean","subtitle":"Zero parabens or sulfates"}},"badge_3":{"type":"badge","settings":{"icon":"sparkle","title":"Visible Radiance","subtitle":"Proven cellular renewal"}},"badge_4":{"type":"badge","settings":{"icon":"shipping","title":"Complimentary Delivery","subtitle":"With luxury sample rituals"}}},"block_order":["badge_1","badge_2","badge_3","badge_4"]},"clinical_diagnostic":{"type":"clinical-diagnostic","settings":{"kicker":"THE BESPOKE CONSULTATION","title":"Discover Your Personalized Clinical Ritual","subtitle":"Every complexion is distinct. Select your primary wellness focus below.","cta_label":"Explore Curated Essentials"}},"editorial_banner":{"type":"editorial-banner","settings":{"bg_color":"#FAF7F5","image_position":"left","kicker":"Our Formulation Philosophy","heading":"Where Rare Botanicals Meet Cellular Precision","lead_text":"Clean luxury backed by uncompromising clinical efficacy.","body_text":"<p>At Tenicide, we reject the false compromise between organic naturalness and clinical performance.</p>","pillar_1_title":"Bio-Identical Actives","pillar_1_desc":"Formulated to mirror skin cellular architecture.","pillar_2_title":"Dermatologist Proven","pillar_2_desc":"Multi-panel clinical evaluations ensure verified results.","button_label":"Discover Our Story","padding_top":80,"padding_bottom":80}},"testimonials_carousel":{"type":"testimonials-carousel","settings":{"bg_color":"#FFFFFF","kicker":"Real Transformations","title":"Loved by Thousands of Radiant Faces","rating_text":"4.9 / 5.0 from 2,400+ Verified Buyers","padding_top":80,"padding_bottom":80},"blocks":{"review_1":{"type":"testimonial","settings":{"quote":"The glow I have achieved using these products is unmatched.","author":"Emma R.","product_bought":"Cellular Renewal Serum"}},"review_2":{"type":"testimonial","settings":{"quote":"I love the clean, clinical formulations.","author":"Sophia L.","product_bought":"Lipid Restorative Cream"}},"review_3":{"type":"testimonial","settings":{"quote":"These products transformed my skin within two weeks.","author":"Olivia M.","product_bought":"3-Step Radiance Set"}}},"block_order":["review_1","review_2","review_3"]},"product_list_section":{"type":"product-list","blocks":{"static-header":{"type":"_product-list-content","static":true,"settings":{"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"text_WJEa9Q":{"type":"text","name":"t:names.text","settings":{"text":"<p>Clinically Proven Bestsellers</p>","width":"fit-content","max_width":"normal","alignment":"left","type_preset":"h3","font":"var(--font-primary--family)","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["text_WJEa9Q"]},"static-product-card":{"type":"_product-card","name":"t:names.product_card","static":true,"settings":{"product_card_gap":4,"border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{"product_card_gallery_wxYqE3":{"type":"_product-card-gallery","name":"t:names.product_card_media","settings":{"image_ratio":"adapt","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"product_title_83YMDL":{"type":"product-title","name":"t:names.product_title","settings":{"width":"100%","max_width":"normal","alignment":"left","type_preset":"rte","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","wrap":"pretty","background":false,"background_color":"#00000026","corner_radius":0,"padding-block-start":4,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}},"price_A6DYPt":{"type":"price","name":"t:names.product_price","settings":{"show_sale_price_first":true,"show_installments":false,"show_tax_info":false,"type_preset":"h6","width":"100%","alignment":"left","font":"var(--font-body--family)","font_size":"1rem","line_height":"normal","letter_spacing":"normal","case":"none","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["product_card_gallery_wxYqE3","product_title_83YMDL","price_A6DYPt"]}},"name":"Featured collection","settings":{"collection":"all","layout_type":"grid","carousel_on_mobile":false,"max_products":4,"columns":4,"mobile_columns":"2","mobile_card_size":"60cqw","columns_gap":36,"rows_gap":36,"icons_style":"arrow","icons_shape":"none","section_width":"page-width","horizontal_alignment":"center","gap":50,"background_color":"#FAF7F5","padding-block-start":72,"padding-block-end":60}}},"order":["luxury_hero","trust_badges","product_list_section","clinical_diagnostic","editorial_banner","testimonials_carousel"]}
+{
+  "sections": {
+    "luxury_hero": {
+      "type": "luxury-hero",
+      "settings": {
+        "bg_color": "#FAF7F5",
+        "layout": "text_first",
+        "full_width": false,
+        "kicker": "Clinically Proven Skincare Innovation",
+        "heading": "Elevate Your Skin to its <em>Purest Radiance</em>",
+        "subheading": "Bio-active formulations engineered with pure botanical actives and dermatologist-backed science for visible, cellular-level transformation.",
+        "button_label_1": "Shop Bestsellers",
+        "button_label_2": "About Us",
+        "badge_text": "Award-Winning Formula",
+        "show_metrics": true,
+        "metric_1_val": "98%",
+        "metric_1_desc": "Firmer Skin",
+        "metric_2_val": "24H",
+        "metric_2_desc": "Hydration Lock",
+        "metric_3_val": "100%",
+        "metric_3_desc": "Pure & Clean",
+        "padding_top": 70,
+        "padding_bottom": 70,
+        "button_link_1": "/collections/all",
+        "button_link_2": "/pages/about-us"
+      }
+    },
+    "trust_badges": {
+      "type": "trust-badges",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "padding_top": 25,
+        "padding_bottom": 25
+      },
+      "blocks": {
+        "badge_1": {
+          "type": "badge",
+          "settings": {
+            "icon": "dermatologist",
+            "title": "Dermatologist Formulated",
+            "subtitle": "Clinical-grade bio-actives"
+          }
+        },
+        "badge_2": {
+          "type": "badge",
+          "settings": {
+            "icon": "leaf",
+            "title": "100% Pure & Clean",
+            "subtitle": "Zero parabens or sulfates"
+          }
+        },
+        "badge_3": {
+          "type": "badge",
+          "settings": {
+            "icon": "sparkle",
+            "title": "Visible Radiance",
+            "subtitle": "Proven cellular renewal"
+          }
+        },
+        "badge_4": {
+          "type": "badge",
+          "settings": {
+            "icon": "shipping",
+            "title": "Complimentary Delivery",
+            "subtitle": "With luxury sample rituals"
+          }
+        }
+      },
+      "block_order": [
+        "badge_1",
+        "badge_2",
+        "badge_3",
+        "badge_4"
+      ]
+    },
+    "clinical_diagnostic": {
+      "type": "clinical-diagnostic",
+      "settings": {
+        "kicker": "THE BESPOKE CONSULTATION",
+        "title": "Discover Your Personalized Clinical Ritual",
+        "subtitle": "Every complexion is distinct. Select your primary wellness focus below.",
+        "cta_label": "Explore Curated Essentials"
+      }
+    },
+    "editorial_banner": {
+      "type": "editorial-banner",
+      "settings": {
+        "bg_color": "#FAF7F5",
+        "image_position": "left",
+        "kicker": "Our Formulation Philosophy",
+        "heading": "Where Rare Botanicals Meet Cellular Precision",
+        "lead_text": "Clean luxury backed by uncompromising clinical efficacy.",
+        "body_text": "<p>At Tenicide, we reject the false compromise between organic naturalness and clinical performance.</p>",
+        "pillar_1_title": "Bio-Identical Actives",
+        "pillar_1_desc": "Formulated to mirror skin cellular architecture.",
+        "pillar_2_title": "Dermatologist Proven",
+        "pillar_2_desc": "Multi-panel clinical evaluations ensure verified results.",
+        "button_label": "Discover Our Story",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
+    "testimonials_carousel": {
+      "type": "testimonials-carousel",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "kicker": "Real Transformations",
+        "title": "Loved by Thousands of Radiant Faces",
+        "rating_text": "4.9 / 5.0 from 2,400+ Verified Buyers",
+        "padding_top": 80,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "review_1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The glow I have achieved using these products is unmatched.",
+            "author": "Emma R.",
+            "product_bought": "Cellular Renewal Serum"
+          }
+        },
+        "review_2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I love the clean, clinical formulations.",
+            "author": "Sophia L.",
+            "product_bought": "Lipid Restorative Cream"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "These products transformed my skin within two weeks.",
+            "author": "Olivia M.",
+            "product_bought": "3-Step Radiance Set"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ]
+    },
+    "product_list_section": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "static": true,
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_WJEa9Q": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p>Clinically Proven Bestsellers</p>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h3",
+                "font": "var(--font-primary--family)",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_WJEa9Q"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_wxYqE3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_83YMDL": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_A6DYPt": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_wxYqE3",
+            "product_title_83YMDL",
+            "price_A6DYPt"
+          ]
+        }
+      },
+      "name": "Featured collection",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 36,
+        "rows_gap": 36,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "center",
+        "gap": 50,
+        "background_color": "#FAF7F5",
+        "padding-block-start": 72,
+        "padding-block-end": 60
+      }
+    }
+  },
+  "order": [
+    "luxury_hero",
+    "trust_badges",
+    "product_list_section",
+    "clinical_diagnostic",
+    "editorial_banner",
+    "testimonials_carousel"
+  ]
+}
